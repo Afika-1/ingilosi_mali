@@ -41,7 +41,7 @@ class WelcomeScreenState extends State<WelcomeScreen>
         height: double.infinity,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('lib/asset/images/welcome.png'),
+            image: AssetImage('lib/assets/images/welcome.png'),
             fit: BoxFit.fill,
             alignment: Alignment.center,
             colorFilter: ColorFilter.mode(
@@ -72,7 +72,7 @@ class WelcomeScreenState extends State<WelcomeScreen>
                             Positioned.fill(
                               child: Center(
                                 child: Image.asset(
-                                  'lib/asset/images/logo2.png',
+                                  'lib/assets/images/logo2.png',
                                   width: 200,
                                   height: 200,
                                 ),

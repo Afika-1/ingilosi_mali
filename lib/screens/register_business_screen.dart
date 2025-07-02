@@ -50,7 +50,7 @@ class BusinessRegistrationScreenState
         child: Container(
           // Dark overlay to ensure text readability
           decoration: BoxDecoration(
-            color: Colors.black.withOpacity(0.4),
+            color: Colors.black.withValues(alpha:0.4),
           ),
           child: Stack(
             children: [
@@ -66,9 +66,9 @@ class BusinessRegistrationScreenState
                       center: Alignment.center,
                       radius: 0.5,
                       colors: [
-                        Colors.white.withOpacity(0.15),
-                        Colors.white.withOpacity(0.08),
-                        Colors.white.withOpacity(0.08),
+                        Colors.white.withValues(alpha:0.15),
+                        Colors.white.withValues(alpha:0.08),
+                        Colors.white.withValues(alpha:0.08),
                         Colors.transparent,
                       ],
                       stops: const [0.0, 0.4, 0.7, 1.0],
@@ -88,9 +88,9 @@ class BusinessRegistrationScreenState
                       center: Alignment.center,
                       radius: 1.0,
                       colors: [
-                        Colors.white.withOpacity(0.15),
-                        Colors.white.withOpacity(0.08),
-                        Colors.white.withOpacity(0.03),
+                        Colors.white.withValues(alpha:0.15),
+                        Colors.white.withValues(alpha:0.08),
+                        Colors.white.withValues(alpha:0.03),
                         Colors.transparent,
                       ],
                       stops: const [0.0, 0.4, 0.7, 1.0],
@@ -327,7 +327,7 @@ class BusinessRegistrationScreenState
             fontFamily: 'Agrandir',
           ),
           filled: true,
-          fillColor: const Color(0xFF2D2D2D).withOpacity(0.8),
+          fillColor: const Color(0xFF2D2D2D).withValues(alpha:0.8),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(
               isLargeScreen ? 30 : 27.5,

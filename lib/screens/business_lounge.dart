@@ -13,7 +13,7 @@ class BusinessLoungeScreen extends StatelessWidget {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('lib/asset/images/businessLounge.jpg'),
+            image: AssetImage('lib/ssets/images/business_Lounge.jpg'),
 
             fit: BoxFit.fill,
           ),
