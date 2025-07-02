@@ -166,7 +166,7 @@ class BusinessLoginScreenState
 
                           // Registration Title
                           Text(
-                            'Registration',
+                            'Login',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: isLargeScreen ? 56 : 48,
