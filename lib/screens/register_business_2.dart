@@ -20,15 +20,15 @@ class BusinessRegistrationScreen2State
   final _geographicalLocationController = TextEditingController();
 
   bool _isPasswordVisible = false;
-  
+
   // Industry dropdown values
   String? _firstIndustryChoice;
   String? _secondIndustryChoice;
   String? _thirdIndustryChoice;
-  
+
   // Investment range dropdown
   String? _investmentRange;
-  
+
   // Requirements checklist
   Map<String, bool> _requirements = {
     'Tax clearance': false,
@@ -67,11 +67,7 @@ class BusinessRegistrationScreen2State
     'Automotive',
   ];
 
-  final List<String> _investmentRanges = [
-    '50k-100k',
-    '100k-250k',
-    '250k-500k',
-  ];
+  final List<String> _investmentRanges = ['50k-100k', '100k-250k', '250k-500k'];
 
   @override
   void dispose() {
@@ -101,9 +97,7 @@ class BusinessRegistrationScreen2State
           ),
         ),
         child: Container(
-          decoration: BoxDecoration(
-            color: Colors.black.withValues(alpha: 0.4),
-          ),
+          decoration: BoxDecoration(color: Colors.black.withValues(alpha: 0.4)),
           child: Stack(
             children: [
               // Top left white gradient
@@ -256,54 +250,11 @@ class BusinessRegistrationScreen2State
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  // Basic Information Section
-                                  // _buildSectionTitle('Basic Information', isLargeScreen),
-                                  // SizedBox(height: isLargeScreen ? 20 : 15),
-                                  
-                                  // _buildTextField(
-                                  //   controller: _fullNameController,
-                                  //   hintText: 'Full Name *',
-                                  //   keyboardType: TextInputType.name,
-                                  //   isLargeScreen: isLargeScreen,
-                                  // ),
-                                  // SizedBox(height: isLargeScreen ? 25 : 20),
-
-                                  // _buildTextField(
-                                  //   controller: _businessNameController,
-                                  //   hintText: 'Investor/Company Name *',
-                                  //   keyboardType: TextInputType.text,
-                                  //   isLargeScreen: isLargeScreen,
-                                  // ),
-                                  // SizedBox(height: isLargeScreen ? 25 : 20),
-
-                                  // _buildTextField(
-                                  //   controller: _contactNumberController,
-                                  //   hintText: 'Contact Number *',
-                                  //   keyboardType: TextInputType.phone,
-                                  //   isLargeScreen: isLargeScreen,
-                                  // ),
-                                  // SizedBox(height: isLargeScreen ? 25 : 20),
-
-                                  // _buildTextField(
-                                  //   controller: _emailController,
-                                  //   hintText: 'Email *',
-                                  //   keyboardType: TextInputType.emailAddress,
-                                  //   isLargeScreen: isLargeScreen,
-                                  // ),
-                                  // SizedBox(height: isLargeScreen ? 25 : 20),
-
-                                  // _buildTextField(
-                                  //   controller: _passwordController,
-                                  //   hintText: 'Password *',
-                                  //   isPassword: true,
-                                  //   keyboardType: TextInputType.visiblePassword,
-                                  //   isLargeScreen: isLargeScreen,
-                                  // ),
-
-                                  // SizedBox(height: isLargeScreen ? 40 : 30),
-
                                   // Investment Preferences Section
-                                  _buildSectionTitle('Investment Preferences', isLargeScreen),
+                                  _buildSectionTitle(
+                                    'Investment Preferences',
+                                    isLargeScreen,
+                                  ),
                                   SizedBox(height: isLargeScreen ? 20 : 15),
 
                                   // Industry of Interest Dropdowns
@@ -322,7 +273,9 @@ class BusinessRegistrationScreen2State
                                     value: _firstIndustryChoice,
                                     hintText: 'First Choice *',
                                     items: _industries,
-                                    onChanged: (value) => setState(() => _firstIndustryChoice = value),
+                                    onChanged: (value) => setState(
+                                      () => _firstIndustryChoice = value,
+                                    ),
                                     isLargeScreen: isLargeScreen,
                                   ),
                                   SizedBox(height: isLargeScreen ? 20 : 15),
@@ -330,8 +283,15 @@ class BusinessRegistrationScreen2State
                                   _buildDropdown(
                                     value: _secondIndustryChoice,
                                     hintText: 'Second Choice *',
-                                    items: _industries.where((item) => item != _firstIndustryChoice).toList(),
-                                    onChanged: (value) => setState(() => _secondIndustryChoice = value),
+                                    items: _industries
+                                        .where(
+                                          (item) =>
+                                              item != _firstIndustryChoice,
+                                        )
+                                        .toList(),
+                                    onChanged: (value) => setState(
+                                      () => _secondIndustryChoice = value,
+                                    ),
                                     isLargeScreen: isLargeScreen,
                                   ),
                                   SizedBox(height: isLargeScreen ? 20 : 15),
@@ -339,9 +299,16 @@ class BusinessRegistrationScreen2State
                                   _buildDropdown(
                                     value: _thirdIndustryChoice,
                                     hintText: 'Third Choice *',
-                                    items: _industries.where((item) => 
-                                      item != _firstIndustryChoice && item != _secondIndustryChoice).toList(),
-                                    onChanged: (value) => setState(() => _thirdIndustryChoice = value),
+                                    items: _industries
+                                        .where(
+                                          (item) =>
+                                              item != _firstIndustryChoice &&
+                                              item != _secondIndustryChoice,
+                                        )
+                                        .toList(),
+                                    onChanged: (value) => setState(
+                                      () => _thirdIndustryChoice = value,
+                                    ),
                                     isLargeScreen: isLargeScreen,
                                   ),
                                   SizedBox(height: isLargeScreen ? 25 : 20),
@@ -351,7 +318,9 @@ class BusinessRegistrationScreen2State
                                     value: _investmentRange,
                                     hintText: 'Investment Offer Range *',
                                     items: _investmentRanges,
-                                    onChanged: (value) => setState(() => _investmentRange = value),
+                                    onChanged: (value) => setState(
+                                      () => _investmentRange = value,
+                                    ),
                                     isLargeScreen: isLargeScreen,
                                   ),
                                   SizedBox(height: isLargeScreen ? 25 : 20),
@@ -367,7 +336,10 @@ class BusinessRegistrationScreen2State
                                   SizedBox(height: isLargeScreen ? 40 : 30),
 
                                   // Requirements Section
-                                  _buildSectionTitle('Requirements from Business Owner', isLargeScreen),
+                                  _buildSectionTitle(
+                                    'Requirements from Business Owner',
+                                    isLargeScreen,
+                                  ),
                                   SizedBox(height: isLargeScreen ? 20 : 15),
 
                                   Text(
@@ -483,33 +455,23 @@ class BusinessRegistrationScreen2State
           filled: true,
           fillColor: const Color(0xFF2D2D2D).withValues(alpha: 0.8),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(
-              isLargeScreen ? 30 : 27.5,
-            ),
+            borderRadius: BorderRadius.circular(isLargeScreen ? 30 : 27.5),
             borderSide: BorderSide.none,
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(
-              isLargeScreen ? 30 : 27.5,
-            ),
+            borderRadius: BorderRadius.circular(isLargeScreen ? 30 : 27.5),
             borderSide: const BorderSide(color: Colors.white24, width: 1),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(
-              isLargeScreen ? 30 : 27.5,
-            ),
+            borderRadius: BorderRadius.circular(isLargeScreen ? 30 : 27.5),
             borderSide: const BorderSide(color: Colors.amber, width: 2),
           ),
           errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(
-              isLargeScreen ? 30 : 27.5,
-            ),
+            borderRadius: BorderRadius.circular(isLargeScreen ? 30 : 27.5),
             borderSide: const BorderSide(color: Colors.red, width: 1),
           ),
           focusedErrorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(
-              isLargeScreen ? 30 : 27.5,
-            ),
+            borderRadius: BorderRadius.circular(isLargeScreen ? 30 : 27.5),
             borderSide: const BorderSide(color: Colors.red, width: 2),
           ),
           contentPadding: EdgeInsets.symmetric(
@@ -575,33 +537,23 @@ class BusinessRegistrationScreen2State
           filled: true,
           fillColor: const Color(0xFF2D2D2D).withValues(alpha: 0.8),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(
-              isLargeScreen ? 30 : 27.5,
-            ),
+            borderRadius: BorderRadius.circular(isLargeScreen ? 30 : 27.5),
             borderSide: BorderSide.none,
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(
-              isLargeScreen ? 30 : 27.5,
-            ),
+            borderRadius: BorderRadius.circular(isLargeScreen ? 30 : 27.5),
             borderSide: const BorderSide(color: Colors.white24, width: 1),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(
-              isLargeScreen ? 30 : 27.5,
-            ),
+            borderRadius: BorderRadius.circular(isLargeScreen ? 30 : 27.5),
             borderSide: const BorderSide(color: Colors.amber, width: 2),
           ),
           errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(
-              isLargeScreen ? 30 : 27.5,
-            ),
+            borderRadius: BorderRadius.circular(isLargeScreen ? 30 : 27.5),
             borderSide: const BorderSide(color: Colors.red, width: 1),
           ),
           focusedErrorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(
-              isLargeScreen ? 30 : 27.5,
-            ),
+            borderRadius: BorderRadius.circular(isLargeScreen ? 30 : 27.5),
             borderSide: const BorderSide(color: Colors.red, width: 2),
           ),
           contentPadding: EdgeInsets.symmetric(
@@ -686,17 +638,21 @@ class BusinessRegistrationScreen2State
   }
 
   bool _validateForm() {
-    if (_firstIndustryChoice == null || _secondIndustryChoice == null || _thirdIndustryChoice == null) {
+    if (_firstIndustryChoice == null ||
+        _secondIndustryChoice == null ||
+        _thirdIndustryChoice == null) {
       _showErrorMessage('Please select all three industry preferences');
       return false;
     }
-    
+
     if (_investmentRange == null) {
       _showErrorMessage('Please select an investment range');
       return false;
     }
 
-    bool hasSelectedRequirement = _requirements.values.any((selected) => selected);
+    bool hasSelectedRequirement = _requirements.values.any(
+      (selected) => selected,
+    );
     if (!hasSelectedRequirement) {
       _showErrorMessage('Please select at least one requirement');
       return false;
@@ -708,10 +664,7 @@ class BusinessRegistrationScreen2State
   void _showErrorMessage(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(
-          message,
-          style: const TextStyle(fontFamily: 'Agrandir'),
-        ),
+        content: Text(message, style: const TextStyle(fontFamily: 'Agrandir')),
         backgroundColor: Colors.red,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -740,7 +693,7 @@ class BusinessRegistrationScreen2State
     _emailController.clear();
     _passwordController.clear();
     _geographicalLocationController.clear();
-    
+
     setState(() {
       _firstIndustryChoice = null;
       _secondIndustryChoice = null;

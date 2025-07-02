@@ -212,17 +212,12 @@
 //   }
 // }
 
-
-
-
-
-
 import 'package:flutter/material.dart';
 import 'package:ingilosi_mali/screens/landing_page_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
-  
+
   @override
   State<WelcomeScreen> createState() => WelcomeScreenState();
 }
@@ -366,50 +361,57 @@ class WelcomeScreenState extends State<WelcomeScreen>
             ),
 
             // Welcome button
+            // Welcome button
             Positioned(
-              bottom: 60,
+              bottom: 80,
               left: 0,
               right: 0,
               child: ScaleTransition(
                 scale: _buttonAnimation,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 40),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: 60,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => LandingPage(),
-                          ),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
-                        foregroundColor: Color(0xFFD4AF37),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          side: BorderSide(color: Color(0xFFD4AF37), width: 2),
-                        ),
-                        elevation: 0,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'WELCOME',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              letterSpacing: 2,
-                              fontFamily: 'Agrandir',
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: Center(
+                    // Center the button within the available space
+                    child: SizedBox(
+                      width: 220, // Fixed width
+                      height: 60,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => LandingPage(),
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.transparent,
+                          foregroundColor: Color(0xFFD4AF37),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            side: BorderSide(
+                              color: Color(0xFFD4AF37),
+                              width: 2,
                             ),
                           ),
-                          SizedBox(width: 5),
-                          Icon(Icons.arrow_forward, size: 20),
-                        ],
+                          elevation: 0,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'WELCOME',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 2,
+                                fontFamily: 'Agrandir',
+                              ),
+                            ),
+                            SizedBox(width: 12),
+                            Icon(Icons.arrow_forward, size: 20),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -427,7 +429,8 @@ class WelcomeScreenState extends State<WelcomeScreen>
       animation: _animationController,
       builder: (context, child) {
         double delay = index * 0.2;
-        double animationValue = (_animationController.value + delay) % 2.0;
+        double animationValue =
+            (_animationController.value + delay) % 1.0; // Changed to % 1.0
 
         return Container(
           width: 20,

@@ -151,6 +151,11 @@ class BusinessLoginScreenState extends State<BusinessLoginScreen> {
                               key: _formKey,
                               child: Column(
                                 children: [
+                                  _buildSectionTitle(
+                                    'Login Information',
+                                    isLargeScreen,
+                                  ),
+                                  SizedBox(height: isLargeScreen ? 20 : 15),
                                   _buildTextField(
                                     controller: _emailController,
                                     hintText: 'Email *',
@@ -222,6 +227,20 @@ class BusinessLoginScreenState extends State<BusinessLoginScreen> {
       ),
     );
   }
+
+  Widget _buildSectionTitle(String title, bool isLargeScreen) {
+    return Text(
+      title,
+      style: TextStyle(
+        color: Colors.amber,
+        fontSize: isLargeScreen ? 20 : 18,
+        fontWeight: FontWeight.w600,
+        fontFamily: 'Agrandir',
+        letterSpacing: 1,
+      ),
+    );
+  }
+
 
   Widget _buildHeader(bool isLargeScreen) {
     return Container(
