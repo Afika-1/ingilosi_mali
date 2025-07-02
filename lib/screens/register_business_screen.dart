@@ -317,7 +317,7 @@ class BusinessRegistrationScreenState
           children: [
             AnimatedContainer(
               duration: const Duration(milliseconds: 300),
-              width: _isSearchExpanded ? 200 : 0,
+              width: _isSearchExpanded ? 300 : 0,
               height: 40,
               child: _isSearchExpanded
                   ? TextField(

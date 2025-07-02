@@ -1,20 +1,82 @@
+
 // import 'package:corpnet_flut/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ingilosi_mali/screens/register_business_screen.dart';
 import 'package:ingilosi_mali/screens/welcome_screen.dart';
 // import '../screens/register_business_screen.dart';
 
-class BusinessLoungeScreen extends StatelessWidget {
+class BusinessLoungeScreen extends StatefulWidget {
   const BusinessLoungeScreen({super.key});
 
   @override
+  State<BusinessLoungeScreen> createState() => _BusinessLoungeScreenState();
+}
+
+class _BusinessLoungeScreenState extends State<BusinessLoungeScreen> {
+  final _searchController = TextEditingController();
+  bool _isSearchExpanded = false;
+  List<String> _searchResults = [];
+  final List<String> _searchableContent = [
+    'Access to funding',
+    'Access to market',
+    'Business Coaching',
+    'Statistics',
+    'Settings',
+    'Account',
+    'Help',
+    'Support'
+  ];
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _performSearch(String query) {
+    if (query.isEmpty) {
+      setState(() {
+        _searchResults = [];
+      });
+      return;
+    }
+
+    setState(() {
+      _searchResults = _searchableContent
+          .where((item) => item.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+    });
+
+    // Show search results in a snackbar
+    if (_searchResults.isNotEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Found: ${_searchResults.join(', ')}'),
+          duration: const Duration(seconds: 3),
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('No results found'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isLargeScreen = screenWidth > 800;
+
     return Scaffold(
+      backgroundColor: Colors.black,
+      drawer: isLargeScreen ? null : _buildDrawer(),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('lib/ssets/images/business_Lounge.jpg'),
-
+            image: AssetImage('lib/assets/images/business_Lounge.jpg'),
             fit: BoxFit.fill,
           ),
         ),
@@ -29,129 +91,265 @@ class BusinessLoungeScreen extends StatelessWidget {
               ],
             ),
           ),
-          child: SafeArea(
-            child: Column(
-              children: [
-                // Header
-                _buildHeader(context),
+          child: Column(
+            children: [
+              // Updated Header with login screen style navbar
+              _buildHeader(isLargeScreen),
 
-                // Main Content
-                Expanded(
-                  child: SingleChildScrollView(
-                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 40),
+              // Main Content
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 40),
 
-                        // Logo and Title
-                        _buildLogoSection(),
+                      // Logo and Title
+                      _buildLogoSection(),
 
-                        const SizedBox(height: 60),
+                      const SizedBox(height: 60),
 
-                        // Welcome Message
-                        _buildWelcomeMessage(),
+                      // Welcome Message
+                      _buildWelcomeMessage(),
 
-                        const SizedBox(height: 80),
+                      const SizedBox(height: 80),
 
-                        // Service Cards
-                        _buildServiceCards(context),
+                      // Service Cards
+                      _buildServiceCards(context),
 
-                        const SizedBox(height: 60),
+                      const SizedBox(height: 60),
 
-                        // Statistics
-                        _buildStatistics(),
+                      // Statistics
+                      _buildStatistics(),
 
-                        const SizedBox(height: 40),
-                      ],
-                    ),
+                      const SizedBox(height: 40),
+                    ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
 
-  Widget _buildHeader(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+  Widget _buildHeader(bool isLargeScreen) {
+    return Container(
+      height: 80,
+      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+      decoration: BoxDecoration(
+        color: Colors.black.withValues(alpha: 0.3),
+        border: Border(
+          bottom: BorderSide(
+            color: Colors.white.withValues(alpha: 0.1),
+            width: 1,
+          ),
+        ),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Spacer(),
-          Row(
-            children: [
-              _buildHeaderButton(
-                context,
-                'Settings',
-                Icons.settings_outlined,
-                () =>
-                // _showSnackBar(context, 'Settings clicked'),
-                 Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => WelcomeScreen(),
-                  ),
-                ),
+          const Spacer(), // Push navigation to the right
+          
+          // Navigation
+          if (isLargeScreen)
+            _buildDesktopNavigation()
+          else
+            Builder(
+              builder: (context) => IconButton(
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                icon: const Icon(Icons.menu, color: Colors.white, size: 28),
               ),
-              const SizedBox(width: 20),
+            ),
+        ],
+      ),
+    );
+  }
 
-              _buildHeaderButton(
-                context,
-                'Account',
-                Icons.account_circle_outlined,
-                () =>  Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => BusinessRegistrationScreen(),
+  Widget _buildDesktopNavigation() {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        // Search functionality
+        Row(
+          children: [
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
+              width: _isSearchExpanded ? 200 : 0,
+              height: 40,
+              child: _isSearchExpanded
+                  ? TextField(
+                      controller: _searchController,
+                      style: const TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        hintText: 'Search...',
+                        hintStyle: const TextStyle(color: Colors.white60),
+                        filled: true,
+                        fillColor: const Color(0xFF2D2D2D).withValues(alpha: 0.8),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: BorderSide.none,
+                        ),
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 8,
+                        ),
+                      ),
+                      onSubmitted: _performSearch,
+                      onChanged: (value) {
+                        if (value.isEmpty) {
+                          setState(() {
+                            _searchResults = [];
+                          });
+                        }
+                      },
+                    )
+                  : const SizedBox.shrink(),
+            ),
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  _isSearchExpanded = !_isSearchExpanded;
+                  if (!_isSearchExpanded) {
+                    _searchController.clear();
+                    _searchResults = [];
+                  }
+                });
+              },
+              icon: Icon(
+                _isSearchExpanded ? Icons.close : Icons.search,
+                color: Colors.white,
+                size: 24,
+              ),
+            ),
+          ],
+        ),
+        
+        const SizedBox(width: 20),
+        
+        // Navigation items
+        _buildNavItem('Services', _navigateToServices),
+        const SizedBox(width: 30),
+        _buildNavItem('Account', _navigateToAccount),
+        const SizedBox(width: 30),
+        _buildNavItem('Settings', _navigateToSettings),
+        const SizedBox(width: 30),
+        _buildNavItem('Logout', _navigateToLogout),
+      ],
+    );
+  }
+
+  Widget _buildNavItem(String title, VoidCallback onTap) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(4),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        child: Text(
+          title,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDrawer() {
+    return Drawer(
+      backgroundColor: const Color(0xFF1A1A1A),
+      child: Column(
+        children: [
+          // Drawer header
+          Container(
+            height: 120,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.black.withValues(alpha: 0.3),
+              border: Border(
+                bottom: BorderSide(
+                  color: Colors.white.withValues(alpha: 0.1),
+                  width: 1,
+                ),
+              ),
+            ),
+            child: const DrawerHeader(
+              margin: EdgeInsets.zero,
+              child: Center(
+                child: Text(
+                  'Business Lounge',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w300,
                   ),
                 ),
               ),
-              const SizedBox(width: 20),
-              _buildHeaderButton(
-                context,
-                'Search',
-                Icons.search,
-                () => _showSnackBar(context, 'Search clicked'),
+            ),
+          ),
+          
+          // Search in drawer
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: TextField(
+              controller: _searchController,
+              style: const TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                hintText: 'Search...',
+                hintStyle: const TextStyle(color: Colors.white60),
+                prefixIcon: const Icon(Icons.search, color: Colors.white60),
+                filled: true,
+                fillColor: const Color(0xFF2D2D2D).withValues(alpha: 0.8),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(25),
+                  borderSide: BorderSide.none,
+                ),
               ),
-            ],
+              onSubmitted: (value) {
+                _performSearch(value);
+                Navigator.pop(context); // Close drawer after search
+              },
+            ),
+          ),
+          
+          // Navigation items
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                _buildDrawerItem('Services', Icons.business_center, _navigateToServices),
+                _buildDrawerItem('Account', Icons.account_circle_outlined, _navigateToAccount),
+                _buildDrawerItem('Settings', Icons.settings_outlined, _navigateToSettings),
+                _buildDrawerItem('Logout', Icons.logout, _navigateToLogout),
+              ],
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildHeaderButton(
-    BuildContext context,
-    String label,
-    IconData icon,
-    VoidCallback onPressed,
-  ) {
-    return FilledButton.tonal(
-      onPressed: onPressed,
-      style: FilledButton.styleFrom(
-        backgroundColor: Colors.white.withValues(alpha: 0.1),
-        foregroundColor: Colors.white,
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+  Widget _buildDrawerItem(String title, IconData icon, VoidCallback onTap) {
+    return ListTile(
+      leading: Icon(icon, color: Colors.white70),
+      title: Text(
+        title,
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 16,
+          fontWeight: FontWeight.w400,
+        ),
       ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            label,
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w300,
-              fontSize: 14,
-            ),
-          ),
-          const SizedBox(width: 8),
-          Icon(icon, size: 20),
-        ],
-      ),
+      onTap: () {
+        Navigator.pop(context); // Close drawer first
+        onTap(); // Then execute the navigation
+      },
+      hoverColor: Colors.white.withValues(alpha: 0.1),
     );
   }
 
@@ -398,17 +596,80 @@ class BusinessLoungeScreen extends StatelessWidget {
     );
   }
 
+  // Navigation methods
+  void _navigateToServices() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Services page - Coming soon!'),
+        duration: Duration(seconds: 2),
+      ),
+    );
+  }
+
+  void _navigateToAccount() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => BusinessRegistrationScreen(),
+      ),
+    );
+  }
+
+  void _navigateToSettings() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => WelcomeScreen(),
+      ),
+    );
+  }
+
+  void _navigateToLogout() {
+    // Show logout confirmation
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: const Color(0xFF1A1A1A),
+          title: const Text(
+            'Logout',
+            style: TextStyle(color: Colors.white),
+          ),
+          content: const Text(
+            'Are you sure you want to logout?',
+            style: TextStyle(color: Colors.white70),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text(
+                'Cancel',
+                style: TextStyle(color: Colors.white70),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => WelcomeScreen(),
+                  ),
+                );
+              },
+              child: const Text(
+                'Logout',
+                style: TextStyle(color: Colors.amber),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   void _handleServiceTap(BuildContext context, String service) {
-    // _showSnackBar(context, '$service selected');
-    // Navigate to service page
-    // Navigator.of(context).push(
-    //   MaterialPageRoute(
-    //     builder: (context) => ServiceDetailPage(service: service),
-    //   ),
-    // );
-    // Navigator.pushReplacement(
-    //   context, MaterialPageRoute(
-    //     builder: (context)=>BusinessLoungeScreen()));
+    _showSnackBar(context, '$service selected');
   }
 
   void _showSnackBar(BuildContext context, String message) {
@@ -433,40 +694,4 @@ class ServiceItem {
     required this.icon,
     required this.description,
   });
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Business Lounge',
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.amber,
-          brightness: Brightness.dark,
-        ),
-        fontFamily: 'System',
-        textTheme: const TextTheme(
-          displayLarge: TextStyle(
-            fontWeight: FontWeight.w200,
-            letterSpacing: -0.5,
-          ),
-          titleLarge: TextStyle(
-            fontWeight: FontWeight.w300,
-            letterSpacing: 0.5,
-          ),
-          bodyMedium: TextStyle(fontWeight: FontWeight.w400),
-        ),
-      ),
-      home: const BusinessLoungeScreen(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
-
-void main() {
-  runApp(const MyApp());
 }
