@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ingilosi_mali/screens/login_business_screen.dart';
 import 'package:ingilosi_mali/screens/register_business_2.dart';
-// import 'package:ingilosi_mali/screens/education_screen.dart'; // Import your Education screen
-// import 'package:ingilosi_mali/screens/about_us_screen.dart'; // Import your About Us screen
-// import 'package:ingilosi_mali/screens/login_screen.dart'; // Import your Login screen
 
 class BusinessRegistrationScreen extends StatefulWidget {
   const BusinessRegistrationScreen({super.key});
@@ -61,7 +58,6 @@ class BusinessRegistrationScreenState
           .toList();
     });
 
-    // Show search results in a snackbar or dialog
     if (_searchResults.isNotEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -107,153 +103,163 @@ class BusinessRegistrationScreenState
               // Fixed Header
               _buildHeader(isLargeScreen),
               
-              // Main Content
+              // Main Content with Footer
               Expanded(
                 child: SingleChildScrollView(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: isLargeScreen ? 50 : 24,
-                  ),
-                  child: Center(
-                    child: ConstrainedBox(
-                      constraints: BoxConstraints(
-                        minHeight: screenHeight - 120, // Account for header
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const SizedBox(height: 40),
-
-                          // Registration Title
-                          Text(
-                            'Investor Registration',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: isLargeScreen ? 56 : 48,
-                              fontWeight: FontWeight.w300,
-                              letterSpacing: 2,
-                              fontFamily: 'Agrandir',
+                  child: Column(
+                    children: [
+                      // Registration Form Content with padding
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: isLargeScreen ? 50 : 24,
+                        ),
+                        child: Center(
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(
+                              minHeight: screenHeight - 200, // Account for header and footer
                             ),
-                          ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const SizedBox(height: 40),
 
-                          SizedBox(height: isLargeScreen ? 20 : 15),
-
-                          // Subtitle
-                          Container(
-                            width: isLargeScreen ? 500 : double.infinity,
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: Text(
-                              'Complete your investor profile to connect with suitable business opportunities. Your preferences will help us match you with the right investment prospects.',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white70,
-                                fontSize: isLargeScreen ? 18 : 16,
-                                height: 1.5,
-                                letterSpacing: 0.5,
-                                fontFamily: 'Agrandir',
-                              ),
-                            ),
-                          ),
-
-                          SizedBox(height: isLargeScreen ? 40 : 30),
-
-                          // Registration Form
-                          SizedBox(
-                            width: formWidth,
-                            child: Form(
-                              key: _formKey,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  // Basic Information Section
-                                  _buildSectionTitle('Basic Information', isLargeScreen),
-                                  SizedBox(height: isLargeScreen ? 20 : 15),
-
-                                  _buildTextField(
-                                    controller: _fullNameController,
-                                    hintText: 'Full Name *',
-                                    keyboardType: TextInputType.name,
-                                    isLargeScreen: isLargeScreen,
+                                // Registration Title
+                                Text(
+                                  'Investor Registration',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: isLargeScreen ? 56 : 48,
+                                    fontWeight: FontWeight.w300,
+                                    letterSpacing: 2,
+                                    fontFamily: 'Agrandir',
                                   ),
-                                  SizedBox(height: isLargeScreen ? 25 : 20),
+                                ),
 
-                                  _buildTextField(
-                                    controller: _businessNameController,
-                                    hintText: 'Investor/Company Name *',
-                                    keyboardType: TextInputType.text,
-                                    isLargeScreen: isLargeScreen,
-                                  ),
-                                  SizedBox(height: isLargeScreen ? 25 : 20),
+                                SizedBox(height: isLargeScreen ? 20 : 15),
 
-                                  _buildTextField(
-                                    controller: _contactNumberController,
-                                    hintText: 'Contact Number *',
-                                    keyboardType: TextInputType.phone,
-                                    isLargeScreen: isLargeScreen,
-                                  ),
-                                  SizedBox(height: isLargeScreen ? 25 : 20),
-
-                                  _buildTextField(
-                                    controller: _emailController,
-                                    hintText: 'Email *',
-                                    keyboardType: TextInputType.emailAddress,
-                                    isLargeScreen: isLargeScreen,
-                                  ),
-                                  SizedBox(height: isLargeScreen ? 25 : 20),
-
-                                  _buildTextField(
-                                    controller: _passwordController,
-                                    hintText: 'Password *',
-                                    isPassword: true,
-                                    keyboardType: TextInputType.visiblePassword,
-                                    isLargeScreen: isLargeScreen,
-                                  ),
-
-                                  SizedBox(height: isLargeScreen ? 40 : 30),
-
-                                  // Register Button
-                                  SizedBox(
-                                    width: formWidth,
-                                    height: isLargeScreen ? 60 : 55,
-                                    child: ElevatedButton(
-                                      onPressed: () {
-                                        if (_formKey.currentState!.validate()) {
-                                          _handleRegistration();
-                                        }
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: const Color(0xFF2D2D2D),
-                                        foregroundColor: Colors.white,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(
-                                            isLargeScreen ? 30 : 27.5,
-                                          ),
-                                          side: const BorderSide(
-                                            color: Colors.white24,
-                                            width: 1,
-                                          ),
-                                        ),
-                                        elevation: 0,
-                                      ),
-                                      child: Text(
-                                        'REGISTER AS INVESTOR',
-                                        style: TextStyle(
-                                          fontSize: isLargeScreen ? 18 : 16,
-                                          fontWeight: FontWeight.w500,
-                                          letterSpacing: 1.5,
-                                          fontFamily: 'Agrandir',
-                                        ),
-                                      ),
+                                // Subtitle
+                                Container(
+                                  width: isLargeScreen ? 500 : double.infinity,
+                                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                                  child: Text(
+                                    'Complete your investor profile to connect with suitable business opportunities. Your preferences will help us match you with the right investment prospects.',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.white70,
+                                      fontSize: isLargeScreen ? 18 : 16,
+                                      height: 1.5,
+                                      letterSpacing: 0.5,
+                                      fontFamily: 'Agrandir',
                                     ),
                                   ),
+                                ),
 
-                                  SizedBox(height: isLargeScreen ? 50 : 40),
-                                ],
-                              ),
+                                SizedBox(height: isLargeScreen ? 40 : 30),
+
+                                // Registration Form
+                                SizedBox(
+                                  width: formWidth,
+                                  child: Form(
+                                    key: _formKey,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        // Basic Information Section
+                                        _buildSectionTitle('Basic Information', isLargeScreen),
+                                        SizedBox(height: isLargeScreen ? 20 : 15),
+
+                                        _buildTextField(
+                                          controller: _fullNameController,
+                                          hintText: 'Full Name *',
+                                          keyboardType: TextInputType.name,
+                                          isLargeScreen: isLargeScreen,
+                                        ),
+                                        SizedBox(height: isLargeScreen ? 25 : 20),
+
+                                        _buildTextField(
+                                          controller: _businessNameController,
+                                          hintText: 'Investor/Company Name *',
+                                          keyboardType: TextInputType.text,
+                                          isLargeScreen: isLargeScreen,
+                                        ),
+                                        SizedBox(height: isLargeScreen ? 25 : 20),
+
+                                        _buildTextField(
+                                          controller: _contactNumberController,
+                                          hintText: 'Contact Number *',
+                                          keyboardType: TextInputType.phone,
+                                          isLargeScreen: isLargeScreen,
+                                        ),
+                                        SizedBox(height: isLargeScreen ? 25 : 20),
+
+                                        _buildTextField(
+                                          controller: _emailController,
+                                          hintText: 'Email *',
+                                          keyboardType: TextInputType.emailAddress,
+                                          isLargeScreen: isLargeScreen,
+                                        ),
+                                        SizedBox(height: isLargeScreen ? 25 : 20),
+
+                                        _buildTextField(
+                                          controller: _passwordController,
+                                          hintText: 'Password *',
+                                          isPassword: true,
+                                          keyboardType: TextInputType.visiblePassword,
+                                          isLargeScreen: isLargeScreen,
+                                        ),
+
+                                        SizedBox(height: isLargeScreen ? 40 : 30),
+
+                                        // Register Button
+                                        SizedBox(
+                                          width: formWidth,
+                                          height: isLargeScreen ? 60 : 55,
+                                          child: ElevatedButton(
+                                            onPressed: () {
+                                              if (_formKey.currentState!.validate()) {
+                                                _handleRegistration();
+                                              }
+                                            },
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor: const Color(0xFF2D2D2D),
+                                              foregroundColor: Colors.white,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(
+                                                  isLargeScreen ? 30 : 27.5,
+                                                ),
+                                                side: const BorderSide(
+                                                  color: Colors.white24,
+                                                  width: 1,
+                                                ),
+                                              ),
+                                              elevation: 0,
+                                            ),
+                                            child: Text(
+                                              'REGISTER AS INVESTOR',
+                                              style: TextStyle(
+                                                fontSize: isLargeScreen ? 18 : 16,
+                                                fontWeight: FontWeight.w500,
+                                                letterSpacing: 1.5,
+                                                fontFamily: 'Agrandir',
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+
+                                        SizedBox(height: isLargeScreen ? 50 : 40),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                        ],
+                        ),
                       ),
-                    ),
+                      
+                      // Footer - No padding, full width
+                      _buildFooter(!isLargeScreen),
+                    ],
                   ),
                 ),
               ),
@@ -442,7 +448,7 @@ class BusinessRegistrationScreenState
               ),
               onSubmitted: (value) {
                 _performSearch(value);
-                Navigator.pop(context); // Close drawer after search
+                Navigator.pop(context);
               },
             ),
           ),
@@ -476,8 +482,8 @@ class BusinessRegistrationScreenState
         ),
       ),
       onTap: () {
-        Navigator.pop(context); // Close drawer first
-        onTap(); // Then execute the navigation
+        Navigator.pop(context);
+        onTap();
       },
       hoverColor: Colors.white.withValues(alpha: 0.1),
     );
@@ -595,6 +601,128 @@ class BusinessRegistrationScreenState
     );
   }
 
+  Widget _buildFooter(bool isMobile) {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(
+        vertical: isMobile ? 40 : 60,
+        horizontal: isMobile ? 20 : 60,
+      ),
+      decoration: BoxDecoration(
+        color: Colors.black.withValues(alpha: 0.9),
+        border: Border(
+          top: BorderSide(
+            color: Colors.white.withValues(alpha: 0.1),
+            width: 1,
+          ),
+        ),
+      ),
+      child: Column(
+        children: [
+          isMobile
+              ? Column(
+                  children: [
+                    _buildFooterSection('Company', [
+                      'About Us',
+                      'Careers',
+                      'Press',
+                      'Blog',
+                    ]),
+                    const SizedBox(height: 30),
+                    _buildFooterSection('Support', [
+                      'Help Center',
+                      'Contact Us',
+                      'Terms of Service',
+                      'Privacy Policy',
+                    ]),
+                    const SizedBox(height: 30),
+                    _buildFooterSection('Follow Us', [
+                      'Twitter',
+                      'LinkedIn',
+                      'Facebook',
+                      'Instagram',
+                    ]),
+                  ],
+                )
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildFooterSection('Company', [
+                      'About Us',
+                      'Careers',
+                      'Press',
+                      'Blog',
+                    ]),
+                    _buildFooterSection('Support', [
+                      'Help Center',
+                      'Contact Us',
+                      'Terms of Service',
+                      'Privacy Policy',
+                    ]),
+                    _buildFooterSection('Follow Us', [
+                      'Twitter',
+                      'LinkedIn',
+                      'Facebook',
+                      'Instagram',
+                    ]),
+                  ],
+                ),
+          SizedBox(height: isMobile ? 30 : 40),
+          Divider(
+            color: Colors.white.withValues(alpha: 0.1),
+          ),
+          const SizedBox(height: 20),
+          const Text(
+            '© 2025 Ingilosi Mali. All rights reserved.',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 14,
+              color: Colors.white60,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildFooterSection(String title, List<String> items) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+            color: Colors.white,
+            letterSpacing: 1.2,
+          ),
+        ),
+        const SizedBox(height: 15),
+        ...items.map(
+          (item) => Padding(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: InkWell(
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('$item - Coming soon!')),
+                );
+              },
+              child: Text(
+                item,
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.white70,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   void _navigateToEducation() {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
@@ -614,7 +742,6 @@ class BusinessRegistrationScreenState
   }
 
   void _navigateToRegister() {
-    // Since we're already on the registration screen, just show a message
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('You are already on the registration page'),
@@ -631,7 +758,6 @@ class BusinessRegistrationScreenState
   }
 
   void _handleRegistration() {
-    // Show success message
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: const Text(
@@ -645,7 +771,6 @@ class BusinessRegistrationScreenState
       ),
     );
 
-    // Clear form
     _fullNameController.clear();
     _businessNameController.clear();
     _contactNumberController.clear();
