@@ -595,6 +595,10 @@ class BusinessRegistrationScreenState
               return 'Password must be at least 6 characters';
             }
           }
+          if (hintText.toLowerCase().contains('contact')) {
+          if (!RegExp(r'^\d{10,}$').hasMatch(value)){
+            return 'Please enter a valid phone number';
+          }}
           return null;
         },
       ),

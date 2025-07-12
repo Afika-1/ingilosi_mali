@@ -1547,7 +1547,7 @@ class _AccountScreenState extends State<AccountScreen> {
     // Navigate to education screen
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text('Navigating to Education...'),
+        content: Text('Navigating to Education... comming soon'),
         duration: Duration(seconds: 2),
       ),
     );
@@ -1557,7 +1557,7 @@ class _AccountScreenState extends State<AccountScreen> {
     // Navigate to about screen
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text('Navigating to About Us...'),
+        content: Text('Navigating to About Us... comming soon'),
         duration: Duration(seconds: 2),
       ),
     );
@@ -2293,7 +2293,7 @@ class _AccountScreenState extends State<AccountScreen> {
           }
         }
         if (hintText.toLowerCase().contains('contact')) {
-          if (!RegExp(r'^\+?[\d\s\-\(\)]+$').hasMatch(value)) {
+          if (!RegExp(r'^\d{10,}$').hasMatch(value)) {
             return 'Please enter a valid phone number';
           }
         }
