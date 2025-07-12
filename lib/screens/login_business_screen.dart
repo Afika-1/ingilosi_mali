@@ -214,36 +214,45 @@ class BusinessLoginScreenState extends State<BusinessLoginScreen> {
                             ),
                           ),
 
-                        Container(
+                          SizedBox(height: isLargeScreen ? 20 : 15),
+
+                          // Register Link
+                          Container(
                             width: isLargeScreen ? 500 : double.infinity,
                             padding: const EdgeInsets.symmetric(horizontal: 20),
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                              
-                              'Not our community member yet? ',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                color: Colors.white70,
-                                fontSize: isLargeScreen ? 18 : 16,
-                                height: 1.5,
-                                letterSpacing: 0.5,
-                                fontFamily: 'Agrandir',
-                              ),
-
-                            ),
-                            Text('Register Now!', textAlign: TextAlign.left,
-                              style: TextStyle(
-                                color: Colors.amber,
-                                fontSize: isLargeScreen ? 18 : 16,
-                                height: 1.5,
-                                letterSpacing: 0.5,
-                                fontFamily: 'Agrandir',
-                              ),)
+                                  'Don\'t have an account? ',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.white70,
+                                    fontSize: isLargeScreen ? 18 : 16,
+                                    height: 1.5,
+                                    letterSpacing: 0.5,
+                                    fontFamily: 'Agrandir',
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: _navigateToRegister,
+                                  child: Text(
+                                    'Register',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.amber,
+                                      fontSize: isLargeScreen ? 18 : 16,
+                                      height: 1.5,
+                                      letterSpacing: 0.5,
+                                      fontFamily: 'Agrandir',
+                                      fontWeight: FontWeight.w500,
+                                      decoration: TextDecoration.underline,
+                                      decorationColor: Colors.amber,
+                                    ),
+                                  ),
+                                ),
                               ],
-                            ) 
-                            
-
+                            ),
                           ),
                         ],
                       ),
