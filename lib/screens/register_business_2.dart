@@ -30,7 +30,7 @@ class BusinessRegistrationScreen2State
   String? _investmentRange;
 
   // Requirements checklist
-  Map<String, bool> _requirements = {
+  final Map<String, bool> _requirements = {
     'Tax clearance': false,
     'Company Registration Documents': false,
     'Tax Clearance Certificate': false,

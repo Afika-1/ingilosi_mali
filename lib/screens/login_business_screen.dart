@@ -214,7 +214,37 @@ class BusinessLoginScreenState extends State<BusinessLoginScreen> {
                             ),
                           ),
 
-                          SizedBox(height: isLargeScreen ? 50 : 40),
+                        Container(
+                            width: isLargeScreen ? 500 : double.infinity,
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Row(
+                              children: [
+                                Text(
+                              
+                              'Not our community member yet? ',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                color: Colors.white70,
+                                fontSize: isLargeScreen ? 18 : 16,
+                                height: 1.5,
+                                letterSpacing: 0.5,
+                                fontFamily: 'Agrandir',
+                              ),
+
+                            ),
+                            Text('Register Now!', textAlign: TextAlign.left,
+                              style: TextStyle(
+                                color: Colors.amber,
+                                fontSize: isLargeScreen ? 18 : 16,
+                                height: 1.5,
+                                letterSpacing: 0.5,
+                                fontFamily: 'Agrandir',
+                              ),)
+                              ],
+                            ) 
+                            
+
+                          ),
                         ],
                       ),
                     ),

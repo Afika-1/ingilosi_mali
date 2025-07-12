@@ -1788,7 +1788,7 @@ Widget _buildActionButtons(bool isMobile, bool isTablet) {
   }
 
   Widget _buildHeroSection(bool isMobile, bool isTablet) {
-    return Container(
+    return SizedBox(
       height: MediaQuery.of(context).size.height,
       child: Stack(
         children: [

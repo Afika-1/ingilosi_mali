@@ -432,7 +432,7 @@ class WelcomeScreenState extends State<WelcomeScreen>
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             // Enhanced loading dots with glow effect
-                            Container(
+                            SizedBox(
                               height: 80,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
