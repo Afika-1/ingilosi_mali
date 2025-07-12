@@ -1,6 +1,7 @@
 
 // import 'package:corpnet_flut/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:ingilosi_mali/screens/account_screen.dart';
 import 'package:ingilosi_mali/screens/register_business_screen.dart';
 import 'package:ingilosi_mali/screens/welcome_screen.dart';
 // import '../screens/register_business_screen.dart';
@@ -610,7 +611,7 @@ class _BusinessLoungeScreenState extends State<BusinessLoungeScreen> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => BusinessRegistrationScreen(),
+        builder: (context) => AccountScreen(),
       ),
     );
   }
