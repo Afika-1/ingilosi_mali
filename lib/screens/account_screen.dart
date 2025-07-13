@@ -1223,68 +1223,6 @@ Widget _buildDropdown({
   );
 }
 
-  // Widget _buildRequirementsChecklist(bool isLargeScreen) {
-  //   return Container(
-  //     padding: EdgeInsets.all(isLargeScreen ? 20 : 16),
-  //     decoration: BoxDecoration(
-  //       color: const Color.fromARGB(255, 5, 5, 5).withValues(alpha: 0.8),
-  //       borderRadius: BorderRadius.circular(isLargeScreen ? 15 : 12),
-  //       border: Border.all(
-  //         color: Colors.white.withValues(alpha: 0.2),
-  //         width: 1,
-  //       ),
-  //     ),
-  //     child: Column(
-  //       crossAxisAlignment: CrossAxisAlignment.start,
-  //       children: _requirements.keys.map((requirement) {
-  //         return Padding(
-  //           padding: const EdgeInsets.only(bottom: 12),
-  //           child: Row(
-  //             children: [
-  //               GestureDetector(
-  //                 onTap: _isEditMode ? () {
-  //                   setState(() {
-  //                     _requirements[requirement] = !_requirements[requirement]!;
-  //                   });
-  //                 } : null,
-  //                 child: Container(
-  //                   width: 20,
-  //                   height: 20,
-  //                   decoration: BoxDecoration(
-  //                     color: _requirements[requirement]! ? Colors.amber : Colors.transparent,
-  //                     border: Border.all(
-  //                       color: _requirements[requirement]! ? Colors.amber : Colors.white60,
-  //                       width: 2,
-  //                     ),
-  //                     borderRadius: BorderRadius.circular(4),
-  //                   ),
-  //                   child: _requirements[requirement]!
-  //                       ? const Icon(
-  //                           Icons.check,
-  //                           color: Colors.black,
-  //                           size: 17,
-  //                         )
-  //                       : null,
-  //                 ),
-  //               ),
-  //               const SizedBox(width: 12),
-  //               Expanded(
-  //                 child: Text(
-  //                   requirement,
-  //                   style: TextStyle(
-  //                     color: _requirements[requirement]! ? Colors.white : Colors.white70,
-  //                     fontSize: isLargeScreen ? 14 : 12,
-  //                     fontFamily: 'Agrandir',
-  //                   ),
-  //                 ),
-  //               ),
-  //             ],
-  //           ),
-  //         );
-  //       }).toList(),
-  //     ),
-  //   );
-  // }
 
 Widget _buildRequirementsChecklist(bool isLargeScreen) {
   return Container(
@@ -1374,15 +1312,16 @@ Widget _buildRequirementsChecklist(bool isLargeScreen) {
   );
 }
 
-  Widget _buildFooter(bool isMobile) {
+
+Widget _buildFooter(bool isMobile) {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
-        vertical: isMobile ? 30 : 50,
-        horizontal: isMobile ? 24 : 50,
+        vertical: isMobile ? 40 : 60,
+        horizontal: isMobile ? 20 : 60,
       ),
       decoration: BoxDecoration(
-        color: Colors.black.withValues(alpha: 0.8),
+        color: Colors.black.withValues(alpha: 0.9),
         border: Border(
           top: BorderSide(
             color: Colors.white.withValues(alpha: 0.1),
@@ -1392,39 +1331,108 @@ Widget _buildRequirementsChecklist(bool isLargeScreen) {
       ),
       child: Column(
         children: [
-          // Logo
-          Image.asset(
-            'lib/assets/images/logo2.png',
-            height: isMobile ? 40 : 50,
-            fit: BoxFit.contain,
+          isMobile
+              ? Column(
+                  children: [
+                    _buildFooterSection('Company', [
+                      'About Us',
+                      'Careers',
+                      'Press',
+                      'Blog',
+                    ]),
+                    const SizedBox(height: 30),
+                    _buildFooterSection('Support', [
+                      'Help Center',
+                      'Contact Us',
+                      'Terms of Service',
+                      'Privacy Policy',
+                    ]),
+                    const SizedBox(height: 30),
+                    _buildFooterSection('Follow Us', [
+                      'Twitter',
+                      'LinkedIn',
+                      'Facebook',
+                      'Instagram',
+                    ]),
+                  ],
+                )
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildFooterSection('Company', [
+                      'About Us',
+                      'Careers',
+                      'Press',
+                      'Blog',
+                    ]),
+                    _buildFooterSection('Support', [
+                      'Help Center',
+                      'Contact Us',
+                      'Terms of Service',
+                      'Privacy Policy',
+                    ]),
+                    _buildFooterSection('Follow Us', [
+                      'Twitter',
+                      'LinkedIn',
+                      'Facebook',
+                      'Instagram',
+                    ]),
+                  ],
+                ),
+          SizedBox(height: isMobile ? 30 : 40),
+          Divider(
+            color: Colors.white.withValues(alpha: 0.1),
           ),
-          SizedBox(height: isMobile ? 20 : 30),
-          
-          // Copyright
-          Text(
-            '© 2024 Your Company Name. All rights reserved.',
+          const SizedBox(height: 20),
+          const Text(
+            '© 2025 Ingilosi Mali. All rights reserved.',
             textAlign: TextAlign.center,
             style: TextStyle(
+              fontSize: 14,
               color: Colors.white60,
-              fontSize: isMobile ? 12 : 14,
-              fontFamily: 'Agrandir',
-            ),
-          ),
-          
-          SizedBox(height: isMobile ? 10 : 15),
-          
-          // Contact Info
-          Text(
-            'Contact us: info@yourcompany.com | +27 123 456 789',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white60,
-              fontSize: isMobile ? 10 : 12,
-              fontFamily: 'Agrandir',
             ),
           ),
         ],
       ),
     );
   }
+
+  Widget _buildFooterSection(String title, List<String> items) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+            color: Colors.white,
+            letterSpacing: 1.2,
+          ),
+        ),
+        const SizedBox(height: 15),
+        ...items.map(
+          (item) => Padding(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: InkWell(
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('$item - Coming soon!')),
+                );
+              },
+              child: Text(
+                item,
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.white70,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
 }
+
