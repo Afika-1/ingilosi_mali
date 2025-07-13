@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:ingilosi_mali/screens/login_business_screen.dart';
 import 'package:ingilosi_mali/screens/register_business_2.dart';
 
-class BusinessRegistrationScreen extends StatefulWidget {
-  const BusinessRegistrationScreen({super.key});
+class InvestorRegistrationScreen extends StatefulWidget {
+  const InvestorRegistrationScreen({super.key});
 
   @override
-  State<BusinessRegistrationScreen> createState() =>
-      BusinessRegistrationScreenState();
+  State<InvestorRegistrationScreen> createState() =>
+      InvestorRegistrationScreenState();
 }
 
-class BusinessRegistrationScreenState
-    extends State<BusinessRegistrationScreen> {
+class InvestorRegistrationScreenState
+    extends State<InvestorRegistrationScreen> {
   final _formKey = GlobalKey<FormState>();
   final _fullNameController = TextEditingController();
   final _businessNameController = TextEditingController();

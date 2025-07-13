@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ingilosi_mali/screens/business_lounge.dart';
 // import 'package:ingilosi_mali/screens/login_business_screen.dart';
-import 'package:ingilosi_mali/screens/register_business_screen.dart';
+import 'package:ingilosi_mali/screens/register_investor_screen.dart';
 
 class BusinessLoginScreen extends StatefulWidget {
   const BusinessLoginScreen({super.key});
@@ -620,7 +620,7 @@ class BusinessLoginScreenState extends State<BusinessLoginScreen> {
   void _navigateToRegister() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => BusinessRegistrationScreen()),
+      MaterialPageRoute(builder: (context) => InvestorRegistrationScreen()),
     );
   }
 
