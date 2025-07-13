@@ -1,1137 +1,3 @@
-// import 'package:flutter/material.dart';
-
-// class AccountScreen extends StatefulWidget {
-//   const AccountScreen({super.key});
-
-//   @override
-//   State<AccountScreen> createState() => _AccountScreenState();
-// }
-
-// class _AccountScreenState extends State<AccountScreen> {
-//   final _formKey = GlobalKey<FormState>();
-//   final _searchController = TextEditingController();
-  
-//   // Basic Information Controllers
-//   final _fullNameController = TextEditingController();
-//   final _businessNameController = TextEditingController();
-//   final _contactNumberController = TextEditingController();
-//   final _emailController = TextEditingController();
-//   final _passwordController = TextEditingController();
-//   final _geographicalLocationController = TextEditingController();
-
-//   bool _isPasswordVisible = false;
-//   bool _isSearchExpanded = false;
-//   bool _isEditMode = false;
-//   List<String> _searchResults = [];
-  
-//   final List<String> _searchableContent = [
-//     'Education',
-//     'About us',
-//     'Account',
-//     'Log Out',
-//     'Edit Profile',
-//     'Investment Preferences',
-//     'Contact Support'
-//   ];
-
-//   // Investment Preferences
-//   String? _firstIndustryChoice;
-//   String? _secondIndustryChoice;
-//   String? _thirdIndustryChoice;
-//   String? _investmentRange;
-
-//   // Requirements checklist
-//   final Map<String, bool> _requirements = {
-//     'Tax clearance': false,
-//     'Company Registration Documents': false,
-//     'Tax Clearance Certificate': false,
-//     'Valid BBBEE Certificate': false,
-//     'Proof of Business Banking (not older than 3 months)': false,
-//     'Proof of Business address (not older than 3 months)': false,
-//     'Company Profile': false,
-//     'Detailed Business Plan': false,
-//     'Assigned Business Advisor to your company': false,
-//     'Latest compiled financial report': false,
-//     '6 months bank statements': false,
-//     'Does your business have a turnover of more than R250 000pa': false,
-//     'Is the business profitable': false,
-//     'Do you have collateral': false,
-//     'Does the business have a good credit record': false,
-//     'Does the Business owner have a good credit record': false,
-//   };
-
-//   final List<String> _industries = [
-//     'Technology',
-//     'Healthcare',
-//     'Finance',
-//     'Retail',
-//     'Manufacturing',
-//     'Real Estate',
-//     'Agriculture',
-//     'Energy',
-//     'Transportation',
-//     'Education',
-//     'Hospitality',
-//     'Construction',
-//     'Media & Entertainment',
-//     'Food & Beverage',
-//     'Automotive',
-//   ];
-
-//   final List<String> _investmentRanges = ['50k-100k', '100k-250k', '250k-500k'];
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     _loadUserData();
-//   }
-
-//   void _loadUserData() {
-//     // Simulate loading user data - in a real app, this would come from a database/API
-//     setState(() {
-//       _fullNameController.text = 'John Doe';
-//       _businessNameController.text = 'Doe Investments';
-//       _contactNumberController.text = '+27 123 456 789';
-//       _emailController.text = 'john.doe@email.com';
-//       _passwordController.text = 'password123';
-//       _geographicalLocationController.text = 'Cape Town, South Africa';
-//       _firstIndustryChoice = 'Technology';
-//       _secondIndustryChoice = 'Healthcare';
-//       _thirdIndustryChoice = 'Finance';
-//       _investmentRange = '100k-250k';
-      
-//       // Sample requirements selection
-//       _requirements['Tax clearance'] = true;
-//       _requirements['Company Registration Documents'] = true;
-//       _requirements['Valid BBBEE Certificate'] = true;
-//       _requirements['Detailed Business Plan'] = true;
-//       _requirements['Is the business profitable'] = true;
-//     });
-//   }
-
-//   @override
-//   void dispose() {
-//     _fullNameController.dispose();
-//     _businessNameController.dispose();
-//     _contactNumberController.dispose();
-//     _emailController.dispose();
-//     _passwordController.dispose();
-//     _geographicalLocationController.dispose();
-//     _searchController.dispose();
-//     super.dispose();
-//   }
-
-//   void _performSearch(String query) {
-//     if (query.isEmpty) {
-//       setState(() {
-//         _searchResults = [];
-//       });
-//       return;
-//     }
-
-//     setState(() {
-//       _searchResults = _searchableContent
-//           .where((item) => item.toLowerCase().contains(query.toLowerCase()))
-//           .toList();
-//     });
-
-//     if (_searchResults.isNotEmpty) {
-//       ScaffoldMessenger.of(context).showSnackBar(
-//         SnackBar(
-//           content: Text('Found: ${_searchResults.join(', ')}'),
-//           duration: const Duration(seconds: 3),
-//         ),
-//       );
-//     } else {
-//       ScaffoldMessenger.of(context).showSnackBar(
-//         const SnackBar(
-//           content: Text('No results found'),
-//           duration: Duration(seconds: 2),
-//         ),
-//       );
-//     }
-//   }
-
-//   void _handleSaveChanges() {
-//     if (_formKey.currentState!.validate()) {
-//       // Save changes logic here
-//       ScaffoldMessenger.of(context).showSnackBar(
-//         const SnackBar(
-//           content: Text('Changes saved successfully!'),
-//           backgroundColor: Colors.green,
-//           duration: Duration(seconds: 3),
-//         ),
-//       );
-//       setState(() {
-//         _isEditMode = false;
-//       });
-//     }
-//   }
-
-//   void _navigateToEducation() {
-//     // Navigate to education screen
-//     ScaffoldMessenger.of(context).showSnackBar(
-//       const SnackBar(
-//         content: Text('Navigating to Education...'),
-//         duration: Duration(seconds: 2),
-//       ),
-//     );
-//   }
-
-//   void _navigateToAbout() {
-//     // Navigate to about screen
-//     ScaffoldMessenger.of(context).showSnackBar(
-//       const SnackBar(
-//         content: Text('Navigating to About Us...'),
-//         duration: Duration(seconds: 2),
-//       ),
-//     );
-//   }
-
-//   void _navigateToLogout() {
-//     // Show logout confirmation dialog
-//     showDialog(
-//       context: context,
-//       builder: (BuildContext context) {
-//         return AlertDialog(
-//           backgroundColor: const Color(0xFF2D2D2D),
-//           title: const Text(
-//             'Confirm Logout',
-//             style: TextStyle(color: Colors.white),
-//           ),
-//           content: const Text(
-//             'Are you sure you want to log out?',
-//             style: TextStyle(color: Colors.white70),
-//           ),
-//           actions: [
-//             TextButton(
-//               onPressed: () => Navigator.of(context).pop(),
-//               child: const Text(
-//                 'Cancel',
-//                 style: TextStyle(color: Colors.white70),
-//               ),
-//             ),
-//             TextButton(
-//               onPressed: () {
-//                 Navigator.of(context).pop();
-//                 // Perform logout logic here
-//                 ScaffoldMessenger.of(context).showSnackBar(
-//                   const SnackBar(
-//                     content: Text('Logged out successfully'),
-//                     duration: Duration(seconds: 2),
-//                   ),
-//                 );
-//               },
-//               child: const Text(
-//                 'Logout',
-//                 style: TextStyle(color: Colors.amber),
-//               ),
-//             ),
-//           ],
-//         );
-//       },
-//     );
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final screenWidth = MediaQuery.of(context).size.width;
-//     final screenHeight = MediaQuery.of(context).size.height;
-//     final isLargeScreen = screenWidth > 800;
-//     final formWidth = isLargeScreen ? screenWidth * 0.5 : screenWidth * 0.9;
-
-//     return Scaffold(
-//       backgroundColor: Colors.black,
-//       drawer: isLargeScreen ? null : _buildDrawer(),
-//       body: Container(
-//         width: double.infinity,
-//         height: double.infinity,
-//         decoration: const BoxDecoration(
-//           image: DecorationImage(
-//             image: AssetImage('lib/Assets/images/register.jpg'),
-//             fit: BoxFit.cover,
-//           ),
-//         ),
-//         child: Container(
-//           decoration: BoxDecoration(
-//             color: Colors.black.withValues(alpha: 0.5),
-//           ),
-//           child: Column(
-//             children: [
-//               // Fixed Header
-//               _buildHeader(isLargeScreen),
-              
-//               // Main Content
-//               Expanded(
-//                 child: SingleChildScrollView(
-//                   child: Column(
-//                     children: [
-//                       // Account Content
-//                       Padding(
-//                         padding: EdgeInsets.symmetric(
-//                           horizontal: isLargeScreen ? 50 : 24,
-//                         ),
-//                         child: Center(
-//                           child: ConstrainedBox(
-//                             constraints: BoxConstraints(
-//                               minHeight: screenHeight - 200,
-//                             ),
-//                             child: Column(
-//                               mainAxisAlignment: MainAxisAlignment.center,
-//                               children: [
-//                                 const SizedBox(height: 40),
-
-//                                 // Account Title
-//                                 Row(
-//                                   mainAxisAlignment: MainAxisAlignment.center,
-//                                   children: [
-//                                     Text(
-//                                       'My Account',
-//                                       style: TextStyle(
-//                                         color: Colors.white,
-//                                         fontSize: isLargeScreen ? 56 : 48,
-//                                         fontWeight: FontWeight.w300,
-//                                         letterSpacing: 2,
-//                                         fontFamily: 'Agrandir',
-//                                       ),
-//                                     ),
-//                                     const SizedBox(width: 20),
-//                                     IconButton(
-//                                       onPressed: () {
-//                                         setState(() {
-//                                           _isEditMode = !_isEditMode;
-//                                         });
-//                                       },
-//                                       icon: Icon(
-//                                         _isEditMode ? Icons.save : Icons.edit,
-//                                         color: Colors.amber,
-//                                         size: isLargeScreen ? 32 : 28,
-//                                       ),
-//                                       tooltip: _isEditMode ? 'Save Changes' : 'Edit Profile',
-//                                     ),
-//                                   ],
-//                                 ),
-
-//                                 SizedBox(height: isLargeScreen ? 20 : 15),
-
-//                                 // Subtitle
-//                                 Container(
-//                                   width: isLargeScreen ? 500 : double.infinity,
-//                                   padding: const EdgeInsets.symmetric(horizontal: 20),
-//                                   child: Text(
-//                                     _isEditMode 
-//                                         ? 'Update your investor profile and preferences below.'
-//                                         : 'Manage your investor profile and investment preferences.',
-//                                     textAlign: TextAlign.center,
-//                                     style: TextStyle(
-//                                       color: Colors.white70,
-//                                       fontSize: isLargeScreen ? 18 : 16,
-//                                       height: 1.5,
-//                                       letterSpacing: 0.5,
-//                                       fontFamily: 'Agrandir',
-//                                     ),
-//                                   ),
-//                                 ),
-
-//                                 SizedBox(height: isLargeScreen ? 40 : 30),
-
-//                                 // Account Form
-//                                 SizedBox(
-//                                   width: formWidth,
-//                                   child: Form(
-//                                     key: _formKey,
-//                                     child: Column(
-//                                       crossAxisAlignment: CrossAxisAlignment.start,
-//                                       children: [
-//                                         // Basic Information Section
-//                                         _buildSectionTitle('Basic Information', isLargeScreen),
-//                                         SizedBox(height: isLargeScreen ? 20 : 15),
-
-//                                         _buildTextField(
-//                                           controller: _fullNameController,
-//                                           hintText: 'Full Name *',
-//                                           keyboardType: TextInputType.name,
-//                                           isLargeScreen: isLargeScreen,
-//                                           enabled: _isEditMode,
-//                                         ),
-//                                         SizedBox(height: isLargeScreen ? 25 : 20),
-
-//                                         _buildTextField(
-//                                           controller: _businessNameController,
-//                                           hintText: 'Investor/Company Name *',
-//                                           keyboardType: TextInputType.text,
-//                                           isLargeScreen: isLargeScreen,
-//                                           enabled: _isEditMode,
-//                                         ),
-//                                         SizedBox(height: isLargeScreen ? 25 : 20),
-
-//                                         _buildTextField(
-//                                           controller: _contactNumberController,
-//                                           hintText: 'Contact Number *',
-//                                           keyboardType: TextInputType.phone,
-//                                           isLargeScreen: isLargeScreen,
-//                                           enabled: _isEditMode,
-//                                         ),
-//                                         SizedBox(height: isLargeScreen ? 25 : 20),
-
-//                                         _buildTextField(
-//                                           controller: _emailController,
-//                                           hintText: 'Email *',
-//                                           keyboardType: TextInputType.emailAddress,
-//                                           isLargeScreen: isLargeScreen,
-//                                           enabled: _isEditMode,
-//                                         ),
-//                                         SizedBox(height: isLargeScreen ? 25 : 20),
-
-//                                         _buildTextField(
-//                                           controller: _passwordController,
-//                                           hintText: 'Password *',
-//                                           isPassword: true,
-//                                           keyboardType: TextInputType.visiblePassword,
-//                                           isLargeScreen: isLargeScreen,
-//                                           enabled: _isEditMode,
-//                                         ),
-//                                         SizedBox(height: isLargeScreen ? 25 : 20),
-
-//                                         _buildTextField(
-//                                           controller: _geographicalLocationController,
-//                                           hintText: 'Geographical Location *',
-//                                           keyboardType: TextInputType.text,
-//                                           isLargeScreen: isLargeScreen,
-//                                           enabled: _isEditMode,
-//                                         ),
-
-//                                         SizedBox(height: isLargeScreen ? 40 : 30),
-
-//                                         // Investment Preferences Section
-//                                         _buildSectionTitle('Investment Preferences', isLargeScreen),
-//                                         SizedBox(height: isLargeScreen ? 20 : 15),
-
-//                                         Text(
-//                                           'Industry of Interest (In order of preference)',
-//                                           style: TextStyle(
-//                                             color: Colors.white,
-//                                             fontSize: isLargeScreen ? 16 : 14,
-//                                             fontFamily: 'Agrandir',
-//                                             fontWeight: FontWeight.w500,
-//                                           ),
-//                                         ),
-//                                         SizedBox(height: isLargeScreen ? 15 : 10),
-
-//                                         _buildDropdown(
-//                                           value: _firstIndustryChoice,
-//                                           hintText: 'First Choice *',
-//                                           items: _industries,
-//                                           onChanged: _isEditMode ? (value) => setState(() => _firstIndustryChoice = value) : null,
-//                                           isLargeScreen: isLargeScreen,
-//                                         ),
-//                                         SizedBox(height: isLargeScreen ? 20 : 15),
-
-//                                         _buildDropdown(
-//                                           value: _secondIndustryChoice,
-//                                           hintText: 'Second Choice *',
-//                                           items: _industries.where((item) => item != _firstIndustryChoice).toList(),
-//                                           onChanged: _isEditMode ? (value) => setState(() => _secondIndustryChoice = value) : null,
-//                                           isLargeScreen: isLargeScreen,
-//                                         ),
-//                                         SizedBox(height: isLargeScreen ? 20 : 15),
-
-//                                         _buildDropdown(
-//                                           value: _thirdIndustryChoice,
-//                                           hintText: 'Third Choice *',
-//                                           items: _industries.where((item) => item != _firstIndustryChoice && item != _secondIndustryChoice).toList(),
-//                                           onChanged: _isEditMode ? (value) => setState(() => _thirdIndustryChoice = value) : null,
-//                                           isLargeScreen: isLargeScreen,
-//                                         ),
-//                                         SizedBox(height: isLargeScreen ? 25 : 20),
-
-//                                         _buildDropdown(
-//                                           value: _investmentRange,
-//                                           hintText: 'Investment Offer Range *',
-//                                           items: _investmentRanges,
-//                                           onChanged: _isEditMode ? (value) => setState(() => _investmentRange = value) : null,
-//                                           isLargeScreen: isLargeScreen,
-//                                         ),
-
-//                                         SizedBox(height: isLargeScreen ? 40 : 30),
-
-//                                         // Requirements Section
-//                                         _buildSectionTitle('Requirements from Business Owner', isLargeScreen),
-//                                         SizedBox(height: isLargeScreen ? 20 : 15),
-
-//                                         Text(
-//                                           'Your selected requirements from potential business partners:',
-//                                           style: TextStyle(
-//                                             color: Colors.white70,
-//                                             fontSize: isLargeScreen ? 14 : 12,
-//                                             fontFamily: 'Agrandir',
-//                                           ),
-//                                         ),
-//                                         SizedBox(height: isLargeScreen ? 15 : 10),
-
-//                                         _buildRequirementsChecklist(isLargeScreen),
-
-//                                         SizedBox(height: isLargeScreen ? 40 : 30),
-
-//                                         // Save Button (only visible in edit mode)
-//                                         if (_isEditMode)
-//                                           SizedBox(
-//                                             width: formWidth,
-//                                             height: isLargeScreen ? 60 : 55,
-//                                             child: ElevatedButton(
-//                                               onPressed: () {
-//                                                 if (_formKey.currentState!.validate()) {
-//                                                   _handleSaveChanges();
-//                                                 }
-//                                               },
-//                                               style: ElevatedButton.styleFrom(
-//                                                 backgroundColor: Colors.amber,
-//                                                 foregroundColor: Colors.black,
-//                                                 shape: RoundedRectangleBorder(
-//                                                   borderRadius: BorderRadius.circular(
-//                                                     isLargeScreen ? 30 : 27.5,
-//                                                   ),
-//                                                 ),
-//                                                 elevation: 0,
-//                                               ),
-//                                               child: Text(
-//                                                 'SAVE CHANGES',
-//                                                 style: TextStyle(
-//                                                   fontSize: isLargeScreen ? 18 : 16,
-//                                                   fontWeight: FontWeight.w600,
-//                                                   letterSpacing: 1.5,
-//                                                   fontFamily: 'Agrandir',
-//                                                 ),
-//                                               ),
-//                                             ),
-//                                           ),
-
-//                                         SizedBox(height: isLargeScreen ? 50 : 40),
-//                                       ],
-//                                     ),
-//                                   ),
-//                                 ),
-//                               ],
-//                             ),
-//                           ),
-//                         ),
-//                       ),
-                      
-//                       // Footer
-//                       _buildFooter(!isLargeScreen),
-//                     ],
-//                   ),
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-
-//   Widget _buildHeader(bool isLargeScreen) {
-//     return Container(
-//       height: 80,
-//       padding: const EdgeInsets.symmetric(horizontal: 24.0),
-//       decoration: BoxDecoration(
-//         color: Colors.black.withValues(alpha: 0.3),
-//         border: Border(
-//           bottom: BorderSide(
-//             color: Colors.white.withValues(alpha: 0.1),
-//             width: 1,
-//           ),
-//         ),
-//       ),
-//       child: Row(
-//         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//         children: [
-//           // Logo
-//           _buildLogo(isLargeScreen),
-          
-//           // Navigation
-//           if (isLargeScreen)
-//             _buildDesktopNavigation()
-//           else
-//             Builder(
-//               builder: (context) => IconButton(
-//                 onPressed: () {
-//                   Scaffold.of(context).openDrawer();
-//                 },
-//                 icon: const Icon(Icons.menu, color: Colors.white, size: 28),
-//               ),
-//             ),
-//         ],
-//       ),
-//     );
-//   }
-
-//   Widget _buildLogo(bool isLargeScreen) {
-//     return Image.asset(
-//       'lib/assets/images/logo2.png',
-//       height: isLargeScreen ? 50 : 40,
-//       fit: BoxFit.contain,
-//     );
-//   }
-
-//   Widget _buildDesktopNavigation() {
-//     return Row(
-//       mainAxisSize: MainAxisSize.min,
-//       children: [
-//         // Search functionality
-//         Row(
-//           children: [
-//             AnimatedContainer(
-//               duration: const Duration(milliseconds: 300),
-//               width: _isSearchExpanded ? 300 : 0,
-//               height: 40,
-//               child: _isSearchExpanded
-//                   ? TextField(
-//                       controller: _searchController,
-//                       style: const TextStyle(color: Colors.white),
-//                       decoration: InputDecoration(
-//                         hintText: 'Search...',
-//                         hintStyle: const TextStyle(color: Colors.white60),
-//                         filled: true,
-//                         fillColor: const Color(0xFF2D2D2D).withValues(alpha: 0.8),
-//                         border: OutlineInputBorder(
-//                           borderRadius: BorderRadius.circular(20),
-//                           borderSide: BorderSide.none,
-//                         ),
-//                         contentPadding: const EdgeInsets.symmetric(
-//                           horizontal: 16,
-//                           vertical: 8,
-//                         ),
-//                       ),
-//                       onSubmitted: _performSearch,
-//                       onChanged: (value) {
-//                         if (value.isEmpty) {
-//                           setState(() {
-//                             _searchResults = [];
-//                           });
-//                         }
-//                       },
-//                     )
-//                   : const SizedBox.shrink(),
-//             ),
-//             IconButton(
-//               onPressed: () {
-//                 setState(() {
-//                   _isSearchExpanded = !_isSearchExpanded;
-//                   if (!_isSearchExpanded) {
-//                     _searchController.clear();
-//                     _searchResults = [];
-//                   }
-//                 });
-//               },
-//               icon: Icon(
-//                 _isSearchExpanded ? Icons.close : Icons.search,
-//                 color: Colors.white,
-//                 size: 24,
-//               ),
-//             ),
-//           ],
-//         ),
-        
-//         const SizedBox(width: 20),
-        
-//         // Navigation items
-//         _buildNavItem('Education', _navigateToEducation),
-//         const SizedBox(width: 30),
-//         _buildNavItem('About us', _navigateToAbout),
-//         const SizedBox(width: 30),
-//         _buildNavItem('Account', () {}), // Current page
-//         const SizedBox(width: 30),
-//         _buildNavItem('Log Out', _navigateToLogout),
-//       ],
-//     );
-//   }
-
-//   Widget _buildNavItem(String title, VoidCallback onTap) {
-//     bool isCurrentPage = title == 'Account';
-//     return InkWell(
-//       onTap: onTap,
-//       borderRadius: BorderRadius.circular(4),
-//       child: Padding(
-//         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-//         child: Text(
-//           title,
-//           style: TextStyle(
-//             color: isCurrentPage ? Colors.amber : Colors.white,
-//             fontSize: 16,
-//             fontWeight: isCurrentPage ? FontWeight.w600 : FontWeight.w400,
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-
-//   Widget _buildDrawer() {
-//     return Drawer(
-//       backgroundColor: const Color(0xFF1A1A1A),
-//       child: Column(
-//         children: [
-//           // Drawer header with logo
-//           Container(
-//             height: 120,
-//             width: double.infinity,
-//             decoration: BoxDecoration(
-//               color: Colors.black.withValues(alpha: 0.3),
-//               border: Border(
-//                 bottom: BorderSide(
-//                   color: Colors.white.withValues(alpha: 0.1),
-//                   width: 1,
-//                 ),
-//               ),
-//             ),
-//             child: DrawerHeader(
-//               margin: EdgeInsets.zero,
-//               child: _buildLogo(false),
-//             ),
-//           ),
-          
-//           // Search in drawer
-//           Padding(
-//             padding: const EdgeInsets.all(16.0),
-//             child: TextField(
-//               controller: _searchController,
-//               style: const TextStyle(color: Colors.white),
-//               decoration: InputDecoration(
-//                 hintText: 'Search...',
-//                 hintStyle: const TextStyle(color: Colors.white60),
-//                 prefixIcon: const Icon(Icons.search, color: Colors.white60),
-//                 filled: true,
-//                 fillColor: const Color(0xFF2D2D2D).withValues(alpha: 0.8),
-//                 border: OutlineInputBorder(
-//                   borderRadius: BorderRadius.circular(25),
-//                   borderSide: BorderSide.none,
-//                 ),
-//               ),
-//               onSubmitted: (value) {
-//                 _performSearch(value);
-//                 Navigator.pop(context);
-//               },
-//             ),
-//           ),
-          
-//           // Navigation items
-//           Expanded(
-//             child: ListView(
-//               padding: EdgeInsets.zero,
-//               children: [
-//                 _buildDrawerItem('Education', Icons.school, _navigateToEducation),
-//                 _buildDrawerItem('About us', Icons.info_outline, _navigateToAbout),
-//                 _buildDrawerItem('Account', Icons.account_circle, () {}, isCurrentPage: true),
-//                 _buildDrawerItem('Log Out', Icons.logout, _navigateToLogout),
-//               ],
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-
-//   Widget _buildDrawerItem(String title, IconData icon, VoidCallback onTap, {bool isCurrentPage = false}) {
-//     return ListTile(
-//       leading: Icon(icon, color: isCurrentPage ? Colors.amber : Colors.white70),
-//       title: Text(
-//         title,
-//         style: TextStyle(
-//           color: isCurrentPage ? Colors.amber : Colors.white,
-//           fontSize: 16,
-//           fontWeight: isCurrentPage ? FontWeight.w600 : FontWeight.w400,
-//         ),
-//       ),
-//       onTap: () {
-//         Navigator.pop(context);
-//         if (!isCurrentPage) onTap();
-//       },
-//       hoverColor: Colors.white.withValues(alpha: 0.1),
-//     );
-//   }
-
-//   Widget _buildSectionTitle(String title, bool isLargeScreen) {
-//     return Text(
-//       title,
-//       style: TextStyle(
-//         color: Colors.amber,
-//         fontSize: isLargeScreen ? 20 : 18,
-//         fontWeight: FontWeight.w600,
-//         fontFamily: 'Agrandir',
-//         letterSpacing: 1,
-//       ),
-//     );
-//   }
-
-//   Widget _buildTextField({
-//     required TextEditingController controller,
-//     required String hintText,
-//     bool isPassword = false,
-//     TextInputType keyboardType = TextInputType.text,
-//     bool isLargeScreen = false,
-//     bool enabled = true,
-//   }) {
-//     return SizedBox(
-//       height: isLargeScreen ? 60 : 55,
-//       child: TextFormField(
-//         controller: controller,
-//         obscureText: isPassword && !_isPasswordVisible,
-//         keyboardType: keyboardType,
-//         enabled: enabled,
-//         style: TextStyle(
-//           color: enabled ? Colors.white : Colors.white60,
-//           fontSize: isLargeScreen ? 18 : 16,
-//           fontFamily: 'Agrandir',
-//         ),
-//         decoration: InputDecoration(
-//           hintText: hintText,
-//           hintStyle: TextStyle(
-//             color: Colors.white60,
-//             fontSize: isLargeScreen ? 18 : 16,
-//             fontWeight: FontWeight.w300,
-//             fontFamily: 'Agrandir',
-//           ),
-//           filled: true,
-//           fillColor: (enabled ? const Color(0xFF2D2D2D) : const Color(0xFF1A1A1A)).withValues(alpha: 0.8),
-//           border: OutlineInputBorder(
-//             borderRadius: BorderRadius.circular(
-//               isLargeScreen ? 30 : 27.5,
-//             ),
-//             borderSide: BorderSide.none,
-//           ),
-//           enabledBorder: OutlineInputBorder(
-//             borderRadius: BorderRadius.circular(
-//               isLargeScreen ? 30 : 27.5,
-//             ),
-//             borderSide: BorderSide(color: enabled ? Colors.white24 : Colors.white12, width: 1),
-//           ),
-//           focusedBorder: OutlineInputBorder(
-//             borderRadius: BorderRadius.circular(
-//               isLargeScreen ? 30 : 27.5,
-//             ),
-//             borderSide: const BorderSide(color: Colors.amber, width: 2),
-//           ),
-//           disabledBorder: OutlineInputBorder(
-//             borderRadius: BorderRadius.circular(
-//               isLargeScreen ? 30 : 27.5,
-//             ),
-//             borderSide: const BorderSide(color: Colors.white12, width: 1),
-//           ),
-//           errorBorder: OutlineInputBorder(
-//             borderRadius: BorderRadius.circular(
-//               isLargeScreen ? 30 : 27.5,
-//             ),
-//             borderSide: const BorderSide(color: Colors.red, width: 1),
-//           ),
-//           focusedErrorBorder: OutlineInputBorder(
-//             borderRadius: BorderRadius.circular(
-//               isLargeScreen ? 30 : 27.5,
-//             ),
-//             borderSide: const BorderSide(color: Colors.red, width: 2),
-//           ),
-//           contentPadding: EdgeInsets.symmetric(
-//             horizontal: isLargeScreen ? 28 : 24,
-//             vertical: isLargeScreen ? 20 : 16,
-//           ),
-//           suffixIcon: isPassword
-//               ? IconButton(
-//                   icon: Icon(
-//                     _isPasswordVisible
-//                         ? Icons.visibility
-//                         : Icons.visibility_off,
-//                     color: Colors.white60,
-//                     size: isLargeScreen ? 24 : 20,
-//                   ),
-//                   onPressed: enabled ? () {
-//                     setState(() {
-//                       _isPasswordVisible = !_isPasswordVisible;
-//                     });
-//                   } : null,
-//                 )
-//               : null,
-//         ),
-//         validator: (value) {
-//           if (value == null || value.isEmpty) {
-//             return 'This field is required';
-//           }
-//           if (hintText.toLowerCase().contains('email')) {
-//             if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
-//               return 'Please enter a valid email';
-//             }
-//           }
-//           if (hintText.toLowerCase().contains('password')) {
-//             if (value.length < 6) {
-//               return 'Password must be at least 6 characters';
-//             }
-//           }
-//           return null;
-//         },
-//       ),
-//     );
-//   }
-
-  
-//   Widget _buildDropdown({
-//     required String? value,
-//     required String hintText,
-//     required List<String> items,
-//     required ValueChanged<String?>? onChanged,
-//     bool isLargeScreen = false,
-//   }) {
-//     bool enabled = onChanged != null;
-    
-//     return SizedBox(
-//       height: isLargeScreen ? 60 : 55,
-//       child: DropdownButtonFormField<String>(
-//         value: value,
-//         onChanged: onChanged,
-//         items: items.map((String item) {
-//           return DropdownMenuItem<String>(
-//             value: item,
-//             child: Text(
-//               item,
-//               style: TextStyle(
-//                 color: Colors.white,
-//                 fontSize: isLargeScreen ? 18 : 16,
-//                 fontFamily: 'Agrandir',
-//               ),
-//             ),
-//           );
-//         }).toList(),
-//         decoration: InputDecoration(
-//           hintText: hintText,
-//           hintStyle: TextStyle(
-//             color: Colors.white60,
-//             fontSize: isLargeScreen ? 18 : 16,
-//             fontWeight: FontWeight.w300,
-//             fontFamily: 'Agrandir',
-//           ),
-//           filled: true,
-//           fillColor: (enabled ? const Color(0xFF2D2D2D) : const Color(0xFF1A1A1A)).withValues(alpha: 0.8),
-//           border: OutlineInputBorder(
-//             borderRadius: BorderRadius.circular(
-//               isLargeScreen ? 30 : 27.5,
-//             ),
-//             borderSide: BorderSide.none,
-//           ),
-//           enabledBorder: OutlineInputBorder(
-//             borderRadius: BorderRadius.circular(
-//               isLargeScreen ? 30 : 27.5,
-//             ),
-//             borderSide: BorderSide(color: enabled ? Colors.white24 : Colors.white12, width: 1),
-//           ),
-//           focusedBorder: OutlineInputBorder(
-//             borderRadius: BorderRadius.circular(
-//               isLargeScreen ? 30 : 27.5,
-//             ),
-//             borderSide: const BorderSide(color: Colors.amber, width: 2),
-//           ),
-//           disabledBorder: OutlineInputBorder(
-//             borderRadius: BorderRadius.circular(
-//               isLargeScreen ? 30 : 27.5,
-//             ),
-//             borderSide: const BorderSide(color: Colors.white12, width: 1),
-//           ),
-//           contentPadding: EdgeInsets.symmetric(
-//             horizontal: isLargeScreen ? 28 : 24,
-//             vertical: isLargeScreen ? 20 : 16,
-//           ),
-//         ),
-//         style: TextStyle(
-//           color: enabled ? Colors.white : Colors.white60,
-//           fontSize: isLargeScreen ? 18 : 16,
-//           fontFamily: 'Agrandir',
-//         ),
-//         dropdownColor: const Color(0xFF2D2D2D),
-//         icon: Icon(
-//           Icons.arrow_drop_down,
-//           color: enabled ? Colors.white60 : Colors.white30,
-//           size: isLargeScreen ? 28 : 24,
-//         ),
-//         validator: (value) {
-//           if (value == null || value.isEmpty) {
-//             return 'This field is required';
-//           }
-//           return null;
-//         },
-//       ),
-//     );
-//   }
-
-//   Widget _buildRequirementsChecklist(bool isLargeScreen) {
-//     return Container(
-//       decoration: BoxDecoration(
-//         color: const Color(0xFF2D2D2D).withValues(alpha: 0.5),
-//         borderRadius: BorderRadius.circular(isLargeScreen ? 20 : 15),
-//         border: Border.all(
-//           color: Colors.white.withValues(alpha: 0.1),
-//           width: 1,
-//         ),
-//       ),
-//       padding: EdgeInsets.all(isLargeScreen ? 24 : 20),
-//       child: Column(
-//         crossAxisAlignment: CrossAxisAlignment.start,
-//         children: _requirements.keys.map((String requirement) {
-//           return Padding(
-//             padding: const EdgeInsets.only(bottom: 12),
-//             child: Row(
-//               crossAxisAlignment: CrossAxisAlignment.start,
-//               children: [
-//                 SizedBox(
-//                   width: 24,
-//                   height: 24,
-//                   child: Checkbox(
-//                     value: _requirements[requirement],
-//                     onChanged: _isEditMode ? (bool? value) {
-//                       setState(() {
-//                         _requirements[requirement] = value ?? false;
-//                       });
-//                     } : null,
-//                     activeColor: Colors.amber,
-//                     checkColor: Colors.black,
-//                     side: BorderSide(
-//                       color: _isEditMode ? Colors.white60 : Colors.white30,
-//                       width: 1.5,
-//                     ),
-//                   ),
-//                 ),
-//                 const SizedBox(width: 12),
-//                 Expanded(
-//                   child: Text(
-//                     requirement,
-//                     style: TextStyle(
-//                       color: _isEditMode ? Colors.white : Colors.white70,
-//                       fontSize: isLargeScreen ? 14 : 13,
-//                       fontFamily: 'Agrandir',
-//                       height: 1.4,
-//                     ),
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           );
-//         }).toList(),
-//       ),
-//     );
-//   }
-
-//   Widget _buildFooter(bool isMobile) {
-//     return Container(
-//       width: double.infinity,
-//       padding: EdgeInsets.all(isMobile ? 24 : 40),
-//       decoration: BoxDecoration(
-//         color: Colors.black.withValues(alpha: 0.8),
-//         border: Border(
-//           top: BorderSide(
-//             color: Colors.white.withValues(alpha: 0.1),
-//             width: 1,
-//           ),
-//         ),
-//       ),
-//       child: Column(
-//         children: [
-//           if (isMobile) ...[
-//             // Mobile footer layout
-//             _buildLogo(false),
-//             const SizedBox(height: 20),
-//             Text(
-//               'Connect with investors and grow your business',
-//               textAlign: TextAlign.center,
-//               style: TextStyle(
-//                 color: Colors.white70,
-//                 fontSize: 14,
-//                 fontFamily: 'Agrandir',
-//               ),
-//             ),
-//             const SizedBox(height: 20),
-//             Row(
-//               mainAxisAlignment: MainAxisAlignment.center,
-//               children: [
-//                 _buildSocialIcon(Icons.facebook),
-//                 const SizedBox(width: 16),
-//                 _buildSocialIcon(Icons.alternate_email),
-//                 const SizedBox(width: 16),
-//                 _buildSocialIcon(Icons.business),
-//               ],
-//             ),
-//           ] else ...[
-//             // Desktop footer layout
-//             Row(
-//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//               children: [
-//                 _buildLogo(true),
-//                 Text(
-//                   'Connect with investors and grow your business',
-//                   style: TextStyle(
-//                     color: Colors.white70,
-//                     fontSize: 16,
-//                     fontFamily: 'Agrandir',
-//                   ),
-//                 ),
-//                 Row(
-//                   children: [
-//                     _buildSocialIcon(Icons.facebook),
-//                     const SizedBox(width: 20),
-//                     _buildSocialIcon(Icons.alternate_email),
-//                     const SizedBox(width: 20),
-//                     _buildSocialIcon(Icons.business),
-//                   ],
-//                 ),
-//               ],
-//             ),
-//           ],
-//           const SizedBox(height: 20),
-//           Divider(
-//             color: Colors.white.withValues(alpha: 0.1),
-//             thickness: 1,
-//           ),
-//           const SizedBox(height: 20),
-//           Text(
-//             '© 2024 Your Company Name. All rights reserved.',
-//             textAlign: TextAlign.center,
-//             style: TextStyle(
-//               color: Colors.white60,
-//               fontSize: 12,
-//               fontFamily: 'Agrandir',
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-
-//   Widget _buildSocialIcon(IconData icon) {
-//     return Container(
-//       width: 40,
-//       height: 40,
-//       decoration: BoxDecoration(
-//         color: Colors.white.withValues(alpha: 0.1),
-//         shape: BoxShape.circle,
-//         border: Border.all(
-//           color: Colors.white.withValues(alpha: 0.2),
-//           width: 1,
-//         ),
-//       ),
-//       child: IconButton(
-//         icon: Icon(icon, color: Colors.white70, size: 20),
-//         onPressed: () {
-//           // Handle social media navigation
-//           ScaffoldMessenger.of(context).showSnackBar(
-//             SnackBar(
-//               content: Text('Opening social media link...'),
-//               duration: Duration(seconds: 2),
-//             ),
-//           );
-//         },
-//       ),
-//     );
-//   }
-// }
-
-
-// import 'package:flutter/material.dart';
-// import 'package:image_picker/image_picker.dart';
-// import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -2218,212 +1084,295 @@ class _AccountScreenState extends State<AccountScreen> {
     );
   }
 
-  Widget _buildTextField({
-    required TextEditingController controller,
-    required String hintText,
-    bool isPassword = false,
-    TextInputType? keyboardType,
-    required bool isLargeScreen,
-    bool enabled = true,
-  }) {
-    return TextFormField(
-      controller: controller,
-      obscureText: isPassword && !_isPasswordVisible,
-      keyboardType: keyboardType,
-      enabled: enabled,
-      style: TextStyle(
-        color: Colors.white,
+
+Widget _buildTextField({
+  required TextEditingController controller,
+  required String hintText,
+  bool isPassword = false,
+  TextInputType? keyboardType,
+  required bool isLargeScreen,
+  bool enabled = true,
+}) {
+  return TextFormField(
+    controller: controller,
+    obscureText: isPassword && !_isPasswordVisible,
+    keyboardType: keyboardType,
+    enabled: enabled,
+    style: TextStyle(
+      color: Colors.white,
+      fontSize: isLargeScreen ? 16 : 14,
+      fontFamily: 'Agrandir',
+    ),
+    decoration: InputDecoration(
+      hintText: hintText,
+      hintStyle: TextStyle(
+        color: Colors.white60,
         fontSize: isLargeScreen ? 16 : 14,
         fontFamily: 'Agrandir',
       ),
-      decoration: InputDecoration(
-        hintText: hintText,
-        hintStyle: TextStyle(
-          color: Colors.white60,
-          fontSize: isLargeScreen ? 16 : 14,
-          fontFamily: 'Agrandir',
-        ),
-        filled: true,
-        fillColor: enabled 
-            ? const Color(0xFF2D2D2D).withValues(alpha: 0.8)
-            : const Color(0xFF2D2D2D).withValues(alpha: 0.5),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(isLargeScreen ? 15 : 12),
-          borderSide: BorderSide.none,
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(isLargeScreen ? 15 : 12),
-          borderSide: BorderSide(
-            color: Colors.white.withValues(alpha: 0.2),
-            width: 1,
-          ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(isLargeScreen ? 15 : 12),
-          borderSide: const BorderSide(
-            color: Colors.amber,
-            width: 2,
-          ),
-        ),
-        contentPadding: EdgeInsets.symmetric(
-          horizontal: isLargeScreen ? 20 : 16,
-          vertical: isLargeScreen ? 20 : 16,
-        ),
-        suffixIcon: isPassword
-            ? IconButton(
-                onPressed: enabled ? () {
-                  setState(() {
-                    _isPasswordVisible = !_isPasswordVisible;
-                  });
-                } : null,
-                icon: Icon(
-                  _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-                  color: Colors.white60,
-                ),
-              )
-            : null,
+      filled: true,
+      fillColor: const Color.fromARGB(255, 0, 0, 0).withValues(alpha:0.8),
+      border: const UnderlineInputBorder(
+        borderSide: BorderSide(color: Colors.transparent),
       ),
-      validator: (value) {
-        if (value == null || value.trim().isEmpty) {
-          return 'This field is required';
-        }
-        if (hintText.toLowerCase().contains('email')) {
-          if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
-            return 'Please enter a valid email address';
-          }
-        }
-        if (hintText.toLowerCase().contains('contact')) {
-          if (!RegExp(r'^\d{10,}$').hasMatch(value)) {
-            return 'Please enter a valid phone number';
-          }
-        }
-        return null;
-      },
-    );
-  }
-
-  Widget _buildDropdown({
-    required String? value,
-    required String hintText,
-    required List<String> items,
-    required ValueChanged<String?>? onChanged,
-    required bool isLargeScreen,
-  }) {
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.symmetric(
+      enabledBorder: UnderlineInputBorder(
+        borderSide: const BorderSide(color: Colors.white24, width: 1),
+      ),
+      focusedBorder: UnderlineInputBorder(
+        borderSide: const BorderSide(color: Colors.amber, width: 2),
+      ),
+      contentPadding: EdgeInsets.symmetric(
         horizontal: isLargeScreen ? 20 : 16,
-        vertical: 4,
+        vertical: isLargeScreen ? 20 : 16,
       ),
-      decoration: BoxDecoration(
-        color: onChanged != null 
-            ? const Color(0xFF2D2D2D).withValues(alpha: 0.8)
-            : const Color(0xFF2D2D2D).withValues(alpha: 0.5),
-        borderRadius: BorderRadius.circular(isLargeScreen ? 15 : 12),
-        border: Border.all(
-          color: Colors.white.withValues(alpha: 0.2),
-          width: 1,
-        ),
-      ),
-      child: DropdownButtonHideUnderline(
-        child: DropdownButton<String>(
-          value: value,
-          hint: Text(
-            hintText,
-            style: TextStyle(
-              color: Colors.white60,
-              fontSize: isLargeScreen ? 16 : 14,
-              fontFamily: 'Agrandir',
-            ),
-          ),
-          items: items.map((String item) {
-            return DropdownMenuItem<String>(
-              value: item,
-              child: Text(
-                item,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: isLargeScreen ? 16 : 14,
-                  fontFamily: 'Agrandir',
-                ),
+      suffixIcon: isPassword
+          ? IconButton(
+              onPressed: enabled ? () {
+                setState(() {
+                  _isPasswordVisible = !_isPasswordVisible;
+                });
+              } : null,
+              icon: Icon(
+                _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                color: Colors.white60,
               ),
-            );
-          }).toList(),
-          onChanged: onChanged,
-          dropdownColor: const Color(0xFF2D2D2D),
-          icon: Icon(
-            Icons.arrow_drop_down,
-            color: Colors.white60,
-            size: isLargeScreen ? 28 : 24,
-          ),
-          isExpanded: true,
-        ),
-      ),
-    );
-  }
+            )
+          : null,
+    ),
+    validator: (value) {
+      if (value == null || value.trim().isEmpty) {
+        return 'This field is required';
+      }
+      if (hintText.toLowerCase().contains('email')) {
+        if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+          return 'Please enter a valid email address';
+        }
+      }
+      if (hintText.toLowerCase().contains('contact')) {
+        if (!RegExp(r'^\d{10,}$').hasMatch(value)) {
+          return 'Please enter a valid phone number';
+        }
+      }
+      return null;
+    },
+  );
+}
 
-  Widget _buildRequirementsChecklist(bool isLargeScreen) {
-    return Container(
-      padding: EdgeInsets.all(isLargeScreen ? 20 : 16),
-      decoration: BoxDecoration(
-        color: const Color(0xFF2D2D2D).withValues(alpha: 0.8),
-        borderRadius: BorderRadius.circular(isLargeScreen ? 15 : 12),
-        border: Border.all(
-          color: Colors.white.withValues(alpha: 0.2),
+Widget _buildDropdown({
+  required String? value,
+  required String hintText,
+  required List<String> items,
+  required ValueChanged<String?>? onChanged,
+  required bool isLargeScreen,
+}) {
+  return Container(
+    width: double.infinity,
+    padding: EdgeInsets.symmetric(
+      horizontal: isLargeScreen ? 20 : 16,
+      vertical: 4,
+    ),
+    decoration: BoxDecoration(
+      color: onChanged != null 
+          ? const Color.fromARGB(255, 15, 15, 15).withValues(alpha:0.8)
+          : const Color.fromARGB(255, 5, 5, 5).withValues(alpha:0.5),
+      borderRadius: BorderRadius.only(
+        bottomLeft: Radius.circular(isLargeScreen ? 15 : 12),
+        bottomRight: Radius.circular(isLargeScreen ? 15 : 12),
+      ),
+      border: Border(
+        bottom: BorderSide(
+          color: Colors.white.withValues(alpha:0.2),
           width: 1,
         ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: _requirements.keys.map((requirement) {
-          return Padding(
-            padding: const EdgeInsets.only(bottom: 12),
-            child: Row(
-              children: [
-                GestureDetector(
-                  onTap: _isEditMode ? () {
-                    setState(() {
-                      _requirements[requirement] = !_requirements[requirement]!;
-                    });
-                  } : null,
-                  child: Container(
-                    width: 20,
-                    height: 20,
-                    decoration: BoxDecoration(
-                      color: _requirements[requirement]! ? Colors.amber : Colors.transparent,
-                      border: Border.all(
-                        color: _requirements[requirement]! ? Colors.amber : Colors.white60,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: _requirements[requirement]!
-                        ? const Icon(
-                            Icons.check,
-                            color: Colors.black,
-                            size: 14,
-                          )
-                        : null,
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Text(
-                    requirement,
-                    style: TextStyle(
-                      color: _requirements[requirement]! ? Colors.white : Colors.white70,
-                      fontSize: isLargeScreen ? 14 : 12,
-                      fontFamily: 'Agrandir',
-                    ),
-                  ),
-                ),
-              ],
+    ),
+    child: DropdownButtonHideUnderline(
+      child: DropdownButton<String>(
+        value: value,
+        hint: Text(
+          hintText,
+          style: TextStyle(
+            color: Colors.white60,
+            fontSize: isLargeScreen ? 16 : 14,
+            fontFamily: 'Agrandir',
+          ),
+        ),
+        items: items.map((String item) {
+          return DropdownMenuItem<String>(
+            value: item,
+            child: Text(
+              item,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: isLargeScreen ? 16 : 14,
+                fontFamily: 'Agrandir',
+              ),
             ),
           );
         }).toList(),
+        onChanged: onChanged,
+        dropdownColor: const Color(0xFF2D2D2D),
+        icon: Icon(
+          Icons.arrow_drop_down,
+          color: Colors.white60,
+          size: isLargeScreen ? 28 : 24,
+        ),
+        isExpanded: true,
       ),
-    );
-  }
+    ),
+  );
+}
+
+  // Widget _buildRequirementsChecklist(bool isLargeScreen) {
+  //   return Container(
+  //     padding: EdgeInsets.all(isLargeScreen ? 20 : 16),
+  //     decoration: BoxDecoration(
+  //       color: const Color.fromARGB(255, 5, 5, 5).withValues(alpha: 0.8),
+  //       borderRadius: BorderRadius.circular(isLargeScreen ? 15 : 12),
+  //       border: Border.all(
+  //         color: Colors.white.withValues(alpha: 0.2),
+  //         width: 1,
+  //       ),
+  //     ),
+  //     child: Column(
+  //       crossAxisAlignment: CrossAxisAlignment.start,
+  //       children: _requirements.keys.map((requirement) {
+  //         return Padding(
+  //           padding: const EdgeInsets.only(bottom: 12),
+  //           child: Row(
+  //             children: [
+  //               GestureDetector(
+  //                 onTap: _isEditMode ? () {
+  //                   setState(() {
+  //                     _requirements[requirement] = !_requirements[requirement]!;
+  //                   });
+  //                 } : null,
+  //                 child: Container(
+  //                   width: 20,
+  //                   height: 20,
+  //                   decoration: BoxDecoration(
+  //                     color: _requirements[requirement]! ? Colors.amber : Colors.transparent,
+  //                     border: Border.all(
+  //                       color: _requirements[requirement]! ? Colors.amber : Colors.white60,
+  //                       width: 2,
+  //                     ),
+  //                     borderRadius: BorderRadius.circular(4),
+  //                   ),
+  //                   child: _requirements[requirement]!
+  //                       ? const Icon(
+  //                           Icons.check,
+  //                           color: Colors.black,
+  //                           size: 17,
+  //                         )
+  //                       : null,
+  //                 ),
+  //               ),
+  //               const SizedBox(width: 12),
+  //               Expanded(
+  //                 child: Text(
+  //                   requirement,
+  //                   style: TextStyle(
+  //                     color: _requirements[requirement]! ? Colors.white : Colors.white70,
+  //                     fontSize: isLargeScreen ? 14 : 12,
+  //                     fontFamily: 'Agrandir',
+  //                   ),
+  //                 ),
+  //               ),
+  //             ],
+  //           ),
+  //         );
+  //       }).toList(),
+  //     ),
+  //   );
+  // }
+
+Widget _buildRequirementsChecklist(bool isLargeScreen) {
+  return Container(
+    padding: EdgeInsets.all(isLargeScreen ? 20 : 16),
+    decoration: BoxDecoration(
+      color: const Color.fromARGB(255, 5, 5, 5).withOpacity(0.8),
+      borderRadius: BorderRadius.circular(isLargeScreen ? 15 : 12),
+      border: Border.all(
+        color: Colors.white.withOpacity(0.2),
+        width: 1,
+      ),
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: _requirements.keys.map((requirement) {
+        bool isHovered = false; // Variable to track hover state
+        
+        return MouseRegion(
+          onEnter: (_) {
+            setState(() {
+              isHovered = true; // Set to true on hover
+            });
+          },
+          onExit: (_) {
+            setState(() {
+              isHovered = false; // Set to false on exit
+            });
+          },
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 12),
+            child: Container(
+              color: _isEditMode && isHovered 
+                  ? Colors.grey.withOpacity(0.3) 
+                  : Colors.transparent,
+              child: Row(
+                children: [
+                  GestureDetector(
+                    onTap: _isEditMode ? () {
+                      setState(() {
+                        _requirements[requirement] = !_requirements[requirement]!;
+                      });
+                    } : null,
+                    child: Container(
+                      width: 20,
+                      height: 20,
+                      decoration: BoxDecoration(
+                        color: _requirements[requirement]! 
+                            ? Colors.amber 
+                            : Colors.transparent,
+                        border: Border.all(
+                          color: _requirements[requirement]! 
+                              ? Colors.amber 
+                              : Colors.white60,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: _requirements[requirement]!
+                          ? const Icon(
+                              Icons.check,
+                              color: Colors.black,
+                              size: 17,
+                            )
+                          : null,
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      requirement,
+                      style: TextStyle(
+                        color: _requirements[requirement]! 
+                            ? Colors.white 
+                            : Colors.white30,
+                        fontSize: isLargeScreen ? 14 : 12,
+                        fontFamily: 'Agrandir',
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      }).toList(),
+    ),
+  );
+}
 
   Widget _buildFooter(bool isMobile) {
     return Container(

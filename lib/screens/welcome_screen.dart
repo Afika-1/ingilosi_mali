@@ -53,7 +53,7 @@
 //             fit: BoxFit.fill,
 //             alignment: Alignment.center,
 //             colorFilter: ColorFilter.mode(
-//               Colors.black.withOpacity(0.3), // Add overlay
+//               Colors.black.withValues(alpha:0.3), // Add overlay
 //               BlendMode.darken,
 //             ),
 //           ),
@@ -136,7 +136,7 @@
 //                       'Unlocking Capital. Empowering Small Businesses.',
 //                       textAlign: TextAlign.center,
 //                       style: TextStyle(
-//                         color: Colors.white.withOpacity(0.9),
+//                         color: Colors.white.withValues(alpha:0.9),
 //                         fontSize: 20,
 //                         fontWeight: FontWeight.w400,
 //                         letterSpacing: 0.8,
@@ -325,7 +325,7 @@ class WelcomeScreenState extends State<WelcomeScreen>
             fit: BoxFit.fill,
             alignment: Alignment.center,
             colorFilter: ColorFilter.mode(
-              Colors.black.withOpacity(0.4), // Slightly darker overlay
+              Colors.black.withValues(alpha:0.4), // Slightly darker overlay
               BlendMode.darken,
             ),
           ),
@@ -355,7 +355,7 @@ class WelcomeScreenState extends State<WelcomeScreen>
                               borderRadius: BorderRadius.circular(20),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Color(0xFFD4AF37).withOpacity(0.3),
+                                  color: Color(0xFFD4AF37).withValues(alpha:0.3),
                                   blurRadius: 10,
                                   spreadRadius: 2,
                                 ),
@@ -384,7 +384,7 @@ class WelcomeScreenState extends State<WelcomeScreen>
                                   letterSpacing: 1.2,
                                   shadows: [
                                     Shadow(
-                                      color: Colors.black.withOpacity(0.5),
+                                      color: Colors.black.withValues(alpha:0.5),
                                       offset: Offset(1, 1),
                                       blurRadius: 3,
                                     ),
@@ -400,7 +400,7 @@ class WelcomeScreenState extends State<WelcomeScreen>
                                   letterSpacing: 1.2,
                                   shadows: [
                                     Shadow(
-                                      color: Colors.black.withOpacity(0.5),
+                                      color: Colors.black.withValues(alpha:0.5),
                                       offset: Offset(1, 1),
                                       blurRadius: 3,
                                     ),
@@ -469,7 +469,7 @@ class WelcomeScreenState extends State<WelcomeScreen>
                                   height: 1.1,
                                   shadows: [
                                     Shadow(
-                                      color: Colors.black.withOpacity(0.7),
+                                      color: Colors.black.withValues(alpha:0.7),
                                       offset: Offset(2, 2),
                                       blurRadius: 8,
                                     ),
@@ -488,9 +488,9 @@ class WelcomeScreenState extends State<WelcomeScreen>
                               ),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(25),
-                                color: Colors.black.withOpacity(0.3),
+                                color: Colors.black.withValues(alpha:0.3),
                                 border: Border.all(
-                                  color: Color(0xFFD4AF37).withOpacity(0.3),
+                                  color: Color(0xFFD4AF37).withValues(alpha:0.3),
                                   width: 1,
                                 ),
                               ),
@@ -498,7 +498,7 @@ class WelcomeScreenState extends State<WelcomeScreen>
                                 'Unlocking Capital • Empowering Small Businesses',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                  color: Colors.white.withOpacity(0.95),
+                                  color: Colors.white.withValues(alpha:0.95),
                                   fontSize: 18,
                                   fontWeight: FontWeight.w400,
                                   letterSpacing: 1.2,
@@ -537,7 +537,7 @@ class WelcomeScreenState extends State<WelcomeScreen>
                               borderRadius: BorderRadius.circular(35),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Color(0xFFD4AF37).withOpacity(0.4),
+                                  color: Color(0xFFD4AF37).withValues(alpha:0.4),
                                   blurRadius: 15,
                                   spreadRadius: 2,
                                 ),
@@ -581,7 +581,7 @@ class WelcomeScreenState extends State<WelcomeScreen>
                                     padding: EdgeInsets.all(6),
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: Color(0xFFD4AF37).withOpacity(0.2),
+                                      color: Color(0xFFD4AF37).withValues(alpha:0.2),
                                     ),
                                     child: Icon(
                                       Icons.arrow_forward,
@@ -621,14 +621,14 @@ class WelcomeScreenState extends State<WelcomeScreen>
                 height: 100,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Color(0xFFD4AF37).withOpacity(0.1),
+                  color: Color(0xFFD4AF37).withValues(alpha:0.1),
                   border: Border.all(
-                    color: Color(0xFFD4AF37).withOpacity(0.3 + (0.2 * _decorativeAnimation.value)),
+                    color: Color(0xFFD4AF37).withValues(alpha:0.3 + (0.2 * _decorativeAnimation.value)),
                     width: 1.5,
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: Color(0xFFD4AF37).withOpacity(0.2),
+                      color: Color(0xFFD4AF37).withValues(alpha:0.2),
                       blurRadius: 10,
                       spreadRadius: 1,
                     ),
@@ -654,9 +654,9 @@ class WelcomeScreenState extends State<WelcomeScreen>
                 height: 60,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Colors.white.withOpacity(0.1),
+                  color: Colors.white.withValues(alpha:0.1),
                   border: Border.all(
-                    color: Colors.white.withOpacity(0.2 + (0.3 * _decorativeAnimation.value)),
+                    color: Colors.white.withValues(alpha:0.2 + (0.3 * _decorativeAnimation.value)),
                     width: 1.5,
                   ),
                 ),
@@ -680,9 +680,9 @@ class WelcomeScreenState extends State<WelcomeScreen>
                 height: 80,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-                  color: Color(0xFFD4AF37).withOpacity(0.1),
+                  color: Color(0xFFD4AF37).withValues(alpha:0.1),
                   border: Border.all(
-                    color: Color(0xFFD4AF37).withOpacity(0.3 + (0.2 * _decorativeAnimation.value)),
+                    color: Color(0xFFD4AF37).withValues(alpha:0.3 + (0.2 * _decorativeAnimation.value)),
                     width: 1.5,
                   ),
                 ),
@@ -706,9 +706,9 @@ class WelcomeScreenState extends State<WelcomeScreen>
                 height: 120,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Colors.white.withOpacity(0.05),
+                  color: Colors.white.withValues(alpha:0.05),
                   border: Border.all(
-                    color: Colors.white.withOpacity(0.1 + (0.2 * _decorativeAnimation.value)),
+                    color: Colors.white.withValues(alpha:0.1 + (0.2 * _decorativeAnimation.value)),
                     width: 1.5,
                   ),
                 ),
@@ -729,7 +729,7 @@ class WelcomeScreenState extends State<WelcomeScreen>
               angle: 0.1 * _decorativeAnimation.value,
               child: Icon(
                 Icons.trending_up,
-                color: Color(0xFFD4AF37).withOpacity(0.3 + (0.4 * _decorativeAnimation.value)),
+                color: Color(0xFFD4AF37).withValues(alpha:0.3 + (0.4 * _decorativeAnimation.value)),
                 size: 40 + (5 * _decorativeAnimation.value),
               ),
             ),
@@ -748,7 +748,7 @@ class WelcomeScreenState extends State<WelcomeScreen>
               angle: -0.1 * _decorativeAnimation.value,
               child: Icon(
                 Icons.business,
-                color: Colors.white.withOpacity(0.2 + (0.3 * _decorativeAnimation.value)),
+                color: Colors.white.withValues(alpha:0.2 + (0.3 * _decorativeAnimation.value)),
                 size: 35 + (3 * _decorativeAnimation.value),
               ),
             ),
@@ -769,11 +769,11 @@ class WelcomeScreenState extends State<WelcomeScreen>
           width: 18 + (8 * animationValue),
           height: 18 + (8 * animationValue),
           decoration: BoxDecoration(
-            color: Color(0xFF00A693).withOpacity(0.2 + (0.8 * animationValue)),
+            color: Color(0xFF00A693).withValues(alpha:0.2 + (0.8 * animationValue)),
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
-                color: Color(0xFF00A693).withOpacity(0.4 * animationValue),
+                color: Color(0xFF00A693).withValues(alpha:0.4 * animationValue),
                 blurRadius: 8 * animationValue,
                 spreadRadius: 2 * animationValue,
               ),
