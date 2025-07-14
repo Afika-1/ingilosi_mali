@@ -1228,10 +1228,10 @@ Widget _buildRequirementsChecklist(bool isLargeScreen) {
   return Container(
     padding: EdgeInsets.all(isLargeScreen ? 20 : 16),
     decoration: BoxDecoration(
-      color: const Color.fromARGB(255, 5, 5, 5).withOpacity(0.8),
+      color: const Color.fromARGB(255, 5, 5, 5).withValues(alpha:0.8),
       borderRadius: BorderRadius.circular(isLargeScreen ? 15 : 12),
       border: Border.all(
-        color: Colors.white.withOpacity(0.2),
+        color: Colors.white.withValues(alpha:0.2),
         width: 1,
       ),
     ),
@@ -1255,7 +1255,7 @@ Widget _buildRequirementsChecklist(bool isLargeScreen) {
             padding: const EdgeInsets.only(bottom: 12),
             child: Container(
               color: _isEditMode && isHovered 
-                  ? Colors.grey.withOpacity(0.3) 
+                  ? Colors.grey.withValues(alpha:0.3) 
                   : Colors.transparent,
               child: Row(
                 children: [

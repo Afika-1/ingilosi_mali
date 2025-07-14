@@ -541,46 +541,11 @@ Widget _buildLogo() {
             width: 40,
             height: 40,
             fit: BoxFit.cover,
-            // errorBuilder: (context, error, stackTrace) {
-            //   // Fallback to the original icon-based logo if image fails to load
-            //   return Container(
-            //     decoration: BoxDecoration(
-            //       color: Colors.transparent,
-            //       borderRadius: BorderRadius.circular(8),
-            //     ),
-            //     child: Stack(
-            //       alignment: Alignment.center,
-            //       children: [
-            //         Icon(
-            //           Icons.featured_play_list_outlined,
-            //           size: 30,
-            //           color: Colors.white.withValues(alpha: 0.8),
-            //         ),
-            //         Text(
-            //           '\$',
-            //           style: TextStyle(
-            //             fontSize: 18,
-            //             fontWeight: FontWeight.bold,
-            //             color: const Color(0xFFD4AF37),
-            //           ),
-            //         ),
-            //       ],
-            //     ),
-            //   );
-            // },
+            
           ),
         ),
       ),
-      // const SizedBox(width: 10),
-      // const Text(
-      //   'Ingilosi Mali',
-      //   style: TextStyle(
-      //     fontSize: 16,
-      //     fontWeight: FontWeight.w300,
-      //     color: Colors.white,
-      //     letterSpacing: 1.2,
-      //   ),
-      // ),
+
     ],
   );
 }
