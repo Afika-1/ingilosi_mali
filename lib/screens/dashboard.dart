@@ -222,53 +222,26 @@ class _InvestorDashboardState extends State<InvestorDashboard>
     );
   }
 
-  Widget _buildLogo(bool isLargeScreen) {
-    return AnimatedBuilder(
-      animation: _pulseController,
-      builder: (context, child) {
-        return Row(
-          children: [
-            Container(
+Widget _buildLogo(bool isLargeScreen) {
+  return AnimatedBuilder(
+    animation: _pulseController,
+    builder: (context, child) {
+      return Row(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Image.asset(
+              'lib/Assets/images/logo2.png', // Update the path to your image
               width: isLargeScreen ? 50 : 40,
               height: isLargeScreen ? 50 : 40,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Colors.amber, Colors.amber.shade700],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-                borderRadius: BorderRadius.circular(8),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.amber.withValues(
-                      alpha: 0.3 * _pulseController.value,
-                    ),
-                    blurRadius: 20,
-                    spreadRadius: 5,
-                  ),
-                ],
-              ),
-              child: const Icon(
-                Icons.business_center,
-                color: Colors.white,
-                size: 24,
-              ),
+              fit: BoxFit.cover,
             ),
-            const SizedBox(width: 10),
-            Text(
-              'Ingilosi Mali',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: isLargeScreen ? 20 : 16,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Agrandir',
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
+          ),
+        ],
+      );
+    },
+  );
+}
 
   Widget _buildDesktopNavigation() {
     return Row(
@@ -345,7 +318,7 @@ class _InvestorDashboardState extends State<InvestorDashboard>
         const SizedBox(width: 30),
         _buildNavItem('Dashboard', () {}),
         const SizedBox(width: 30),
-        _buildNavItem('Account', AccountScreen.new), // Current page
+        _buildNavItem('Account', _navigateToAccount), // Current page
         const SizedBox(width: 30),
         _buildNavItem('Log Out', _navigateToLogout),
       ],
@@ -470,6 +443,7 @@ class _InvestorDashboardState extends State<InvestorDashboard>
                   title: 'Account',
                   onTap: () {
                     Navigator.pop(context);
+                    _navigateToAccount();
                   },
                   isSelected: true,
                 ),
@@ -529,6 +503,14 @@ class _InvestorDashboardState extends State<InvestorDashboard>
                     () {};
                   },
                 ),
+                // _buildDrawerItem(
+                //   icon: Icons.info,
+                //   title: 'Account',
+                //   onTap: () {
+                //     Navigator.pop(context);
+                //     () {};
+                //   },
+                // ),
                 const Divider(color: Colors.white24),
                 _buildDrawerItem(
                   icon: Icons.logout,
@@ -1696,7 +1678,7 @@ class _InvestorDashboardState extends State<InvestorDashboard>
   void _navigateToAccount() {
     // Navigate to about page
 
-    onTap: () {
+  
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
@@ -1704,19 +1686,18 @@ class _InvestorDashboardState extends State<InvestorDashboard>
                         ),
                       );
                     
-  };}
+  }
 
   void _navigateToLogout() {
     // Handle logout
     print('Logout');
-    onTap: () {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) => BusinessLoginScreen(),
                         ),
                       );
-                    };
+                  
   }
 }
 
