@@ -222,26 +222,26 @@ class _InvestorDashboardState extends State<InvestorDashboard>
     );
   }
 
-Widget _buildLogo(bool isLargeScreen) {
-  return AnimatedBuilder(
-    animation: _pulseController,
-    builder: (context, child) {
-      return Row(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Image.asset(
-              'lib/Assets/images/logo2.png', // Update the path to your image
-              width: isLargeScreen ? 50 : 40,
-              height: isLargeScreen ? 50 : 40,
-              fit: BoxFit.cover,
+  Widget _buildLogo(bool isLargeScreen) {
+    return AnimatedBuilder(
+      animation: _pulseController,
+      builder: (context, child) {
+        return Row(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.asset(
+                'lib/Assets/images/logo2.png', // Update the path to your image
+                width: isLargeScreen ? 50 : 40,
+                height: isLargeScreen ? 50 : 40,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-        ],
-      );
-    },
-  );
-}
+          ],
+        );
+      },
+    );
+  }
 
   Widget _buildDesktopNavigation() {
     return Row(
@@ -316,7 +316,7 @@ Widget _buildLogo(bool isLargeScreen) {
         const SizedBox(width: 30),
         _buildNavItem('About us', _navigateToAbout),
         const SizedBox(width: 30),
-        _buildNavItem('Dashboard', () {}),
+        _buildNavItem('Dashboard', _navigateToDashboard),
         const SizedBox(width: 30),
         _buildNavItem('Account', _navigateToAccount), // Current page
         const SizedBox(width: 30),
@@ -1671,33 +1671,26 @@ Widget _buildLogo(bool isLargeScreen) {
   }
 
   void _navigateToDashboard() {
-    // Navigate to about page
-    print('Navigate to About');
+    // Navigate to Dashboard page
+    print('Navigate to Dashboard');
   }
 
   void _navigateToAccount() {
-    // Navigate to about page
+    // Navigate to Account page
 
-  
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AccountScreen(),
-                        ),
-                      );
-                    
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => AccountScreen()),
+    );
   }
 
   void _navigateToLogout() {
     // Handle logout
     print('Logout');
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => BusinessLoginScreen(),
-                        ),
-                      );
-                  
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => BusinessLoginScreen()),
+    );
   }
 }
 

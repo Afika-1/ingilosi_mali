@@ -1,7 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:ingilosi_mali/screens/business_lounge.dart';
 import 'dart:io';
+
+import 'package:ingilosi_mali/screens/dashboard.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
@@ -14,7 +16,7 @@ class _AccountScreenState extends State<AccountScreen> {
   final _formKey = GlobalKey<FormState>();
   final _searchController = TextEditingController();
   final ImagePicker _picker = ImagePicker();
-  
+
   // Basic Information Controllers
   final _fullNameController = TextEditingController();
   final _businessNameController = TextEditingController();
@@ -29,15 +31,16 @@ class _AccountScreenState extends State<AccountScreen> {
   List<String> _searchResults = [];
   File? _profileImage;
   String? _profileImageUrl; // For existing profile images from server
-  
+
   final List<String> _searchableContent = [
     'Education',
-    'About us',
+    'About us'
+        'Dashboard',
     'Account',
     'Log Out',
     'Edit Profile',
     'Investment Preferences',
-    'Contact Support'
+    'Contact Support',
   ];
 
   // Investment Preferences
@@ -105,16 +108,17 @@ class _AccountScreenState extends State<AccountScreen> {
       _secondIndustryChoice = 'Healthcare';
       _thirdIndustryChoice = 'Finance';
       _investmentRange = '100k-250k';
-      
+
       // Sample requirements selection
       _requirements['Tax clearance'] = true;
       _requirements['Company Registration Documents'] = true;
       _requirements['Valid BBBEE Certificate'] = true;
       _requirements['Detailed Business Plan'] = true;
       _requirements['Is the business profitable'] = true;
-      
+
       // Sample profile image URL (replace with actual URL from your backend)
-      _profileImageUrl = null; // Set to null initially, would be loaded from server
+      _profileImageUrl =
+          null; // Set to null initially, would be loaded from server
     });
   }
 
@@ -209,7 +213,9 @@ class _AccountScreenState extends State<AccountScreen> {
             width: 60,
             height: 60,
             decoration: BoxDecoration(
-              color: isDestructive ? Colors.red.withValues(alpha: 0.2) : Colors.amber.withValues(alpha: 0.2),
+              color: isDestructive
+                  ? Colors.red.withValues(alpha: 0.2)
+                  : Colors.amber.withValues(alpha: 0.2),
               shape: BoxShape.circle,
               border: Border.all(
                 color: isDestructive ? Colors.red : Colors.amber,
@@ -238,7 +244,7 @@ class _AccountScreenState extends State<AccountScreen> {
 
   Future<void> _selectImage(ImageSource source) async {
     Navigator.pop(context);
-    
+
     try {
       final XFile? image = await _picker.pickImage(
         source: source,
@@ -252,7 +258,7 @@ class _AccountScreenState extends State<AccountScreen> {
           _profileImage = File(image.path);
           _profileImageUrl = null; // Clear the URL when a new image is selected
         });
-        
+
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Profile photo selected successfully!'),
@@ -278,7 +284,7 @@ class _AccountScreenState extends State<AccountScreen> {
       _profileImage = null;
       _profileImageUrl = null;
     });
-    
+
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('Profile photo removed'),
@@ -289,7 +295,7 @@ class _AccountScreenState extends State<AccountScreen> {
 
   Widget _buildProfileAvatar(bool isLargeScreen) {
     final double avatarSize = isLargeScreen ? 120 : 100;
-    
+
     return Stack(
       children: [
         Container(
@@ -297,10 +303,7 @@ class _AccountScreenState extends State<AccountScreen> {
           height: avatarSize,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            border: Border.all(
-              color: Colors.amber,
-              width: 3,
-            ),
+            border: Border.all(color: Colors.amber, width: 3),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withValues(alpha: 0.3),
@@ -315,8 +318,8 @@ class _AccountScreenState extends State<AccountScreen> {
             backgroundImage: _profileImage != null
                 ? FileImage(_profileImage!)
                 : _profileImageUrl != null
-                    ? NetworkImage(_profileImageUrl!)
-                    : null,
+                ? NetworkImage(_profileImageUrl!)
+                : null,
             child: _profileImage == null && _profileImageUrl == null
                 ? Icon(
                     Icons.person,
@@ -339,10 +342,7 @@ class _AccountScreenState extends State<AccountScreen> {
                 decoration: BoxDecoration(
                   color: Colors.amber,
                   shape: BoxShape.circle,
-                  border: Border.all(
-                    color: Colors.white,
-                    width: 2,
-                  ),
+                  border: Border.all(color: Colors.white, width: 2),
                 ),
                 child: const Icon(
                   Icons.camera_alt,
@@ -391,7 +391,7 @@ class _AccountScreenState extends State<AccountScreen> {
     if (_formKey.currentState!.validate()) {
       // Here you would typically upload the profile image to your server
       // and save all the form data
-      
+
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Changes saved successfully!'),
@@ -429,6 +429,15 @@ class _AccountScreenState extends State<AccountScreen> {
     );
   }
 
+  void _navigateToDashboard() {
+    // Navigate to about page
+    // print('Navigate to Dashboard');
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => InvestorDashboard()),
+    );
+  }
+
   void _navigateToLogout() {
     // Show logout confirmation dialog
     showDialog(
@@ -455,7 +464,12 @@ class _AccountScreenState extends State<AccountScreen> {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
-                // Perform logout logic here
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BusinessLoungeScreen(),
+                  ),
+                );
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     content: Text('Logged out successfully'),
@@ -494,14 +508,12 @@ class _AccountScreenState extends State<AccountScreen> {
           ),
         ),
         child: Container(
-          decoration: BoxDecoration(
-            color: Colors.black.withValues(alpha: 0.5),
-          ),
+          decoration: BoxDecoration(color: Colors.black.withValues(alpha: 0.5)),
           child: Column(
             children: [
               // Fixed Header
               _buildHeader(isLargeScreen),
-              
+
               // Main Content
               Expanded(
                 child: SingleChildScrollView(
@@ -524,7 +536,7 @@ class _AccountScreenState extends State<AccountScreen> {
 
                                 // Profile Avatar
                                 _buildProfileAvatar(isLargeScreen),
-                                
+
                                 SizedBox(height: isLargeScreen ? 30 : 20),
 
                                 // Account Title
@@ -553,7 +565,9 @@ class _AccountScreenState extends State<AccountScreen> {
                                         color: Colors.amber,
                                         size: isLargeScreen ? 32 : 28,
                                       ),
-                                      tooltip: _isEditMode ? 'Save Changes' : 'Edit Profile',
+                                      tooltip: _isEditMode
+                                          ? 'Save Changes'
+                                          : 'Edit Profile',
                                     ),
                                   ],
                                 ),
@@ -563,9 +577,11 @@ class _AccountScreenState extends State<AccountScreen> {
                                 // Subtitle
                                 Container(
                                   width: isLargeScreen ? 500 : double.infinity,
-                                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 20,
+                                  ),
                                   child: Text(
-                                    _isEditMode 
+                                    _isEditMode
                                         ? 'Update your investor profile and preferences below.'
                                         : 'Manage your investor profile and investment preferences.',
                                     textAlign: TextAlign.center,
@@ -587,11 +603,17 @@ class _AccountScreenState extends State<AccountScreen> {
                                   child: Form(
                                     key: _formKey,
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         // Basic Information Section
-                                        _buildSectionTitle('Basic Information', isLargeScreen),
-                                        SizedBox(height: isLargeScreen ? 20 : 15),
+                                        _buildSectionTitle(
+                                          'Basic Information',
+                                          isLargeScreen,
+                                        ),
+                                        SizedBox(
+                                          height: isLargeScreen ? 20 : 15,
+                                        ),
 
                                         _buildTextField(
                                           controller: _fullNameController,
@@ -600,7 +622,9 @@ class _AccountScreenState extends State<AccountScreen> {
                                           isLargeScreen: isLargeScreen,
                                           enabled: _isEditMode,
                                         ),
-                                        SizedBox(height: isLargeScreen ? 25 : 20),
+                                        SizedBox(
+                                          height: isLargeScreen ? 25 : 20,
+                                        ),
 
                                         _buildTextField(
                                           controller: _businessNameController,
@@ -609,7 +633,9 @@ class _AccountScreenState extends State<AccountScreen> {
                                           isLargeScreen: isLargeScreen,
                                           enabled: _isEditMode,
                                         ),
-                                        SizedBox(height: isLargeScreen ? 25 : 20),
+                                        SizedBox(
+                                          height: isLargeScreen ? 25 : 20,
+                                        ),
 
                                         _buildTextField(
                                           controller: _contactNumberController,
@@ -618,40 +644,56 @@ class _AccountScreenState extends State<AccountScreen> {
                                           isLargeScreen: isLargeScreen,
                                           enabled: _isEditMode,
                                         ),
-                                        SizedBox(height: isLargeScreen ? 25 : 20),
+                                        SizedBox(
+                                          height: isLargeScreen ? 25 : 20,
+                                        ),
 
                                         _buildTextField(
                                           controller: _emailController,
                                           hintText: 'Email *',
-                                          keyboardType: TextInputType.emailAddress,
+                                          keyboardType:
+                                              TextInputType.emailAddress,
                                           isLargeScreen: isLargeScreen,
                                           enabled: _isEditMode,
                                         ),
-                                        SizedBox(height: isLargeScreen ? 25 : 20),
+                                        SizedBox(
+                                          height: isLargeScreen ? 25 : 20,
+                                        ),
 
                                         _buildTextField(
                                           controller: _passwordController,
                                           hintText: 'Password *',
                                           isPassword: true,
-                                          keyboardType: TextInputType.visiblePassword,
+                                          keyboardType:
+                                              TextInputType.visiblePassword,
                                           isLargeScreen: isLargeScreen,
                                           enabled: _isEditMode,
                                         ),
-                                        SizedBox(height: isLargeScreen ? 25 : 20),
+                                        SizedBox(
+                                          height: isLargeScreen ? 25 : 20,
+                                        ),
 
                                         _buildTextField(
-                                          controller: _geographicalLocationController,
+                                          controller:
+                                              _geographicalLocationController,
                                           hintText: 'Geographical Location *',
                                           keyboardType: TextInputType.text,
                                           isLargeScreen: isLargeScreen,
                                           enabled: _isEditMode,
                                         ),
 
-                                        SizedBox(height: isLargeScreen ? 40 : 30),
+                                        SizedBox(
+                                          height: isLargeScreen ? 40 : 30,
+                                        ),
 
                                         // Investment Preferences Section
-                                        _buildSectionTitle('Investment Preferences', isLargeScreen),
-                                        SizedBox(height: isLargeScreen ? 20 : 15),
+                                        _buildSectionTitle(
+                                          'Investment Preferences',
+                                          isLargeScreen,
+                                        ),
+                                        SizedBox(
+                                          height: isLargeScreen ? 20 : 15,
+                                        ),
 
                                         Text(
                                           'Industry of Interest (In order of preference)',
@@ -662,48 +704,97 @@ class _AccountScreenState extends State<AccountScreen> {
                                             fontWeight: FontWeight.w500,
                                           ),
                                         ),
-                                        SizedBox(height: isLargeScreen ? 15 : 10),
+                                        SizedBox(
+                                          height: isLargeScreen ? 15 : 10,
+                                        ),
 
                                         _buildDropdown(
                                           value: _firstIndustryChoice,
                                           hintText: 'First Choice *',
                                           items: _industries,
-                                          onChanged: _isEditMode ? (value) => setState(() => _firstIndustryChoice = value) : null,
+                                          onChanged: _isEditMode
+                                              ? (value) => setState(
+                                                  () => _firstIndustryChoice =
+                                                      value,
+                                                )
+                                              : null,
                                           isLargeScreen: isLargeScreen,
                                         ),
-                                        SizedBox(height: isLargeScreen ? 20 : 15),
+                                        SizedBox(
+                                          height: isLargeScreen ? 20 : 15,
+                                        ),
 
                                         _buildDropdown(
                                           value: _secondIndustryChoice,
                                           hintText: 'Second Choice *',
-                                          items: _industries.where((item) => item != _firstIndustryChoice).toList(),
-                                          onChanged: _isEditMode ? (value) => setState(() => _secondIndustryChoice = value) : null,
+                                          items: _industries
+                                              .where(
+                                                (item) =>
+                                                    item !=
+                                                    _firstIndustryChoice,
+                                              )
+                                              .toList(),
+                                          onChanged: _isEditMode
+                                              ? (value) => setState(
+                                                  () => _secondIndustryChoice =
+                                                      value,
+                                                )
+                                              : null,
                                           isLargeScreen: isLargeScreen,
                                         ),
-                                        SizedBox(height: isLargeScreen ? 20 : 15),
+                                        SizedBox(
+                                          height: isLargeScreen ? 20 : 15,
+                                        ),
 
                                         _buildDropdown(
                                           value: _thirdIndustryChoice,
                                           hintText: 'Third Choice *',
-                                          items: _industries.where((item) => item != _firstIndustryChoice && item != _secondIndustryChoice).toList(),
-                                          onChanged: _isEditMode ? (value) => setState(() => _thirdIndustryChoice = value) : null,
+                                          items: _industries
+                                              .where(
+                                                (item) =>
+                                                    item !=
+                                                        _firstIndustryChoice &&
+                                                    item !=
+                                                        _secondIndustryChoice,
+                                              )
+                                              .toList(),
+                                          onChanged: _isEditMode
+                                              ? (value) => setState(
+                                                  () => _thirdIndustryChoice =
+                                                      value,
+                                                )
+                                              : null,
                                           isLargeScreen: isLargeScreen,
                                         ),
-                                        SizedBox(height: isLargeScreen ? 25 : 20),
+                                        SizedBox(
+                                          height: isLargeScreen ? 25 : 20,
+                                        ),
 
                                         _buildDropdown(
                                           value: _investmentRange,
                                           hintText: 'Investment Offer Range *',
                                           items: _investmentRanges,
-                                          onChanged: _isEditMode ? (value) => setState(() => _investmentRange = value) : null,
+                                          onChanged: _isEditMode
+                                              ? (value) => setState(
+                                                  () =>
+                                                      _investmentRange = value,
+                                                )
+                                              : null,
                                           isLargeScreen: isLargeScreen,
                                         ),
 
-                                        SizedBox(height: isLargeScreen ? 40 : 30),
+                                        SizedBox(
+                                          height: isLargeScreen ? 40 : 30,
+                                        ),
 
                                         // Requirements Section
-                                        _buildSectionTitle('Requirements from Business Owner', isLargeScreen),
-                                        SizedBox(height: isLargeScreen ? 20 : 15),
+                                        _buildSectionTitle(
+                                          'Requirements from Business Owner',
+                                          isLargeScreen,
+                                        ),
+                                        SizedBox(
+                                          height: isLargeScreen ? 20 : 15,
+                                        ),
 
                                         Text(
                                           'Your selected requirements from potential business partners:',
@@ -713,11 +804,17 @@ class _AccountScreenState extends State<AccountScreen> {
                                             fontFamily: 'Agrandir',
                                           ),
                                         ),
-                                        SizedBox(height: isLargeScreen ? 15 : 10),
+                                        SizedBox(
+                                          height: isLargeScreen ? 15 : 10,
+                                        ),
 
-                                        _buildRequirementsChecklist(isLargeScreen),
+                                        _buildRequirementsChecklist(
+                                          isLargeScreen,
+                                        ),
 
-                                        SizedBox(height: isLargeScreen ? 40 : 30),
+                                        SizedBox(
+                                          height: isLargeScreen ? 40 : 30,
+                                        ),
 
                                         // Save Button (only visible in edit mode)
                                         if (_isEditMode)
@@ -726,7 +823,8 @@ class _AccountScreenState extends State<AccountScreen> {
                                             height: isLargeScreen ? 60 : 55,
                                             child: ElevatedButton(
                                               onPressed: () {
-                                                if (_formKey.currentState!.validate()) {
+                                                if (_formKey.currentState!
+                                                    .validate()) {
                                                   _handleSaveChanges();
                                                 }
                                               },
@@ -734,16 +832,21 @@ class _AccountScreenState extends State<AccountScreen> {
                                                 backgroundColor: Colors.amber,
                                                 foregroundColor: Colors.black,
                                                 shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(
-                                                    isLargeScreen ? 30 : 27.5,
-                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                        isLargeScreen
+                                                            ? 30
+                                                            : 27.5,
+                                                      ),
                                                 ),
                                                 elevation: 0,
                                               ),
                                               child: Text(
                                                 'SAVE CHANGES',
                                                 style: TextStyle(
-                                                  fontSize: isLargeScreen ? 18 : 16,
+                                                  fontSize: isLargeScreen
+                                                      ? 18
+                                                      : 16,
                                                   fontWeight: FontWeight.w600,
                                                   letterSpacing: 1.5,
                                                   fontFamily: 'Agrandir',
@@ -752,7 +855,9 @@ class _AccountScreenState extends State<AccountScreen> {
                                             ),
                                           ),
 
-                                        SizedBox(height: isLargeScreen ? 50 : 40),
+                                        SizedBox(
+                                          height: isLargeScreen ? 50 : 40,
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -762,7 +867,7 @@ class _AccountScreenState extends State<AccountScreen> {
                           ),
                         ),
                       ),
-                      
+
                       // Footer
                       _buildFooter(!isLargeScreen),
                     ],
@@ -794,7 +899,7 @@ class _AccountScreenState extends State<AccountScreen> {
         children: [
           // Logo
           _buildLogo(isLargeScreen),
-          
+
           // Navigation
           if (isLargeScreen)
             _buildDesktopNavigation()
@@ -839,7 +944,9 @@ class _AccountScreenState extends State<AccountScreen> {
                         hintText: 'Search...',
                         hintStyle: const TextStyle(color: Colors.white60),
                         filled: true,
-                        fillColor: const Color(0xFF2D2D2D).withValues(alpha: 0.8),
+                        fillColor: const Color(
+                          0xFF2D2D2D,
+                        ).withValues(alpha: 0.8),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
                           borderSide: BorderSide.none,
@@ -878,17 +985,20 @@ class _AccountScreenState extends State<AccountScreen> {
             ),
           ],
         ),
-        
+
         const SizedBox(width: 20),
-        
+
         // Navigation items
         _buildNavItem('Education', _navigateToEducation),
         const SizedBox(width: 30),
         _buildNavItem('About us', _navigateToAbout),
         const SizedBox(width: 30),
+        _buildNavItem('Dashboard', _navigateToDashboard),
+        const SizedBox(width: 30),
         _buildNavItem('Account', () {}), // Current page
         const SizedBox(width: 30),
         _buildNavItem('Log Out', _navigateToLogout),
+        const SizedBox(width: 30),
       ],
     );
   }
@@ -916,7 +1026,8 @@ class _AccountScreenState extends State<AccountScreen> {
     return Drawer(
       backgroundColor: const Color(0xFF1A1A1A),
       child: Column(
-        children: [// Drawer Header
+        children: [
+          // Drawer Header
           Container(
             height: 200,
             decoration: BoxDecoration(
@@ -935,7 +1046,9 @@ class _AccountScreenState extends State<AccountScreen> {
                 _buildProfileAvatar(false),
                 const SizedBox(height: 10),
                 Text(
-                  _fullNameController.text.isNotEmpty ? _fullNameController.text : 'User',
+                  _fullNameController.text.isNotEmpty
+                      ? _fullNameController.text
+                      : 'User',
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -946,7 +1059,7 @@ class _AccountScreenState extends State<AccountScreen> {
               ],
             ),
           ),
-          
+
           // Search Section
           Padding(
             padding: const EdgeInsets.all(16.0),
@@ -989,7 +1102,7 @@ class _AccountScreenState extends State<AccountScreen> {
               },
             ),
           ),
-          
+
           // Navigation Items
           Expanded(
             child: ListView(
@@ -1012,6 +1125,15 @@ class _AccountScreenState extends State<AccountScreen> {
                   },
                 ),
                 _buildDrawerItem(
+                  icon: Icons.info,
+                  title: 'Dashboard',
+                  onTap: () {
+                    Navigator.pop(context);
+                    _navigateToDashboard();
+                    
+                  },
+                ),
+                _buildDrawerItem(
                   icon: Icons.person,
                   title: 'Account',
                   onTap: () {
@@ -1019,6 +1141,7 @@ class _AccountScreenState extends State<AccountScreen> {
                   },
                   isSelected: true,
                 ),
+
                 const Divider(color: Colors.white24),
                 _buildDrawerItem(
                   icon: Icons.logout,
@@ -1050,8 +1173,8 @@ class _AccountScreenState extends State<AccountScreen> {
         color: isDestructive
             ? Colors.red
             : isSelected
-                ? Colors.amber
-                : Colors.white70,
+            ? Colors.amber
+            : Colors.white70,
       ),
       title: Text(
         title,
@@ -1059,8 +1182,8 @@ class _AccountScreenState extends State<AccountScreen> {
           color: isDestructive
               ? Colors.red
               : isSelected
-                  ? Colors.amber
-                  : Colors.white,
+              ? Colors.amber
+              : Colors.white,
           fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
           fontFamily: 'Agrandir',
         ),
@@ -1084,236 +1207,238 @@ class _AccountScreenState extends State<AccountScreen> {
     );
   }
 
-
-Widget _buildTextField({
-  required TextEditingController controller,
-  required String hintText,
-  bool isPassword = false,
-  TextInputType? keyboardType,
-  required bool isLargeScreen,
-  bool enabled = true,
-}) {
-  return TextFormField(
-    controller: controller,
-    obscureText: isPassword && !_isPasswordVisible,
-    keyboardType: keyboardType,
-    enabled: enabled,
-    style: TextStyle(
-      color: Colors.white,
-      fontSize: isLargeScreen ? 16 : 14,
-      fontFamily: 'Agrandir',
-    ),
-    decoration: InputDecoration(
-      hintText: hintText,
-      hintStyle: TextStyle(
-        color: Colors.white60,
+  Widget _buildTextField({
+    required TextEditingController controller,
+    required String hintText,
+    bool isPassword = false,
+    TextInputType? keyboardType,
+    required bool isLargeScreen,
+    bool enabled = true,
+  }) {
+    return TextFormField(
+      controller: controller,
+      obscureText: isPassword && !_isPasswordVisible,
+      keyboardType: keyboardType,
+      enabled: enabled,
+      style: TextStyle(
+        color: Colors.white,
         fontSize: isLargeScreen ? 16 : 14,
         fontFamily: 'Agrandir',
       ),
-      filled: true,
-      fillColor: const Color.fromARGB(255, 0, 0, 0).withValues(alpha:0.8),
-      border: const UnderlineInputBorder(
-        borderSide: BorderSide(color: Colors.transparent),
+      decoration: InputDecoration(
+        hintText: hintText,
+        hintStyle: TextStyle(
+          color: Colors.white60,
+          fontSize: isLargeScreen ? 16 : 14,
+          fontFamily: 'Agrandir',
+        ),
+        filled: true,
+        fillColor: const Color.fromARGB(255, 0, 0, 0).withValues(alpha: 0.8),
+        border: const UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.transparent),
+        ),
+        enabledBorder: UnderlineInputBorder(
+          borderSide: const BorderSide(color: Colors.white24, width: 1),
+        ),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: const BorderSide(color: Colors.amber, width: 2),
+        ),
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: isLargeScreen ? 20 : 16,
+          vertical: isLargeScreen ? 20 : 16,
+        ),
+        suffixIcon: isPassword
+            ? IconButton(
+                onPressed: enabled
+                    ? () {
+                        setState(() {
+                          _isPasswordVisible = !_isPasswordVisible;
+                        });
+                      }
+                    : null,
+                icon: Icon(
+                  _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                  color: Colors.white60,
+                ),
+              )
+            : null,
       ),
-      enabledBorder: UnderlineInputBorder(
-        borderSide: const BorderSide(color: Colors.white24, width: 1),
-      ),
-      focusedBorder: UnderlineInputBorder(
-        borderSide: const BorderSide(color: Colors.amber, width: 2),
-      ),
-      contentPadding: EdgeInsets.symmetric(
-        horizontal: isLargeScreen ? 20 : 16,
-        vertical: isLargeScreen ? 20 : 16,
-      ),
-      suffixIcon: isPassword
-          ? IconButton(
-              onPressed: enabled ? () {
-                setState(() {
-                  _isPasswordVisible = !_isPasswordVisible;
-                });
-              } : null,
-              icon: Icon(
-                _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-                color: Colors.white60,
-              ),
-            )
-          : null,
-    ),
-    validator: (value) {
-      if (value == null || value.trim().isEmpty) {
-        return 'This field is required';
-      }
-      if (hintText.toLowerCase().contains('email')) {
-        if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
-          return 'Please enter a valid email address';
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return 'This field is required';
         }
-      }
-      if (hintText.toLowerCase().contains('contact')) {
-        if (!RegExp(r'^\d{10,}$').hasMatch(value)) {
-          return 'Please enter a valid phone number';
+        if (hintText.toLowerCase().contains('email')) {
+          if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+            return 'Please enter a valid email address';
+          }
         }
-      }
-      return null;
-    },
-  );
-}
+        if (hintText.toLowerCase().contains('contact')) {
+          if (!RegExp(r'^\d{10,}$').hasMatch(value)) {
+            return 'Please enter a valid phone number';
+          }
+        }
+        return null;
+      },
+    );
+  }
 
-Widget _buildDropdown({
-  required String? value,
-  required String hintText,
-  required List<String> items,
-  required ValueChanged<String?>? onChanged,
-  required bool isLargeScreen,
-}) {
-  return Container(
-    width: double.infinity,
-    padding: EdgeInsets.symmetric(
-      horizontal: isLargeScreen ? 20 : 16,
-      vertical: 4,
-    ),
-    decoration: BoxDecoration(
-      color: onChanged != null 
-          ? const Color.fromARGB(255, 15, 15, 15).withValues(alpha:0.8)
-          : const Color.fromARGB(255, 5, 5, 5).withValues(alpha:0.5),
-      borderRadius: BorderRadius.only(
-        bottomLeft: Radius.circular(isLargeScreen ? 15 : 12),
-        bottomRight: Radius.circular(isLargeScreen ? 15 : 12),
+  Widget _buildDropdown({
+    required String? value,
+    required String hintText,
+    required List<String> items,
+    required ValueChanged<String?>? onChanged,
+    required bool isLargeScreen,
+  }) {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(
+        horizontal: isLargeScreen ? 20 : 16,
+        vertical: 4,
       ),
-      border: Border(
-        bottom: BorderSide(
-          color: Colors.white.withValues(alpha:0.2),
+      decoration: BoxDecoration(
+        color: onChanged != null
+            ? const Color.fromARGB(255, 15, 15, 15).withValues(alpha: 0.8)
+            : const Color.fromARGB(255, 5, 5, 5).withValues(alpha: 0.5),
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(isLargeScreen ? 15 : 12),
+          bottomRight: Radius.circular(isLargeScreen ? 15 : 12),
+        ),
+        border: Border(
+          bottom: BorderSide(
+            color: Colors.white.withValues(alpha: 0.2),
+            width: 1,
+          ),
+        ),
+      ),
+      child: DropdownButtonHideUnderline(
+        child: DropdownButton<String>(
+          value: value,
+          hint: Text(
+            hintText,
+            style: TextStyle(
+              color: Colors.white60,
+              fontSize: isLargeScreen ? 16 : 14,
+              fontFamily: 'Agrandir',
+            ),
+          ),
+          items: items.map((String item) {
+            return DropdownMenuItem<String>(
+              value: item,
+              child: Text(
+                item,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: isLargeScreen ? 16 : 14,
+                  fontFamily: 'Agrandir',
+                ),
+              ),
+            );
+          }).toList(),
+          onChanged: onChanged,
+          dropdownColor: const Color(0xFF2D2D2D),
+          icon: Icon(
+            Icons.arrow_drop_down,
+            color: Colors.white60,
+            size: isLargeScreen ? 28 : 24,
+          ),
+          isExpanded: true,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildRequirementsChecklist(bool isLargeScreen) {
+    return Container(
+      padding: EdgeInsets.all(isLargeScreen ? 20 : 16),
+      decoration: BoxDecoration(
+        color: const Color.fromARGB(255, 5, 5, 5).withValues(alpha: 0.8),
+        borderRadius: BorderRadius.circular(isLargeScreen ? 15 : 12),
+        border: Border.all(
+          color: Colors.white.withValues(alpha: 0.2),
           width: 1,
         ),
       ),
-    ),
-    child: DropdownButtonHideUnderline(
-      child: DropdownButton<String>(
-        value: value,
-        hint: Text(
-          hintText,
-          style: TextStyle(
-            color: Colors.white60,
-            fontSize: isLargeScreen ? 16 : 14,
-            fontFamily: 'Agrandir',
-          ),
-        ),
-        items: items.map((String item) {
-          return DropdownMenuItem<String>(
-            value: item,
-            child: Text(
-              item,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: isLargeScreen ? 16 : 14,
-                fontFamily: 'Agrandir',
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: _requirements.keys.map((requirement) {
+          bool isHovered = false; // Variable to track hover state
+
+          return MouseRegion(
+            onEnter: (_) {
+              setState(() {
+                isHovered = true; // Set to true on hover
+              });
+            },
+            onExit: (_) {
+              setState(() {
+                isHovered = false; // Set to false on exit
+              });
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: Container(
+                color: _isEditMode && isHovered
+                    ? Colors.grey.withValues(alpha: 0.3)
+                    : Colors.transparent,
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: _isEditMode
+                          ? () {
+                              setState(() {
+                                _requirements[requirement] =
+                                    !_requirements[requirement]!;
+                              });
+                            }
+                          : null,
+                      child: Container(
+                        width: 20,
+                        height: 20,
+                        decoration: BoxDecoration(
+                          color: _requirements[requirement]!
+                              ? Colors.amber
+                              : Colors.transparent,
+                          border: Border.all(
+                            color: _requirements[requirement]!
+                                ? Colors.amber
+                                : Colors.white60,
+                            width: 2,
+                          ),
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: _requirements[requirement]!
+                            ? const Icon(
+                                Icons.check,
+                                color: Colors.black,
+                                size: 17,
+                              )
+                            : null,
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        requirement,
+                        style: TextStyle(
+                          color: _requirements[requirement]!
+                              ? Colors.white
+                              : Colors.white30,
+                          fontSize: isLargeScreen ? 14 : 12,
+                          fontFamily: 'Agrandir',
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           );
         }).toList(),
-        onChanged: onChanged,
-        dropdownColor: const Color(0xFF2D2D2D),
-        icon: Icon(
-          Icons.arrow_drop_down,
-          color: Colors.white60,
-          size: isLargeScreen ? 28 : 24,
-        ),
-        isExpanded: true,
       ),
-    ),
-  );
-}
+    );
+  }
 
-
-Widget _buildRequirementsChecklist(bool isLargeScreen) {
-  return Container(
-    padding: EdgeInsets.all(isLargeScreen ? 20 : 16),
-    decoration: BoxDecoration(
-      color: const Color.fromARGB(255, 5, 5, 5).withValues(alpha:0.8),
-      borderRadius: BorderRadius.circular(isLargeScreen ? 15 : 12),
-      border: Border.all(
-        color: Colors.white.withValues(alpha:0.2),
-        width: 1,
-      ),
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: _requirements.keys.map((requirement) {
-        bool isHovered = false; // Variable to track hover state
-        
-        return MouseRegion(
-          onEnter: (_) {
-            setState(() {
-              isHovered = true; // Set to true on hover
-            });
-          },
-          onExit: (_) {
-            setState(() {
-              isHovered = false; // Set to false on exit
-            });
-          },
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 12),
-            child: Container(
-              color: _isEditMode && isHovered 
-                  ? Colors.grey.withValues(alpha:0.3) 
-                  : Colors.transparent,
-              child: Row(
-                children: [
-                  GestureDetector(
-                    onTap: _isEditMode ? () {
-                      setState(() {
-                        _requirements[requirement] = !_requirements[requirement]!;
-                      });
-                    } : null,
-                    child: Container(
-                      width: 20,
-                      height: 20,
-                      decoration: BoxDecoration(
-                        color: _requirements[requirement]! 
-                            ? Colors.amber 
-                            : Colors.transparent,
-                        border: Border.all(
-                          color: _requirements[requirement]! 
-                              ? Colors.amber 
-                              : Colors.white60,
-                          width: 2,
-                        ),
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: _requirements[requirement]!
-                          ? const Icon(
-                              Icons.check,
-                              color: Colors.black,
-                              size: 17,
-                            )
-                          : null,
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Text(
-                      requirement,
-                      style: TextStyle(
-                        color: _requirements[requirement]! 
-                            ? Colors.white 
-                            : Colors.white30,
-                        fontSize: isLargeScreen ? 14 : 12,
-                        fontFamily: 'Agrandir',
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
-      }).toList(),
-    ),
-  );
-}
-
-
-Widget _buildFooter(bool isMobile) {
+  Widget _buildFooter(bool isMobile) {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
@@ -1323,10 +1448,7 @@ Widget _buildFooter(bool isMobile) {
       decoration: BoxDecoration(
         color: Colors.black.withValues(alpha: 0.9),
         border: Border(
-          top: BorderSide(
-            color: Colors.white.withValues(alpha: 0.1),
-            width: 1,
-          ),
+          top: BorderSide(color: Colors.white.withValues(alpha: 0.1), width: 1),
         ),
       ),
       child: Column(
@@ -1381,17 +1503,12 @@ Widget _buildFooter(bool isMobile) {
                   ],
                 ),
           SizedBox(height: isMobile ? 30 : 40),
-          Divider(
-            color: Colors.white.withValues(alpha: 0.1),
-          ),
+          Divider(color: Colors.white.withValues(alpha: 0.1)),
           const SizedBox(height: 20),
           const Text(
             '© 2025 Ingilosi Mali. All rights reserved.',
             textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.white60,
-            ),
+            style: TextStyle(fontSize: 14, color: Colors.white60),
           ),
         ],
       ),
@@ -1417,16 +1534,13 @@ Widget _buildFooter(bool isMobile) {
             padding: const EdgeInsets.only(bottom: 8),
             child: InkWell(
               onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('$item - Coming soon!')),
-                );
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text('$item - Coming soon!')));
               },
               child: Text(
                 item,
-                style: const TextStyle(
-                  fontSize: 14,
-                  color: Colors.white70,
-                ),
+                style: const TextStyle(fontSize: 14, color: Colors.white70),
               ),
             ),
           ),
@@ -1435,4 +1549,3 @@ Widget _buildFooter(bool isMobile) {
     );
   }
 }
-
