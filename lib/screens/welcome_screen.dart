@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:ingilosi_mali/screens/dashboard.dart';
-import 'package:ingilosi_mali/screens/landing_page_screen.dart';
+import 'package:alternative_funds/screens/dashboard.dart';
+import 'package:alternative_funds/screens/landing_page_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:ingilosi_mali/screens/business_lounge.dart';
+import 'package:alternative_funds/screens/business_lounge.dart';
 import 'dart:io';
 
-import 'package:ingilosi_mali/screens/dashboard.dart';
+import 'package:alternative_funds/screens/dashboard.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
@@ -1506,7 +1506,7 @@ class _AccountScreenState extends State<AccountScreen> {
           Divider(color: Colors.white.withValues(alpha: 0.1)),
           const SizedBox(height: 20),
           const Text(
-            '© 2025 Ingilosi Mali. All rights reserved.',
+            '© 2025 Alternative Funds. All rights reserved.',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 14, color: Colors.white60),
           ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:ingilosi_mali/screens/login_business_screen.dart';
+import 'package:alternative_funds/screens/login_business_screen.dart';
 import 'dart:math' as math;
 import '../screens/account_screen.dart';
 

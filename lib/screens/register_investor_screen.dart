@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ingilosi_mali/screens/login_business_screen.dart';
-import 'package:ingilosi_mali/screens/register_business_2.dart';
+import 'package:alternative_funds/screens/login_business_screen.dart';
+import 'package:alternative_funds/screens/register_business_2.dart';
 
 class InvestorRegistrationScreen extends StatefulWidget {
   const InvestorRegistrationScreen({super.key});
@@ -716,7 +716,7 @@ class InvestorRegistrationScreenState
           ),
           const SizedBox(height: 20),
           const Text(
-            '© 2025 Ingilosi Mali. All rights reserved.',
+            '© 2025 Alternative Funds. All rights reserved.',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14,

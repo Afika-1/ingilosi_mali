@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:ingilosi_mali/screens/login_business_screen.dart';
-import 'package:ingilosi_mali/screens/register_investor_screen.dart';
+import 'package:alternative_funds/screens/login_business_screen.dart';
+import 'package:alternative_funds/screens/register_investor_screen.dart';
 
 // Custom App Header Component
 class CustomAppHeader extends StatefulWidget implements PreferredSizeWidget {
@@ -184,7 +184,7 @@ class _CustomAppHeaderState extends State<CustomAppHeader> {
         ),
         SizedBox(width: isLargeScreen ? 15 : 10),
         Text(
-          'Ingilosi Mali',
+          'Alternative Funds',
           style: TextStyle(
             fontSize: isLargeScreen ? 24 : 18,
             fontWeight: FontWeight.w300,
@@ -503,7 +503,7 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
   //       ),
   //       const SizedBox(width: 10),
   //       const Text(
-  //         'Ingilosi Mali',
+  //         'Alternative Funds',
   //         style: TextStyle(
   //           fontSize: 16,
   //           fontWeight: FontWeight.w300,
@@ -947,7 +947,7 @@ Widget _buildActionButtons(bool isMobile, bool isTablet) {
                     children: [
                       // Main Title
                       Text(
-                        'Ingilosi Mali',
+                        'Alternative Funds',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: isMobile ? 48 : (isTablet ? 64 : 80),
@@ -1091,7 +1091,7 @@ Widget _buildActionButtons(bool isMobile, bool isTablet) {
       child: Column(
         children: [
           Text(
-            'Why Choose Ingilosi Mali?',
+            'Why Choose Alternative Funds?',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: isMobile ? 24 : 32,
@@ -1572,7 +1572,7 @@ Widget _buildActionButtons(bool isMobile, bool isTablet) {
           ),
           const SizedBox(height: 20),
           Text(
-            '© 2025 Ingilosi Mali. All rights reserved.',
+            '© 2025 Alternative Funds. All rights reserved.',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14,

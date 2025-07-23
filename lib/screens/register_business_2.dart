@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ingilosi_mali/screens/login_business_screen.dart';
+import 'package:alternative_funds/screens/login_business_screen.dart';
 
 class BusinessRegistrationScreen2 extends StatefulWidget {
   const BusinessRegistrationScreen2({super.key});

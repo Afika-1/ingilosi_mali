@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:ingilosi_mali/screens/welcome_screen.dart';
+import 'package:alternative_funds/screens/welcome_screen.dart';
 
 // import 'package:corpnet_flut/screens/welcome_screen.dart';
 // import 'package:corpnet_flut/widgets/splash_screen.dart';
@@ -13,11 +13,11 @@ import 'package:ingilosi_mali/screens/welcome_screen.dart';
 
 
 void main() {
-  runApp(IngilosiMaliApp());
+  runApp(AlternativeFundsApp());
 }
 
-class IngilosiMaliApp extends StatelessWidget {
-  const IngilosiMaliApp({super.key});
+class AlternativeFundsApp extends StatelessWidget {
+  const AlternativeFundsApp({super.key});
 
   @override
   Widget build(BuildContext context) {

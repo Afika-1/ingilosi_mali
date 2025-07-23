@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ingilosi_mali/screens/business_lounge.dart';
-// import 'package:ingilosi_mali/screens/login_business_screen.dart';
-import 'package:ingilosi_mali/screens/register_investor_screen.dart';
+import 'package:alternative_funds/screens/business_lounge.dart';
+// import 'package:alternative_funds/screens/login_business_screen.dart';
+import 'package:alternative_funds/screens/register_investor_screen.dart';
 
 class BusinessLoginScreen extends StatefulWidget {
   const BusinessLoginScreen({super.key});

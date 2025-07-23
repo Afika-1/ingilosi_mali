@@ -1,9 +1,9 @@
 
 // import 'package:corpnet_flut/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:ingilosi_mali/screens/account_screen.dart';
-// import 'package:ingilosi_mali/screens/register_investor_screen.dart';
-import 'package:ingilosi_mali/screens/welcome_screen.dart';
+import 'package:alternative_funds/screens/account_screen.dart';
+// import 'package:alternative_funds/screens/register_investor_screen.dart';
+import 'package:alternative_funds/screens/welcome_screen.dart';
 // import '../screens/register_business_screen.dart';
 
 class BusinessLoungeScreen extends StatefulWidget {
