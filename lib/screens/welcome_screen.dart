@@ -312,7 +312,7 @@ class WelcomeScreenState extends State<WelcomeScreen>
                                 Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => InvestorDashboard(),
+                                    builder: (context) => LandingPage(),
                                   ),
                                 );
                               },

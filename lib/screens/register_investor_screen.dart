@@ -247,6 +247,44 @@ class InvestorRegistrationScreenState
                                         ),
 
                                         SizedBox(height: isLargeScreen ? 50 : 40),
+                                        // Register Link
+                          Container(
+                            width: isLargeScreen ? 500 : double.infinity,
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Already have an account? ',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.white70,
+                                    fontSize: isLargeScreen ? 18 : 16,
+                                    height: 1.5,
+                                    letterSpacing: 0.5,
+                                    fontFamily: 'Agrandir',
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: _navigateToLogin,
+                                  child: Text(
+                                    'Login',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.amber,
+                                      fontSize: isLargeScreen ? 18 : 16,
+                                      height: 1.5,
+                                      letterSpacing: 0.5,
+                                      fontFamily: 'Agrandir',
+                                      fontWeight: FontWeight.w500,
+                                      decoration: TextDecoration.underline,
+                                      decorationColor: Colors.amber,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                                       ],
                                     ),
                                   ),
