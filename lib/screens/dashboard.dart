@@ -1673,6 +1673,7 @@ class _InvestorDashboardState extends State<InvestorDashboard>
   void _navigateToDashboard() {
     // Navigate to Dashboard page
     print('Navigate to Dashboard');
+    
   }
 
   void _navigateToAccount() {

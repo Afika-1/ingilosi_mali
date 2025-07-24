@@ -48,12 +48,12 @@ class WelcomeScreenState extends State<WelcomeScreen>
     _fadeInAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: Interval(0.0, 0.6, curve: Curves.easeOut),
+        curve: Interval(0.0, 0.0, curve: Curves.easeOut),
       ),
     );
 
     // Slide up animation for main content
-    _slideUpAnimation = Tween<double>(begin: 10.0, end: 0.0).animate(
+    _slideUpAnimation = Tween<double>(begin: 0.0, end: 0.0).animate(
       CurvedAnimation(
         parent: _animationController,
         curve: Interval(0.2, 0.8, curve: Curves.easeOut),
@@ -140,7 +140,7 @@ class WelcomeScreenState extends State<WelcomeScreen>
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Ingalozi',
+                                'Alternative',
                                 style: TextStyle(
                                   fontSize: 24,
                                   fontWeight: FontWeight.w400,
@@ -156,7 +156,7 @@ class WelcomeScreenState extends State<WelcomeScreen>
                                 ),
                               ),
                               Text(
-                                'Mali',
+                                'Funds',
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w300,
@@ -216,14 +216,15 @@ class WelcomeScreenState extends State<WelcomeScreen>
                             ShaderMask(
                               shaderCallback: (bounds) => LinearGradient(
                                 colors: [
-                                  Colors.white,
+                                  Color(0xFFD4AF37),
+                                  // Colors.white,
                                   Color(0xFFD4AF37),
                                   Colors.white,
                                 ],
                                 stops: [0.0, 0.5, 1.0],
                               ).createShader(bounds),
                               child: Text(
-                                'Ingalozi Imali',
+                                'Alternative Funds',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.white,

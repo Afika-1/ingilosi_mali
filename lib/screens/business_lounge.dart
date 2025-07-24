@@ -1,5 +1,6 @@
 
 // import 'package:corpnet_flut/screens/welcome_screen.dart';
+import 'package:alternative_funds/screens/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:alternative_funds/screens/account_screen.dart';
 // import 'package:alternative_funds/screens/register_investor_screen.dart';
@@ -234,6 +235,8 @@ class _BusinessLoungeScreenState extends State<BusinessLoungeScreen> {
         // Navigation items
         _buildNavItem('Services', _navigateToServices),
         const SizedBox(width: 30),
+        _buildNavItem('Dashboard', _navigateToDashboard),
+        const SizedBox(width: 30),
         _buildNavItem('Account', _navigateToAccount),
         const SizedBox(width: 30),
         _buildNavItem('Settings', _navigateToSettings),
@@ -376,7 +379,7 @@ class _BusinessLoungeScreenState extends State<BusinessLoungeScreen> {
         ),
         const SizedBox(height: 16),
         Text(
-          'Ingelosi Imali',
+          'Alternative Funds',
           style: const TextStyle(
             color: Colors.white,
             fontSize: 20,
@@ -434,13 +437,13 @@ class _BusinessLoungeScreenState extends State<BusinessLoungeScreen> {
   Widget _buildServiceCards(BuildContext context) {
     final services = [
       ServiceItem(
-        title: 'Access to funding',
-        icon: Icons.monetization_on_outlined,
+        title: 'My Dashboard',
+        icon: Icons.dashboard_customize_rounded,
         description: 'Get funding solutions for your business',
       ),
       ServiceItem(
-        title: 'Access to market',
-        icon: Icons.storefront_outlined,
+        title: 'Businesses',
+        icon: Icons.business,
         description: 'Connect with market opportunities',
       ),
       ServiceItem(
@@ -604,6 +607,14 @@ class _BusinessLoungeScreenState extends State<BusinessLoungeScreen> {
         content: Text('Services page - Coming soon!'),
         duration: Duration(seconds: 2),
       ),
+    );
+  }
+    void _navigateToDashboard() {
+    // Navigate to Dashboard page
+    // print('Navigate to Dashboard');
+      Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => InvestorDashboard()),
     );
   }
 
