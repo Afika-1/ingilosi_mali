@@ -478,7 +478,7 @@ class _ContactScreenState extends State<ContactScreen> with TickerProviderStateM
   // Company contact details
   final String _companyPhone = '+27 21 123 4567';
   final String _companyEmail = 'info@alternativefunds.co.za';
-  final String _companyAddress = 'CPUT Engineering Building\nBellville Campus\nCape Town, 7535\nSouth Africa';
+  final String _companyAddress = 'CPUT Engineering Building\nCape Town, 7535';
 
   @override
   void initState() {
@@ -867,17 +867,17 @@ class _ContactScreenState extends State<ContactScreen> with TickerProviderStateM
       ),
       child: Column(
         children: [
-          Text(
-            'Get In Touch',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: isMobile ? 24 : 32,
-              fontWeight: FontWeight.w300,
-              color: Colors.white,
-              letterSpacing: 1.5,
-            ),
-          ),
-          SizedBox(height: isMobile ? 30 : 50),
+          // Text(
+          //   'Get In Touch',
+          //   textAlign: TextAlign.center,
+          //   style: TextStyle(
+          //     fontSize: isMobile ? 24 : 32,
+          //     fontWeight: FontWeight.w300,
+          //     color: Colors.white,
+          //     letterSpacing: 1.5,
+          //   ),
+          // ),
+          // SizedBox(height: isMobile ? 30 : 50),
           
           isMobile
               ? Column(

@@ -1,4 +1,5 @@
 
+import 'package:alternative_funds/screens/contact_screen.dart';
 import 'package:alternative_funds/screens/faq_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:alternative_funds/screens/dashboard.dart';
@@ -314,7 +315,7 @@ class WelcomeScreenState extends State<WelcomeScreen>
                                 Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => FAQScreen(),
+                                    builder: (context) => ContactScreen(),
                                   ),
                                 );
                               },
