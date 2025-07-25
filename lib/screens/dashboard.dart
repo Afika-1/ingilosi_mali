@@ -231,7 +231,7 @@ class _InvestorDashboardState extends State<InvestorDashboard>
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Image.asset(
-                'lib/Assets/images/logo2.png', // Update the path to your image
+                'lib/Assets/images/logo.png', // Update the path to your image
                 width: isLargeScreen ? 50 : 40,
                 height: isLargeScreen ? 50 : 40,
                 fit: BoxFit.cover,

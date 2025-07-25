@@ -319,8 +319,8 @@ class BusinessLoginScreenState extends State<BusinessLoginScreen> {
 
   Widget _buildLogo(bool isLargeScreen) {
     return Image.asset(
-      'lib/assets/images/logo2.png',
-      height: isLargeScreen ? 50 : 40,
+      'lib/assets/images/logo.png',
+      height: isLargeScreen ? 120 : 80,
       fit: BoxFit.contain,
     );
   }

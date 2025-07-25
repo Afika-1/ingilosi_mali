@@ -379,7 +379,7 @@ class _BusinessLoungeScreenState extends State<BusinessLoungeScreen> {
         ),
         const SizedBox(height: 16),
         Text(
-          'Alternative Funds',
+          'The Alternative Fund',
           style: const TextStyle(
             color: Colors.white,
             fontSize: 20,
@@ -389,7 +389,7 @@ class _BusinessLoungeScreenState extends State<BusinessLoungeScreen> {
         ),
         const SizedBox(height: 40),
         Text(
-          'Business Lounge',
+          'Investor\'s Lounge',
           style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w200,

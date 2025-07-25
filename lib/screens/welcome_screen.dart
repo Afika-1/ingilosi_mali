@@ -119,7 +119,7 @@ class WelcomeScreenState extends State<WelcomeScreen>
                               borderRadius: BorderRadius.circular(20),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Color(0xFFD4AF37).withValues(alpha:0.3),
+                                  color: Colors.transparent,
                                   blurRadius: 10,
                                   spreadRadius: 2,
                                 ),
@@ -128,51 +128,51 @@ class WelcomeScreenState extends State<WelcomeScreen>
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(20),
                               child: Image.asset(
-                                'lib/assets/images/logo2.png',
-                                width: 80,
-                                height: 80,
+                                'lib/assets/images/logo.png',
+                                width: 100,
+                                height: 100,
                                 fit: BoxFit.cover,
                               ),
                             ),
                           ),
                           SizedBox(width: 15),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Alternative',
-                                style: TextStyle(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.white,
-                                  letterSpacing: 1.2,
-                                  shadows: [
-                                    Shadow(
-                                      color: Colors.black.withValues(alpha:0.5),
-                                      offset: Offset(1, 1),
-                                      blurRadius: 3,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Text(
-                                'Funds',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w300,
-                                  color: Color(0xFFD4AF37),
-                                  letterSpacing: 1.2,
-                                  shadows: [
-                                    Shadow(
-                                      color: Colors.black.withValues(alpha:0.5),
-                                      offset: Offset(1, 1),
-                                      blurRadius: 3,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
+                          // Column(
+                          //   crossAxisAlignment: CrossAxisAlignment.start,
+                          //   children: [
+                          //     Text(
+                          //       'Alternative',
+                          //       style: TextStyle(
+                          //         fontSize: 24,
+                          //         fontWeight: FontWeight.w400,
+                          //         color: Colors.white,
+                          //         letterSpacing: 1.2,
+                          //         shadows: [
+                          //           Shadow(
+                          //             color: Colors.black.withValues(alpha:0.5),
+                          //             offset: Offset(1, 1),
+                          //             blurRadius: 3,
+                          //           ),
+                          //         ],
+                          //       ),
+                          //     ),
+                          //     Text(
+                          //       'Fund',
+                          //       style: TextStyle(
+                          //         fontSize: 20,
+                          //         fontWeight: FontWeight.w300,
+                          //         color: Color(0xFFD4AF37),
+                          //         letterSpacing: 1.2,
+                          //         shadows: [
+                          //           Shadow(
+                          //             color: Colors.black.withValues(alpha:0.5),
+                          //             offset: Offset(1, 1),
+                          //             blurRadius: 3,
+                          //           ),
+                          //         ],
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
                         ],
                       ),
                     ),
@@ -224,7 +224,7 @@ class WelcomeScreenState extends State<WelcomeScreen>
                                 stops: [0.0, 0.5, 1.0],
                               ).createShader(bounds),
                               child: Text(
-                                'Alternative Funds',
+                                'The Alternative Fund',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.white,
@@ -260,7 +260,7 @@ class WelcomeScreenState extends State<WelcomeScreen>
                                 ),
                               ),
                               child: Text(
-                                'Unlocking Capital • Empowering Small Businesses',
+                                'SMME Funding, Matching Angels with Unicorns',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.white.withValues(alpha:0.95),

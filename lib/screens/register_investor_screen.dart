@@ -30,7 +30,7 @@ class InvestorRegistrationScreenState
     'Log In',
     'Business Registration',
     'Investor Registration',
-    'Contact Support'
+    'Contact Support',
   ];
 
   @override
@@ -95,14 +95,12 @@ class InvestorRegistrationScreenState
           ),
         ),
         child: Container(
-          decoration: BoxDecoration(
-            color: Colors.black.withValues(alpha: 0.5),
-          ),
+          decoration: BoxDecoration(color: Colors.black.withValues(alpha: 0.5)),
           child: Column(
             children: [
               // Fixed Header
               _buildHeader(isLargeScreen),
-              
+
               // Main Content with Footer
               Expanded(
                 child: SingleChildScrollView(
@@ -116,7 +114,9 @@ class InvestorRegistrationScreenState
                         child: Center(
                           child: ConstrainedBox(
                             constraints: BoxConstraints(
-                              minHeight: screenHeight - 200, // Account for header and footer
+                              minHeight:
+                                  screenHeight -
+                                  200, // Account for header and footer
                             ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -140,7 +140,9 @@ class InvestorRegistrationScreenState
                                 // Subtitle
                                 Container(
                                   width: isLargeScreen ? 500 : double.infinity,
-                                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 20,
+                                  ),
                                   child: Text(
                                     'Complete your investor profile to connect with suitable business opportunities. Your preferences will help us match you with the right investment prospects.',
                                     textAlign: TextAlign.center,
@@ -162,11 +164,17 @@ class InvestorRegistrationScreenState
                                   child: Form(
                                     key: _formKey,
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         // Basic Information Section
-                                        _buildSectionTitle('Basic Information', isLargeScreen),
-                                        SizedBox(height: isLargeScreen ? 20 : 15),
+                                        _buildSectionTitle(
+                                          'Basic Information',
+                                          isLargeScreen,
+                                        ),
+                                        SizedBox(
+                                          height: isLargeScreen ? 20 : 15,
+                                        ),
 
                                         _buildTextField(
                                           controller: _fullNameController,
@@ -174,7 +182,9 @@ class InvestorRegistrationScreenState
                                           keyboardType: TextInputType.name,
                                           isLargeScreen: isLargeScreen,
                                         ),
-                                        SizedBox(height: isLargeScreen ? 25 : 20),
+                                        SizedBox(
+                                          height: isLargeScreen ? 25 : 20,
+                                        ),
 
                                         _buildTextField(
                                           controller: _businessNameController,
@@ -182,7 +192,9 @@ class InvestorRegistrationScreenState
                                           keyboardType: TextInputType.text,
                                           isLargeScreen: isLargeScreen,
                                         ),
-                                        SizedBox(height: isLargeScreen ? 25 : 20),
+                                        SizedBox(
+                                          height: isLargeScreen ? 25 : 20,
+                                        ),
 
                                         _buildTextField(
                                           controller: _contactNumberController,
@@ -190,25 +202,33 @@ class InvestorRegistrationScreenState
                                           keyboardType: TextInputType.phone,
                                           isLargeScreen: isLargeScreen,
                                         ),
-                                        SizedBox(height: isLargeScreen ? 25 : 20),
+                                        SizedBox(
+                                          height: isLargeScreen ? 25 : 20,
+                                        ),
 
                                         _buildTextField(
                                           controller: _emailController,
                                           hintText: 'Email *',
-                                          keyboardType: TextInputType.emailAddress,
+                                          keyboardType:
+                                              TextInputType.emailAddress,
                                           isLargeScreen: isLargeScreen,
                                         ),
-                                        SizedBox(height: isLargeScreen ? 25 : 20),
+                                        SizedBox(
+                                          height: isLargeScreen ? 25 : 20,
+                                        ),
 
                                         _buildTextField(
                                           controller: _passwordController,
                                           hintText: 'Password *',
                                           isPassword: true,
-                                          keyboardType: TextInputType.visiblePassword,
+                                          keyboardType:
+                                              TextInputType.visiblePassword,
                                           isLargeScreen: isLargeScreen,
                                         ),
 
-                                        SizedBox(height: isLargeScreen ? 40 : 30),
+                                        SizedBox(
+                                          height: isLargeScreen ? 40 : 30,
+                                        ),
 
                                         // Register Button
                                         SizedBox(
@@ -216,17 +236,21 @@ class InvestorRegistrationScreenState
                                           height: isLargeScreen ? 60 : 55,
                                           child: ElevatedButton(
                                             onPressed: () {
-                                              if (_formKey.currentState!.validate()) {
+                                              if (_formKey.currentState!
+                                                  .validate()) {
                                                 _handleRegistration();
                                               }
                                             },
                                             style: ElevatedButton.styleFrom(
-                                              backgroundColor: const Color(0xFF2D2D2D),
+                                              backgroundColor: const Color(
+                                                0xFF2D2D2D,
+                                              ),
                                               foregroundColor: Colors.white,
                                               shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(
-                                                  isLargeScreen ? 30 : 27.5,
-                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                      isLargeScreen ? 30 : 27.5,
+                                                    ),
                                                 side: const BorderSide(
                                                   color: Colors.white24,
                                                   width: 1,
@@ -237,7 +261,9 @@ class InvestorRegistrationScreenState
                                             child: Text(
                                               'REGISTER AS INVESTOR',
                                               style: TextStyle(
-                                                fontSize: isLargeScreen ? 18 : 16,
+                                                fontSize: isLargeScreen
+                                                    ? 18
+                                                    : 16,
                                                 fontWeight: FontWeight.w500,
                                                 letterSpacing: 1.5,
                                                 fontFamily: 'Agrandir',
@@ -246,45 +272,58 @@ class InvestorRegistrationScreenState
                                           ),
                                         ),
 
-                                        SizedBox(height: isLargeScreen ? 50 : 40),
+                                        SizedBox(
+                                          height: isLargeScreen ? 50 : 40,
+                                        ),
                                         // Register Link
-                          Container(
-                            width: isLargeScreen ? 500 : double.infinity,
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Already have an account? ',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Colors.white70,
-                                    fontSize: isLargeScreen ? 18 : 16,
-                                    height: 1.5,
-                                    letterSpacing: 0.5,
-                                    fontFamily: 'Agrandir',
-                                  ),
-                                ),
-                                GestureDetector(
-                                  onTap: _navigateToLogin,
-                                  child: Text(
-                                    'Login',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Colors.amber,
-                                      fontSize: isLargeScreen ? 18 : 16,
-                                      height: 1.5,
-                                      letterSpacing: 0.5,
-                                      fontFamily: 'Agrandir',
-                                      fontWeight: FontWeight.w500,
-                                      decoration: TextDecoration.underline,
-                                      decorationColor: Colors.amber,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                                        Container(
+                                          width: isLargeScreen
+                                              ? 500
+                                              : double.infinity,
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 20,
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                'Already have an account? ',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                  color: Colors.white70,
+                                                  fontSize: isLargeScreen
+                                                      ? 18
+                                                      : 16,
+                                                  height: 1.5,
+                                                  letterSpacing: 0.5,
+                                                  fontFamily: 'Agrandir',
+                                                ),
+                                              ),
+                                              GestureDetector(
+                                                onTap: _navigateToLogin,
+                                                child: Text(
+                                                  'Login',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                    color: Colors.amber,
+                                                    fontSize: isLargeScreen
+                                                        ? 18
+                                                        : 16,
+                                                    height: 1.5,
+                                                    letterSpacing: 0.5,
+                                                    fontFamily: 'Agrandir',
+                                                    fontWeight: FontWeight.w500,
+                                                    decoration: TextDecoration
+                                                        .underline,
+                                                    decorationColor:
+                                                        Colors.amber,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -294,7 +333,7 @@ class InvestorRegistrationScreenState
                           ),
                         ),
                       ),
-                      
+
                       // Footer - No padding, full width
                       _buildFooter(!isLargeScreen),
                     ],
@@ -326,7 +365,7 @@ class InvestorRegistrationScreenState
         children: [
           // Logo
           _buildLogo(isLargeScreen),
-          
+
           // Navigation
           if (isLargeScreen)
             _buildDesktopNavigation()
@@ -346,8 +385,8 @@ class InvestorRegistrationScreenState
 
   Widget _buildLogo(bool isLargeScreen) {
     return Image.asset(
-      'lib/assets/images/logo2.png',
-      height: isLargeScreen ? 50 : 40,
+      'lib/assets/images/logo.png',
+      height: isLargeScreen ? 120 : 80,
       fit: BoxFit.contain,
     );
   }
@@ -371,7 +410,9 @@ class InvestorRegistrationScreenState
                         hintText: 'Search...',
                         hintStyle: const TextStyle(color: Colors.white60),
                         filled: true,
-                        fillColor: const Color(0xFF2D2D2D).withValues(alpha: 0.8),
+                        fillColor: const Color(
+                          0xFF2D2D2D,
+                        ).withValues(alpha: 0.8),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
                           borderSide: BorderSide.none,
@@ -410,9 +451,9 @@ class InvestorRegistrationScreenState
             ),
           ],
         ),
-        
+
         const SizedBox(width: 20),
-        
+
         // Navigation items
         _buildNavItem('Education', _navigateToEducation),
         const SizedBox(width: 30),
@@ -466,7 +507,7 @@ class InvestorRegistrationScreenState
               child: _buildLogo(false),
             ),
           ),
-          
+
           // Search in drawer
           Padding(
             padding: const EdgeInsets.all(16.0),
@@ -490,15 +531,27 @@ class InvestorRegistrationScreenState
               },
             ),
           ),
-          
+
           // Navigation items
           Expanded(
             child: ListView(
               padding: EdgeInsets.zero,
               children: [
-                _buildDrawerItem('Education', Icons.school, _navigateToEducation),
-                _buildDrawerItem('About us', Icons.info_outline, _navigateToAbout),
-                _buildDrawerItem('Register', Icons.person_add, _navigateToRegister),
+                _buildDrawerItem(
+                  'Education',
+                  Icons.school,
+                  _navigateToEducation,
+                ),
+                _buildDrawerItem(
+                  'About us',
+                  Icons.info_outline,
+                  _navigateToAbout,
+                ),
+                _buildDrawerItem(
+                  'Register',
+                  Icons.person_add,
+                  _navigateToRegister,
+                ),
                 _buildDrawerItem('Log In', Icons.login, _navigateToLogin),
               ],
             ),
@@ -569,33 +622,23 @@ class InvestorRegistrationScreenState
           filled: true,
           fillColor: const Color(0xFF2D2D2D).withValues(alpha: 0.8),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(
-              isLargeScreen ? 30 : 27.5,
-            ),
+            borderRadius: BorderRadius.circular(isLargeScreen ? 30 : 27.5),
             borderSide: BorderSide.none,
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(
-              isLargeScreen ? 30 : 27.5,
-            ),
+            borderRadius: BorderRadius.circular(isLargeScreen ? 30 : 27.5),
             borderSide: const BorderSide(color: Colors.white24, width: 1),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(
-              isLargeScreen ? 30 : 27.5,
-            ),
+            borderRadius: BorderRadius.circular(isLargeScreen ? 30 : 27.5),
             borderSide: const BorderSide(color: Colors.amber, width: 2),
           ),
           errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(
-              isLargeScreen ? 30 : 27.5,
-            ),
+            borderRadius: BorderRadius.circular(isLargeScreen ? 30 : 27.5),
             borderSide: const BorderSide(color: Colors.red, width: 1),
           ),
           focusedErrorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(
-              isLargeScreen ? 30 : 27.5,
-            ),
+            borderRadius: BorderRadius.circular(isLargeScreen ? 30 : 27.5),
             borderSide: const BorderSide(color: Colors.red, width: 2),
           ),
           contentPadding: EdgeInsets.symmetric(
@@ -634,9 +677,10 @@ class InvestorRegistrationScreenState
             }
           }
           if (hintText.toLowerCase().contains('contact')) {
-          if (!RegExp(r'^\d{10,}$').hasMatch(value)){
-            return 'Please enter a valid phone number';
-          }}
+            if (!RegExp(r'^\d{10,}$').hasMatch(value)) {
+              return 'Please enter a valid phone number';
+            }
+          }
           return null;
         },
       ),
@@ -653,10 +697,7 @@ class InvestorRegistrationScreenState
       decoration: BoxDecoration(
         color: Colors.black.withValues(alpha: 0.9),
         border: Border(
-          top: BorderSide(
-            color: Colors.white.withValues(alpha: 0.1),
-            width: 1,
-          ),
+          top: BorderSide(color: Colors.white.withValues(alpha: 0.1), width: 1),
         ),
       ),
       child: Column(
@@ -711,17 +752,12 @@ class InvestorRegistrationScreenState
                   ],
                 ),
           SizedBox(height: isMobile ? 30 : 40),
-          Divider(
-            color: Colors.white.withValues(alpha: 0.1),
-          ),
+          Divider(color: Colors.white.withValues(alpha: 0.1)),
           const SizedBox(height: 20),
           const Text(
-            '© 2025 Alternative Funds. All rights reserved.',
+            '© 2025 The Alternative Fund. All rights reserved.',
             textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.white60,
-            ),
+            style: TextStyle(fontSize: 14, color: Colors.white60),
           ),
         ],
       ),
@@ -747,16 +783,13 @@ class InvestorRegistrationScreenState
             padding: const EdgeInsets.only(bottom: 8),
             child: InkWell(
               onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('$item - Coming soon!')),
-                );
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text('$item - Coming soon!')));
               },
               child: Text(
                 item,
-                style: const TextStyle(
-                  fontSize: 14,
-                  color: Colors.white70,
-                ),
+                style: const TextStyle(fontSize: 14, color: Colors.white70),
               ),
             ),
           ),

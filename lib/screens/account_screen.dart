@@ -919,7 +919,7 @@ class _AccountScreenState extends State<AccountScreen> {
 
   Widget _buildLogo(bool isLargeScreen) {
     return Image.asset(
-      'lib/assets/images/logo2.png',
+      'lib/assets/images/logo.png',
       height: isLargeScreen ? 50 : 40,
       fit: BoxFit.contain,
     );
@@ -1506,7 +1506,7 @@ class _AccountScreenState extends State<AccountScreen> {
           Divider(color: Colors.white.withValues(alpha: 0.1)),
           const SizedBox(height: 20),
           const Text(
-            '© 2025 Alternative Funds. All rights reserved.',
+            '© 2025 The Alternative Fund. All rights reserved.',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 14, color: Colors.white60),
           ),

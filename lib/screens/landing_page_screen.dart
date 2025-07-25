@@ -157,41 +157,31 @@ class _CustomAppHeaderState extends State<CustomAppHeader> {
     return Row(
       children: [
         Container(
-          width: isLargeScreen ? 60 : 45,
-          height: isLargeScreen ? 60 : 45,
-          decoration: BoxDecoration(
-            color: Colors.transparent,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Icon(
-                Icons.featured_play_list_outlined,
-                size: isLargeScreen ? 50 : 35,
-                color: Colors.white.withValues(alpha: 0.8),
-              ),
-              Text(
-                '\$',
-                style: TextStyle(
-                  fontSize: isLargeScreen ? 28 : 20,
-                  fontWeight: FontWeight.bold,
-                  color: const Color(0xFFD4AF37),
-                ),
-              ),
-            ],
-          ),
-        ),
-        SizedBox(width: isLargeScreen ? 15 : 10),
-        Text(
-          'Alternative Funds',
-          style: TextStyle(
-            fontSize: isLargeScreen ? 24 : 18,
-            fontWeight: FontWeight.w300,
-            color: Colors.white,
-            letterSpacing: 1.2,
-          ),
-        ),
+  width: isLargeScreen ? 120 : 80,
+  height: isLargeScreen ? 120 : 80,
+  decoration: BoxDecoration(
+    color: Colors.transparent,
+    borderRadius: BorderRadius.circular(8),
+  ),
+  child: ClipRRect(
+    borderRadius: BorderRadius.circular(8),
+    child: Image(
+      image: AssetImage('lib/assets/images/logo.png'),
+      fit: BoxFit.cover, // Adjust this if needed (e.g., BoxFit.contain)
+    ),
+  ),
+),
+SizedBox(width: isLargeScreen ? 15 : 10),
+
+        // Text(
+        //   'The Alternative Fund',
+        //   style: TextStyle(
+        //     fontSize: isLargeScreen ? 24 : 18,
+        //     fontWeight: FontWeight.w300,
+        //     color: Colors.white,
+        //     letterSpacing: 1.2,
+        //   ),
+        // ),
       ],
     );
   }
@@ -503,7 +493,7 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
   //       ),
   //       const SizedBox(width: 10),
   //       const Text(
-  //         'Alternative Funds',
+  //         'The Alternative Fund',
   //         style: TextStyle(
   //           fontSize: 16,
   //           fontWeight: FontWeight.w300,
@@ -537,9 +527,9 @@ Widget _buildLogo() {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(8),
           child: Image.asset(
-            'lib/Assets/images/logo2.png',
-            width: 40,
-            height: 40,
+            'lib/Assets/images/logo.png',
+            width: 120,
+            height: 120,
             fit: BoxFit.cover,
             
           ),
@@ -947,7 +937,7 @@ Widget _buildActionButtons(bool isMobile, bool isTablet) {
                     children: [
                       // Main Title
                       Text(
-                        'Alternative Funds',
+                        'The Alternative Fund',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: isMobile ? 48 : (isTablet ? 64 : 80),
@@ -1091,7 +1081,7 @@ Widget _buildActionButtons(bool isMobile, bool isTablet) {
       child: Column(
         children: [
           Text(
-            'Why Choose Alternative Funds?',
+            'Why Choose The Alternative Fund?',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: isMobile ? 24 : 32,
@@ -1572,7 +1562,7 @@ Widget _buildActionButtons(bool isMobile, bool isTablet) {
           ),
           const SizedBox(height: 20),
           Text(
-            '© 2025 Alternative Funds. All rights reserved.',
+            '© 2025 The Alternative Fund. All rights reserved.',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14,
