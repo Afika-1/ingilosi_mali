@@ -1,4 +1,5 @@
 
+import 'package:alternative_funds/screens/faq_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:alternative_funds/screens/dashboard.dart';
 import 'package:alternative_funds/screens/landing_page_screen.dart';
@@ -129,8 +130,8 @@ class WelcomeScreenState extends State<WelcomeScreen>
                               borderRadius: BorderRadius.circular(20),
                               child: Image.asset(
                                 'lib/assets/images/logo.png',
-                                width: 100,
-                                height: 100,
+                                width: 120,
+                                height: 120,
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -313,7 +314,7 @@ class WelcomeScreenState extends State<WelcomeScreen>
                                 Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => LandingPage(),
+                                    builder: (context) => FAQScreen(),
                                   ),
                                 );
                               },
