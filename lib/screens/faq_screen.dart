@@ -716,17 +716,17 @@ class _FAQScreenState extends State<FAQScreen> with TickerProviderStateMixin {
       child: Column(
         children: [
           // Section Title
-          Text(
-            'Common Questions',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: isMobile ? 24 : 32,
-              fontWeight: FontWeight.w300,
-              color: Colors.white,
-              letterSpacing: 1.5,
-            ),
-          ),
-          SizedBox(height: isMobile ? 30 : 50),
+          // Text(
+          //   'Common Questions',
+          //   textAlign: TextAlign.center,
+          //   style: TextStyle(
+          //     fontSize: isMobile ? 24 : 32,
+          //     fontWeight: FontWeight.w300,
+          //     color: Colors.white,
+          //     letterSpacing: 1.5,
+          //   ),
+          // ),
+          // SizedBox(height: isMobile ? 30 : 50),
           
           // FAQ Items
           ...List.generate(_faqs.length, (index) {
@@ -790,7 +790,7 @@ class _FAQScreenState extends State<FAQScreen> with TickerProviderStateMixin {
                 answer,
                 style: TextStyle(
                   fontSize: isMobile ? 14 : 16,
-                  color: Colors.white70,
+                  color:  Color(0xFFD4AF37),
                   height: 1.5,
                   letterSpacing: 0.3,
                 ),

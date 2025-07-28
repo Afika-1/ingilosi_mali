@@ -22,6 +22,7 @@ class InvestorRegistrationScreenState
 
   bool _isPasswordVisible = false;
   bool _isSearchExpanded = false;
+  bool _acceptTerms = false;
   List<String> _searchResults = [];
   final List<String> _searchableContent = [
     'Education',
@@ -238,7 +239,8 @@ class InvestorRegistrationScreenState
                                             onPressed: () {
                                               if (_formKey.currentState!
                                                   .validate()) {
-                                                _handleRegistration();
+                                                // _handleRegistration();
+                                                 _showTermsDialog();
                                               }
                                             },
                                             style: ElevatedButton.styleFrom(
@@ -346,6 +348,281 @@ class InvestorRegistrationScreenState
       ),
     );
   }
+ void _showTermsDialog() {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        backgroundColor: const Color(0xFF2D2D2D), // Set your desired background color here
+        title: const Text(
+          'Terms and Conditions',
+          style: TextStyle(color: Colors.white), // Change title text color if needed
+        ),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: [
+              const Text(
+                'Please read and accept the terms and conditions.',
+                style: TextStyle(color: Colors.white), // Change content text color if needed
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                '1. You must comply with all applicable laws.',
+                style: TextStyle(color: Colors.white),
+              ),
+              const Text(
+                '2. Your information must be accurate.',
+                style: TextStyle(color: Colors.white),
+              ),
+              const Text(
+                '3. You agree to our privacy policy.',
+                style: TextStyle(color: Colors.white),
+              ),
+               const Text(
+                'Please read and accept the terms and conditions.',
+                style: TextStyle(color: Colors.white), // Change content text color if needed
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                '1. You must comply with all applicable laws.',
+                style: TextStyle(color: Colors.white),
+              ),
+              const Text(
+                '2. Your information must be accurate.',
+                style: TextStyle(color: Colors.white),
+              ),
+              const Text(
+                '3. You agree to our privacy policy.',
+                style: TextStyle(color: Colors.white),
+              ), const Text(
+                'Please read and accept the terms and conditions.',
+                style: TextStyle(color: Colors.white), // Change content text color if needed
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                '1. You must comply with all applicable laws.',
+                style: TextStyle(color: Colors.white),
+              ),
+              const Text(
+                '2. Your information must be accurate.',
+                style: TextStyle(color: Colors.white),
+              ),
+              const Text(
+                '3. You agree to our privacy policy.',
+                style: TextStyle(color: Colors.white),
+              ), const Text(
+                'Please read and accept the terms and conditions.',
+                style: TextStyle(color: Colors.white), // Change content text color if needed
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                '1. You must comply with all applicable laws.',
+                style: TextStyle(color: Colors.white),
+              ),
+              const Text(
+                '2. Your information must be accurate.',
+                style: TextStyle(color: Colors.white),
+              ),
+              const Text(
+                '3. You agree to our privacy policy.',
+                style: TextStyle(color: Colors.white),
+              ), const Text(
+                'Please read and accept the terms and conditions.',
+                style: TextStyle(color: Colors.white), // Change content text color if needed
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                '1. You must comply with all applicable laws.',
+                style: TextStyle(color: Colors.white),
+              ),
+              const Text(
+                '2. Your information must be accurate.',
+                style: TextStyle(color: Colors.white),
+              ),
+              const Text(
+                '3. You agree to our privacy policy.',
+                style: TextStyle(color: Colors.white),
+              ), const Text(
+                'Please read and accept the terms and conditions.',
+                style: TextStyle(color: Colors.white), // Change content text color if needed
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                '1. You must comply with all applicable laws.',
+                style: TextStyle(color: Colors.white),
+              ),
+              const Text(
+                '2. Your information must be accurate.',
+                style: TextStyle(color: Colors.white),
+              ),
+              const Text(
+                '3. You agree to our privacy policy.',
+                style: TextStyle(color: Colors.white),
+              ), const Text(
+                'Please read and accept the terms and conditions.',
+                style: TextStyle(color: Colors.white), // Change content text color if needed
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                '1. You must comply with all applicable laws.',
+                style: TextStyle(color: Colors.white),
+              ),
+              const Text(
+                '2. Your information must be accurate.',
+                style: TextStyle(color: Colors.white),
+              ),
+              const Text(
+                '3. You agree to our privacy policy.',
+                style: TextStyle(color: Colors.white),
+              ), const Text(
+                'Please read and accept the terms and conditions.',
+                style: TextStyle(color: Colors.white), // Change content text color if needed
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                '1. You must comply with all applicable laws.',
+                style: TextStyle(color: Colors.white),
+              ),
+              const Text(
+                '2. Your information must be accurate.',
+                style: TextStyle(color: Colors.white),
+              ),
+              const Text(
+                '3. You agree to our privacy policy.',
+                style: TextStyle(color: Colors.white),
+              ), const Text(
+                'Please read and accept the terms and conditions.',
+                style: TextStyle(color: Colors.white), // Change content text color if needed
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                '1. You must comply with all applicable laws.',
+                style: TextStyle(color: Colors.white),
+              ),
+              const Text(
+                '2. Your information must be accurate.',
+                style: TextStyle(color: Colors.white),
+              ),
+              const Text(
+                '3. You agree to our privacy policy.',
+                style: TextStyle(color: Colors.white),
+              ), const Text(
+                'Please read and accept the terms and conditions.',
+                style: TextStyle(color: Colors.white), // Change content text color if needed
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                '1. You must comply with all applicable laws.',
+                style: TextStyle(color: Colors.white),
+              ),
+              const Text(
+                '2. Your information must be accurate.',
+                style: TextStyle(color: Colors.white),
+              ),
+              const Text(
+                '3. You agree to our privacy policy.',
+                style: TextStyle(color: Colors.white),
+              ), const Text(
+                'Please read and accept the terms and conditions.',
+                style: TextStyle(color: Colors.white), // Change content text color if needed
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                '1. You must comply with all applicable laws.',
+                style: TextStyle(color: Colors.white),
+              ),
+              const Text(
+                '2. Your information must be accurate.',
+                style: TextStyle(color: Colors.white),
+              ),
+              const Text(
+                '3. You agree to our privacy policy.',
+                style: TextStyle(color: Colors.white),
+              ), const Text(
+                'Please read and accept the terms and conditions.',
+                style: TextStyle(color: Colors.white), // Change content text color if needed
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                '1. You must comply with all applicable laws.',
+                style: TextStyle(color: Colors.white),
+              ),
+              const Text(
+                '2. Your information must be accurate.',
+                style: TextStyle(color: Colors.white),
+              ),
+              const Text(
+                '3. You agree to our privacy policy.',
+                style: TextStyle(color: Colors.white),
+              ), const Text(
+                'Please read and accept the terms and conditions.',
+                style: TextStyle(color: Colors.white), // Change content text color if needed
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                '1. You must comply with all applicable laws.',
+                style: TextStyle(color: Colors.white),
+              ),
+              const Text(
+                '2. Your information must be accurate.',
+                style: TextStyle(color: Colors.white),
+              ),
+              const Text(
+                '3. You agree to our privacy policy.',
+                style: TextStyle(color: Colors.white),
+              ),
+              // Add more terms as needed
+            ],
+          ),
+        ),
+        actions: [
+          StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {
+              return Row(
+                children: [
+                  Checkbox(
+                    value: _acceptTerms,
+                    onChanged: (value) {
+                      setState(() {
+                        _acceptTerms = value ?? false; // Update the state
+                      });
+                    },
+                    activeColor: Colors.amber,
+                    checkColor: Colors.black,
+                    side: const BorderSide(color: Colors.white60, width: 1.5),
+                  ),
+                  const Text(
+                    'I accept the terms and conditions',
+                    style: TextStyle(color: Colors.white), // Change checkbox label color if needed
+                  ),
+                ],
+              );
+            },
+          ),
+          TextButton(
+            onPressed: () {
+              if (_acceptTerms) {
+                Navigator.of(context).pop(); // Close the dialog
+                _handleRegistration(); // Proceed with registration
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('You must accept the terms to continue.'),
+                    duration: Duration(seconds: 2),
+                  ),
+                );
+              }
+            },
+            child: const Text(
+              'Continue',
+              style: TextStyle(color: Colors.amber), // Change button text color if needed
+            ),
+          ),
+        ],
+      );
+    },
+  );
+}
 
   Widget _buildHeader(bool isLargeScreen) {
     return Container(

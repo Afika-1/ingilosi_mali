@@ -1,3 +1,4 @@
+import 'package:alternative_funds/screens/faq_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -545,6 +546,15 @@ class _ContactScreenState extends State<ContactScreen> with TickerProviderStateM
       context,
       MaterialPageRoute(
         builder: (context) => const BusinessLoginScreen(),
+      ),
+    );
+  }
+
+  void _navigateToFAQ() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const FAQScreen(),
       ),
     );
   }
@@ -1451,6 +1461,8 @@ class _ContactScreenState extends State<ContactScreen> with TickerProviderStateM
                   backgroundColor: const Color(0xFFD4AF37),
                 ),
               );
+              _navigateToFAQ();
+
             },
             child: Text(
               item,
