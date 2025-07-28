@@ -83,7 +83,7 @@ class BusinessRegistrationScreen2State
     super.dispose();
   }
 
-  bool _isSearchExpanded = false;
+  final bool _isSearchExpanded = false;
   List<String> _searchResults = [];
   final List<String> _searchableContent = [
     'Education',

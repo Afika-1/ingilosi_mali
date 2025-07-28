@@ -1461,7 +1461,7 @@ class _ContactScreenState extends State<ContactScreen> with TickerProviderStateM
               ),
             ),
           ),
-        )).toList(),
+        )),
       ],
     );
   }

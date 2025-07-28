@@ -1085,7 +1085,7 @@ class _FAQScreenState extends State<FAQScreen> with TickerProviderStateMixin {
               ),
             ),
           ),
-        )).toList(),
+        )),
       ],
     );
   }
