@@ -279,9 +279,7 @@ class InvestorRegistrationScreenState
                                         ),
                                         // Register Link
                                         Container(
-                                          width: isLargeScreen
-                                              ? 500
-                                              : double.infinity,
+                                          width: formWidth,
                                           padding: const EdgeInsets.symmetric(
                                             horizontal: 20,
                                           ),
